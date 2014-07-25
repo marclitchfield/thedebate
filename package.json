@@ -1,0 +1,13 @@
+{
+  "name": "thedebate",
+  "version": "0.0.1",
+  "description": "thedebate\r =========",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marclitchfield/thedebate.git"
+  },
+  "dependencies": {
+    "express": "~4.6.1"
+  }
+}
