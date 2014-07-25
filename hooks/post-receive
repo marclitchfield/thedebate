@@ -1,3 +1,0 @@
-#!/bin/sh
-npm install
-git --work-tree=/home/marquis/thedebate checkout -f
