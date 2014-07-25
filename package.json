@@ -8,6 +8,7 @@
     "url": "https://github.com/marclitchfield/thedebate.git"
   },
   "dependencies": {
-    "express": "~4.6.1"
+    "express": "~4.6.1",
+    "jade": "~1.5.0"
   }
 }
