@@ -6,8 +6,7 @@ before_script:
   - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host debate.blimpieboy.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - ssh-add -D
-  - ssh-add ~/.ssh/id_rsa
+  - ssh-agent ssh-add ~/.ssh/id_rsa
 after_success:
   - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
   - git push live master
