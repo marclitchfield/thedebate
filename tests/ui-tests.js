@@ -5,7 +5,7 @@ casper.test.begin('The Debate homepage', 1, function suite(test) {
 
   casper.then(function() {
     this.capture('tests/captures/homepage.png');
-  })
+  });
 
   casper.run(function() {
     test.done();
