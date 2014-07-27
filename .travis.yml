@@ -9,7 +9,9 @@ before_script:
   - ssh-agent ssh-add ~/.ssh/id_rsa
   - npm install -g casperjs
   - node server.js &
+  - chmod +x tests/verify-captures.sh
 after_success:
+  - tests/verify-captures.sh
   - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
   - git push live master
 env:
