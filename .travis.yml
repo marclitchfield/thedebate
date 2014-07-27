@@ -10,6 +10,7 @@ before_script:
   - npm install -g casperjs
   - node server.js &
 after_success:
+  - npm run verify
   - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
   - git push live master
 env:
