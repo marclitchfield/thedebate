@@ -11,7 +11,7 @@ before_script:
   - node server.js &
   - chmod +x tests/verify-captures.sh
 after_success:
-  - tests/verify-captures.sh
+  - [ $(git status | grep captures | wc -l | awk '{print $1}') = 0];
   - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
   - git push live master
 env:
