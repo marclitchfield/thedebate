@@ -5,7 +5,7 @@ casper.test.begin('The Debate homepage', 1, function suite(test) {
 
   casper.then(function() {
     test.assertSelectorHasText('.banner h1', 'The Debate');
-    this.captureSelector('tests/captures/actual/homepage.png', 'body', { quality: 100, format: 'png' });
+    this.captureSelector('tests/captures/actual/homepage.png', 'body', { quality: 1, format: 'png' });
   });
 
   casper.run(function() {
