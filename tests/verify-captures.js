@@ -13,15 +13,12 @@ describe('Verify screenshot captures', function() {
     );
 
     diff.compare(function(err, result) {
-      var error = err;
-      if (!error && result.deviation > 0) {
-        error = _.map(result.deviations, function(d) {
-          return d.variant + ': ' + d.info
-        }).join('\n');
+      var error = result.deviation > 0 ? JSON.stringify(result.deviations, undefined, 2) : err;
+      if (error) {
+        done(new Error(error));
+      } else {
+        done();
       }
-
-      console.log('Error: ', error);
-      done(error);
     });
   });
 });
