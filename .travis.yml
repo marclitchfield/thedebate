@@ -5,14 +5,14 @@ before_script:
   # - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
   # - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   # - chmod 600 ~/.ssh/id_rsa
-  # - echo -e "Host debate.blimpieboy.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host debate.blimpieboy.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   # - ssh-agent ssh-add ~/.ssh/id_rsa
   - npm install -g casperjs
   - npm install -g mocha
   - node server.js &
 script:
   - npm test
-  - npm run verify
+#  - npm run verify
   - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
   - git push live master
 # env:
