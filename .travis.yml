@@ -5,7 +5,3 @@ before_script:
   - echo -e "Host debate.blimpieboy.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - npm install -g casperjs
   - node server.js &
-script:
-  - npm test
-  - git remote add live ssh://marquis@debate.blimpieboy.com/~/git/debate.blimpieboy.com
-  - git push live master
