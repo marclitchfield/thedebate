@@ -21,6 +21,9 @@ html
               .score {{score}}
               span {{title}}
             {{/each}}
+            li.debate
+              {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
     script(src="js/application.js")
     script(src="js/router.js")
     script(src="js/models/debate.js")
+    script(src="js/controllers/debates_controller.js")
