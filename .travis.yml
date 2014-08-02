@@ -4,14 +4,15 @@ node_js:
 before_script:
 - npm install -g casperjs
 - node server.js &
-after_success:
-- git config --global user.email ${GH_EMAIL}
-- git config --global user.name ${GH_USERNAME}
-- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git
-- git fetch origin
-- git checkout staging
-- git merge master
-- git push deploy staging
+script:
+- npm test
+#- git config --global user.email ${GH_EMAIL}
+#- git config --global user.name ${GH_USERNAME}
+#- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git
+#- git fetch origin
+#- git checkout staging
+#- git merge master
+#- git push deploy staging
 env:
   global:
   - secure: XyQa0Q3UOaK/hDR7WOxVgySRPQsBaIns3kpJ/6WmZ8sxAFQrO+dxB6fJTqh8jnoygMyLK4kSIMkA/1TXGVd0Dub2wZmiwsDeb8tZQqlvUuL8wxQTPSZKGQgdPtuvUOXR3be554Pv9e00mYF/ZGOJE91kTsghbCL+USiBmQPIMKQ=
