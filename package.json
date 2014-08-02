@@ -8,7 +8,7 @@
     "url": "https://github.com/marclitchfield/thedebate.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "casperjs test tests/ui-tests.js"
   },
   "dependencies": {
     "express": "~4.6.1",
