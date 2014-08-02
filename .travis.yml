@@ -14,7 +14,7 @@ script:
 - git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git > /dev/null 2>&1
 - git checkout -b staging > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
-- git push deploy staging > /dev/null 2>&1
+- git push deploy staging
 env:
   global:
   - secure: GlV88Bq3MO4H/h+B7Yw7HISau4WQE7Din3CB2bd9+1oROkrrzHLRz9/c4pgRQi+XqOR467m7uG86KwO7NDu14rkIIKmNZLlt4lp1C9sUzxTIJMfAFSWXL89ZIuQbaNPiEsgqtmTNRgPsp336ppnkVv/ZwOEZPxZyqf1ogqSRPtY=
