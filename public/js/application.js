@@ -1,1 +1,1 @@
-window.Debate = Ember.Application.create();
+window.DebateApp = Ember.Application.create();

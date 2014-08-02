@@ -1,3 +1,3 @@
-Debate.Router.map(function() {
+DebateApp.Router.map(function() {
   this.resource('debates', { path: '/' });
 });
