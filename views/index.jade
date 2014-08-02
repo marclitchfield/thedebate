@@ -18,6 +18,7 @@ html
           ul.debate-list 
             {{#each}}
             li.debate
+              .score {{score}}
               span {{title}}
             {{/each}}
     script(src="js/application.js")

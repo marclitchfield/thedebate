@@ -22,14 +22,31 @@ li {
 
 .debate {
   cursor: pointer;
-  padding: .6rem .8rem;
+  padding: .5em .5rem .8em .5rem;
   float: left;
   overflow:hidden;
   text-overflow: ellipsis;
-  width: 24rem;
-  height: 6.8rem;
+  width: 36rem;
+  height: 6em;
   background-color: rgba(32, 45, 105, 1);
+  border: .5em solid rgba(42, 59, 137, 1);
   color: rgba(240,240,240,1);
   border-radius: .4rem;
   margin: 0 .4rem .4rem 0;
+} 
+
+.debate .score {
+  background-color: rgba(255,255,255,1);
+  border: .3em solid rgba(22, 30, 70, 1);
+  font-size: .8em;
+  font-weight: bold;
+  color: rgba(0,0,0,1);
+  border-radius: .2rem;
+  text-align: center;
+  vertical-align: middle;
+  padding: .7em 0;
+  width: 5rem;
+  height: 5.3em;
+  float: left;
+  margin-right: .8rem;
 }
