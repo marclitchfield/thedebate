@@ -16,14 +16,14 @@ npm install -g node-supervisor
 npm install
 ```
 
-Run the server and watch for file changes
-```
-supervisor -w . server.js
-```
-
 Lint, Build, Unit Tests
 ```
 grunt
+```
+
+Run the server and watch for file changes
+```
+supervisor -w . server.js
 ```
 
 Run UI tests (requires the server to be running)
