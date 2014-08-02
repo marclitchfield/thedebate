@@ -1,14 +1,35 @@
+body {
+}
+
 .banner {
-  background-color: rgba(0, 22, 102, 1);
-  color: rgba(204, 215, 255, 1);
+  background-color: rgba(32, 45, 105, 1);
+  color: rgba(240,240,240,1);
   width: 100%;
-  padding: 4em;
+  padding: 3em;
 }
 
 .content {
-  margin: .5em 4em;
+  margin: .5em 3em;
 }
 
 li { 
   list-style: none;
+}
+
+.debate-list {
+  padding: 0;
+}
+
+.debate {
+  cursor: pointer;
+  padding: .6rem .8rem;
+  float: left;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  width: 24rem;
+  height: 6.8rem;
+  background-color: rgba(32, 45, 105, 1);
+  color: rgba(240,240,240,1);
+  border-radius: .4rem;
+  margin: 0 .4rem .4rem 0;
 }
