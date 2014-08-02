@@ -9,12 +9,12 @@ script:
 - git config --global user.email $GH_EMAIL
 - git config --global user.name $GH_USERNAME
 - git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git > /dev/null 2>&1
-#- git fetch origin
-- git checkout staging
-- git merge master
-- git push deploy staging
+- git fetch origin > /dev/null 2>&1
+- git checkout staging > /dev/null 2>&1
+- git merge master > /dev/null 2>&1
+- git push deploy staging > /dev/null 2>&1
 env:
   global:
-  - secure: F10SusWcW7eGm8sMORcKT7FlrKzgZo2Fc1KlZA3zMx09QRBFZ6Z2vus8y5uPb5x4xzQrVxRKBlf5b+M2aOGH3K2DHW895qznjXuORd7YOrhJFzbFr9s8kGIgW49sL7uIUrz8GVbpO7aLoEt/6fYQHd6Y+X6GBuPwIOonP/UgPAs=
-  - secure: fUF7Lvw0ARVQLSQMdyb/NESC73Ms81AW5hgtLLwncTyKYj124sBEtJ6kEQ/rbNN+pB4gEToaolm7uTmefYe3ROBisA+luOcU3HrhAg4JYmGWx3DMuvlWV4F/Hn3YWIBINM8p6z0GAe64MQSEvILkJ4pElxOQcsGHiBgjal12mh4=
-  - secure: ZSfR9qHaJ3UMkKJdvaFfqFl3GMHleTJkJ0KIXBOKn8Irx/s5laZehKIHPl/3yyScz98zahsdZR6JBeiPuTOcjnO4WYSb1sMvlBTyhajOqAeMIpq5VCiRt6Qi+saLPHHGm4ntnJSWvV73luslPA9nwGdgwR1hwg7KwyoWJEEqme8=
+  - secure: GlV88Bq3MO4H/h+B7Yw7HISau4WQE7Din3CB2bd9+1oROkrrzHLRz9/c4pgRQi+XqOR467m7uG86KwO7NDu14rkIIKmNZLlt4lp1C9sUzxTIJMfAFSWXL89ZIuQbaNPiEsgqtmTNRgPsp336ppnkVv/ZwOEZPxZyqf1ogqSRPtY=
+  - secure: MCx7nLGVpnXAzof1DxTWFxzWzF/0v/xGAiw63dx2GQRSodUyJBLFL+V5Mi1RB29+MXubIZLJ9VsfbQSAy7cgFKQH5Pa0B24kamx5kc34bCuTZsh0WhJ+1u8bJ6GdbGgHpKN+b2kerevguYoQHa45Fow/lhdzbgVQE12EZKIAkS0=
+  - secure: eBamwqVviKvIkWZR+hs4XP08EPQe8AGLkkHG6TFd8cXNwSyw83NgUM0pb6/EOGXYPGoxvC8RAbnR2v5GrF+GV1jBaevEhxxGhdTtpqn8n0t1kxvZHhQaL5yD7VCcTAqrqmk6yckjuCi+OJ8IkdP5CLJa4U+DARIR6mUzTBA3NtE=
