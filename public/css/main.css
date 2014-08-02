@@ -25,20 +25,25 @@ li {
   cursor: pointer;
   padding: .5em .5rem .8em .5rem;
   float: left;
-  overflow:hidden;
-  text-overflow: ellipsis;
-  width: 36rem;
+  width: 40rem;
   height: 6em;
   background-color: rgba(32, 45, 105, 1);
   border: .5em solid rgba(42, 59, 137, 1);
   color: rgba(240,240,240,1);
   border-radius: .4rem;
   margin: 0 .4rem .4rem 0;
-} 
+}
 
-.debate input {
+.debate .title {
+  height: 4.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.debate input[type='text'] {
   background-color: rgba(32, 45, 105, 1);
   padding-left: .3rem;
+  width: 37rem;
   border: 0;
 }
 
@@ -53,7 +58,7 @@ li {
   vertical-align: middle;
   padding: .7em 0;
   width: 5rem;
-  height: 5.3em;
+  height: 5.1em;
   float: left;
   margin-right: .8rem;
 }
