@@ -15,7 +15,11 @@ html
           p Welcome to the debate
       .content
         .container
-          a(href="#") Sign up
+          ul.debate-list 
+            {{#each}}
+            li
+              span {{title}}
+            {{/each}}
     script(src="js/application.js")
     script(src="js/router.js")
     script(src="js/models/debate.js")

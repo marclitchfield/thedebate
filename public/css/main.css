@@ -8,3 +8,7 @@
 .content {
   margin: .5em 4em;
 }
+
+li { 
+  list-style: none;
+}
