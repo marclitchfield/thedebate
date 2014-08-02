@@ -1,7 +1,18 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_script:
-  - echo -e "Host debate.blimpieboy.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - npm install -g casperjs
-  - node server.js &
+- npm install -g casperjs
+- node server.js &
+after_success:
+- git config --global user.email ${GH_EMAIL}
+- git config --global user.name ${GH_USERNAME}
+- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git
+- git checkout -f staging
+- git merge master
+- git push deploy staging
+env:
+  global:
+  - secure: XyQa0Q3UOaK/hDR7WOxVgySRPQsBaIns3kpJ/6WmZ8sxAFQrO+dxB6fJTqh8jnoygMyLK4kSIMkA/1TXGVd0Dub2wZmiwsDeb8tZQqlvUuL8wxQTPSZKGQgdPtuvUOXR3be554Pv9e00mYF/ZGOJE91kTsghbCL+USiBmQPIMKQ=
+  - secure: fb7tGD/TVbWojWSYrRD6dFbMDygsBn6lPBbKxaC5rk89oHHNgbUYvKCMmzwOqyYBJnoU1/74l+LeNGrEr6P9toVS/30K2XxtP72x0LRuO9yk7myVY+U5rKH13JUl8CSyKlO0BH+yfCoOW916YiBiM5BHfteQuKLd5StgeR8HtNg=
+  - secure: EEX8Gs4xQL/n04OoIPv8Pttm36lfi1lybocfVotLAXaN5/CuVbznqhJDnZGWDKLfN0xKZUqEuw/2gP5VLtZaAoLaJ3gLIhWjFCTDkDDwc6QS/AVwjQE55N4Na2trawHZ7C+0acDMHSqSTOzjt3iWwTsvCuC3ut4B89VW9Ebqnl0=
