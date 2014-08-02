@@ -7,10 +7,10 @@ branches:
 before_script:
 - npm install -g grunt-cli
 - npm install -g casperjs
-- node server.js &
 script:
 - set -e
-- grunt jshint
+- grunt
+- node server.js &
 - npm test
 - git config --global user.email $GH_EMAIL
 - git config --global user.name $GH_USERNAME
