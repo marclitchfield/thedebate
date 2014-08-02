@@ -8,11 +8,15 @@ module.exports = function(grunt) {
         globals: {
         }
       }
+    },
+
+    exec: {
+      uitests: 'casperjs test tests/ui-tests.js'
     }
 
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-
-  grunt.registerTask('default', ['jshint']);
+  grunt.loadNpmTasks('grunt-exec');
+  grunt.registerTask('default', ['jshint','exec:uitests']);
 };

@@ -8,6 +8,7 @@ before_script:
 - npm install -g casperjs
 - node server.js &
 script:
+- set -e
 - grunt jshint
 - npm test
 - git config --global user.email $GH_EMAIL
@@ -16,6 +17,7 @@ script:
 - git checkout -b staging > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
 - git push deploy staging > /dev/null 2>&1
+- set +e
 env:
   global:
   - secure: ZMH9Q31OAh0hAjMOn1pT63S1eBPWtNoXm3l3sFa3STFdpN7x61OgTYESM8egQ7j+2Wlf3ht31ZFUmPsUktA4hRql0oaNY0w0LMtmDz/XsuEfW3m+SJte2tiCoDhnNwOQJDRKb511MxsRjx9YVT9ALTJJA7+LiZE+KfS4oNNFiE4=

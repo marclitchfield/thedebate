@@ -8,7 +8,7 @@
     "url": "https://github.com/marclitchfield/thedebate.git"
   },
   "scripts": {
-    "test": "casperjs test tests/ui-tests.js"
+    "test": "grunt test"
   },
   "dependencies": {
     "express": "~4.6.1",
@@ -19,6 +19,7 @@
     "casper": "~0.1.1",
     "lodash": "~2.4.1",
     "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-exec": "~0.4.6"
   }
 }
