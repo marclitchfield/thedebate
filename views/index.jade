@@ -8,10 +8,13 @@ html
     script(src="js/lib/ember-1.6.1.js")
     script(src="js/lib/ember-data.js")
   body
-    .banner
-      .container
+    script(type="text/x-handlebars", data-template-name="debates")
+      .banner
+        .container
           h1 The Debate
           p Welcome to the debate
-    .content
-      .container
-        a(href="#") Sign up
+      .content
+        .container
+          a(href="#") Sign up
+    script(src="js/application.js")
+    script(src="js/router.js")
