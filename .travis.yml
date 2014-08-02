@@ -6,15 +6,8 @@ before_script:
 - node server.js &
 script:
 - npm test
-#- git config --global user.email ${GH_EMAIL}
-#- git config --global user.name ${GH_USERNAME}
-#- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git
-#- git fetch origin
-#- git checkout staging
-#- git merge master
-#- git push deploy staging
 env:
   global:
-  - secure: XyQa0Q3UOaK/hDR7WOxVgySRPQsBaIns3kpJ/6WmZ8sxAFQrO+dxB6fJTqh8jnoygMyLK4kSIMkA/1TXGVd0Dub2wZmiwsDeb8tZQqlvUuL8wxQTPSZKGQgdPtuvUOXR3be554Pv9e00mYF/ZGOJE91kTsghbCL+USiBmQPIMKQ=
-  - secure: fb7tGD/TVbWojWSYrRD6dFbMDygsBn6lPBbKxaC5rk89oHHNgbUYvKCMmzwOqyYBJnoU1/74l+LeNGrEr6P9toVS/30K2XxtP72x0LRuO9yk7myVY+U5rKH13JUl8CSyKlO0BH+yfCoOW916YiBiM5BHfteQuKLd5StgeR8HtNg=
-  - secure: EEX8Gs4xQL/n04OoIPv8Pttm36lfi1lybocfVotLAXaN5/CuVbznqhJDnZGWDKLfN0xKZUqEuw/2gP5VLtZaAoLaJ3gLIhWjFCTDkDDwc6QS/AVwjQE55N4Na2trawHZ7C+0acDMHSqSTOzjt3iWwTsvCuC3ut4B89VW9Ebqnl0=
+  - secure: F10SusWcW7eGm8sMORcKT7FlrKzgZo2Fc1KlZA3zMx09QRBFZ6Z2vus8y5uPb5x4xzQrVxRKBlf5b+M2aOGH3K2DHW895qznjXuORd7YOrhJFzbFr9s8kGIgW49sL7uIUrz8GVbpO7aLoEt/6fYQHd6Y+X6GBuPwIOonP/UgPAs=
+  - secure: fUF7Lvw0ARVQLSQMdyb/NESC73Ms81AW5hgtLLwncTyKYj124sBEtJ6kEQ/rbNN+pB4gEToaolm7uTmefYe3ROBisA+luOcU3HrhAg4JYmGWx3DMuvlWV4F/Hn3YWIBINM8p6z0GAe64MQSEvILkJ4pElxOQcsGHiBgjal12mh4=
+  - secure: ZSfR9qHaJ3UMkKJdvaFfqFl3GMHleTJkJ0KIXBOKn8Irx/s5laZehKIHPl/3yyScz98zahsdZR6JBeiPuTOcjnO4WYSb1sMvlBTyhajOqAeMIpq5VCiRt6Qi+saLPHHGm4ntnJSWvV73luslPA9nwGdgwR1hwg7KwyoWJEEqme8=
