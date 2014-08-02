@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      files: ['**/*.js', '!**/node_modules/**'],
+      files: ['**/*.js', '!**/node_modules/**', '!public/js/lib/**'],
       options: {
         globals: {
         }
