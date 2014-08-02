@@ -8,11 +8,7 @@ the debate
 
 Install dependencies
 ```
-npm install -g mocha
-npm install -g grunt-cli
-npm install -g phantomjs
-npm install -g casperjs
-npm install -g node-supervisor
+npm run setup
 npm install
 ```
 
