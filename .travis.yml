@@ -6,9 +6,9 @@ before_script:
 - node server.js &
 script:
 - npm test
-- git config --global user.email ${GH_EMAIL}
-- git config --global user.name ${GH_USERNAME}
-#- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git
+- git config --global user.email $GH_EMAIL
+- git config --global user.name $GH_USERNAME
+- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git > /dev/null 2>&1
 #- git fetch origin
 #- git checkout staging
 #- git merge master
