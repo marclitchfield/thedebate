@@ -5,8 +5,7 @@ branches:
   only:
   - master
 before_script:
-- npm install -g grunt-cli
-- npm install -g casperjs
+- npm run setup
 script:
 - set -e
 - grunt

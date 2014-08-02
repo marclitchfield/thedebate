@@ -8,6 +8,7 @@
     "url": "https://github.com/marclitchfield/thedebate.git"
   },
   "scripts": {
+    "setup": "npm install -g grunt-cli mocha phantomjs casperjs supervisor",
     "test": "casperjs test tests/ui-tests.js"
   },
   "dependencies": {
