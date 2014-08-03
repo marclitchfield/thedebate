@@ -12,7 +12,7 @@ html
       .banner
         .container
           h1
-            {{#link-to 'debates'}}The Debate{{/link-to}}
+            | {{#link-to 'debates'}}The Debate{{/link-to}}
           p Welcome to the debate
       .content
         .container
@@ -24,8 +24,8 @@ html
         li
           | {{#link-to 'debate' debate}}
           .debate
-            .score {{debate.score}}
-            .title {{debate.title}}
+            .debate-score {{debate.score}}
+            .debate-title {{debate.title}}
           | {{/link-to}}
         | {{/each}}
         li.debate
@@ -33,11 +33,18 @@ html
 
     script(type="text/x-handlebars", data-template-name="debate")
       .debate.detail
-        .score {{score}}
-        .title {{title}}
-
+        .debate-score {{score}}
+        .debate-title {{title}}
+      .statements
+        | {{#each statement in statements}}
+        .statement
+          .statement-score {{statement.score}}
+          .statement-body {{statement.body}}
+        | {{/each}}
 
     script(src="js/application.js")
     script(src="js/router.js")
     script(src="js/models/debate.js")
+    script(src="js/models/statement.js")      
     script(src="js/controllers/debates_controller.js")
+    script(src="js/controllers/statements_controller.js")      

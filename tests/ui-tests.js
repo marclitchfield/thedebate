@@ -11,16 +11,16 @@ casper.test.begin('The Debate homepage', 5, function suite(test) {
     var debateTitle = 'New debate added by capser';
     this.sendKeys('#new-debate', debateTitle);
     this.sendKeys('#new-debate', casper.page.event.key.Enter);
-    test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .title', debateTitle);
-    test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .score', '0');
+    test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .debate-title', debateTitle);
+    test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .debate-score', '0');
   });
 
   casper.then(function() {
-    var debateText = this.fetchText('.debate-list li:first-of-type .title');
-    var debateScore = this.fetchText('.debate-list li:first-of-type .score');
+    var debateText = this.fetchText('.debate-list li:first-of-type .debate-title');
+    var debateScore = this.fetchText('.debate-list li:first-of-type .debate-score');
     this.click('.debate-list li:first-of-type .debate');
-    test.assertSelectorHasText('.debate.detail .title', debateText);
-    test.assertSelectorHasText('.debate.detail .score', debateScore);
+    test.assertSelectorHasText('.debate.detail .debate-title', debateText);
+    test.assertSelectorHasText('.debate.detail .debate-score', debateScore);
   });
 
   casper.run(function() {
