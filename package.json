@@ -9,7 +9,7 @@
   },
   "scripts": {
     "setup": "npm install -g grunt-cli mocha phantomjs casperjs supervisor",
-    "test": "casperjs test tests/ui-tests.js"
+    "test": "casperjs --verbose --log-level=debug test tests/ui-tests.js"
   },
   "dependencies": {
     "express": "~4.6.1",

@@ -87,6 +87,7 @@ li {
 }
 
 .statement {
+  cursor: pointer;
   margin: .4em 1.3rem;
   display: block;
   clear: both;
@@ -94,6 +95,29 @@ li {
   border: .3rem solid rgba(216, 221, 243, 1);
   border-radius: .4rem;
   padding: 0 1rem 1em 0;
+}
+
+.statement .statement-body {
+  color: rgba(32, 45, 105, 1);
+}
+
+.statement.detail {
+  background-color: rgba(32, 45, 105, 1);
+  cursor: auto;
+}
+
+.statement.detail .statement-body {
+  color: rgba(240,240,240,1);
+}
+
+.responses a, .statements a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.responses a:hover, .statements a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .statement .statement-score {

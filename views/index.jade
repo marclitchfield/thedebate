@@ -37,9 +37,27 @@ html
         .debate-title {{title}}
       .statements
         | {{#each statement in statements}}
+        | {{#link-to 'statement' statement}}
         .statement
           .statement-score {{statement.score}}
           .statement-body {{statement.body}}
+        | {{/link-to}}
+        | {{/each}}
+
+    script(type="text/x-handlebars", data-template-name="statement")
+      .debate.detail
+        .debate-score {{debate.score}}
+        .debate-title {{debate.title}}
+      .statement.detail
+        .statement-score {{score}}
+        .statement-body {{body}}
+      .responses
+        | {{#each response in responses}}
+        | {{#link-to 'statement' response}}
+        .statement
+          .statement-score {{response.score}}
+          .statement-body {{response.body}}
+        | {{/link-to}}
         | {{/each}}
 
     script(src="js/application.js")
