@@ -8,21 +8,25 @@ html
     script(src="js/lib/ember-1.6.1.js")
     script(src="js/lib/ember-data.js")
   body
-    script(type="text/x-handlebars", data-template-name="debates")
-      .banner
+    .banner
+      .container
+        h1 The Debate
+        p Welcome to the debate
+    .content
+      script(type="text/x-handlebars", data-template-name="debates")
         .container
-          h1 The Debate
-          p Welcome to the debate
-      .content
-        .container
-          ul.debate-list 
-            | {{#each}}
-            li.debate
-              .score {{score}}
-              .title {{title}}
-            | {{/each}}
-            li.debate
-              | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
+          | {{outlet}}
+
+    script(type="text/x-handlebars", data-template-name="debates/index")
+      ul.debate-list 
+        | {{#each}}
+        li.debate
+          .score {{score}}
+          .title {{title}}
+        | {{/each}}
+        li.debate
+          | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
+
     script(src="js/application.js")
     script(src="js/router.js")
     script(src="js/models/debate.js")
