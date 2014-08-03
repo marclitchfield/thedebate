@@ -1,4 +1,4 @@
-casper.test.begin('The Debate homepage', 4, function suite(test) {
+casper.test.begin('The Debate homepage', 5, function suite(test) {
   casper.start("http://localhost:9002", function() {
     this.viewport(420, 300);
   });
@@ -17,8 +17,10 @@ casper.test.begin('The Debate homepage', 4, function suite(test) {
 
   casper.then(function() {
     var debateText = this.fetchText('.debate-list li:first-of-type .title');
+    var debateScore = this.fetchText('.debate-list li:first-of-type .score');
     this.click('.debate-list li:first-of-type .debate');
-    test.assertSelectorHasText('#debate-title', debateText);
+    test.assertSelectorHasText('.debate.detail .title', debateText);
+    test.assertSelectorHasText('.debate.detail .score', debateScore);
   });
 
   casper.run(function() {
