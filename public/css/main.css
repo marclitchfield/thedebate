@@ -39,13 +39,28 @@ li {
 .debate {
   padding: .5em .5rem .8em .5rem;
   float: left;
-  width: 34rem;
   height: 6em;
   background-color: rgba(32, 45, 105, 1);
   border: .5em solid rgba(42, 59, 137, 1);
   color: rgba(240,240,240,1);
   border-radius: .4rem;
   margin: 0 .6rem .6rem 0;
+}
+
+@media only screen {
+  .debate { width: 100%; }
+}
+
+@media only screen and (min-width: 52em) {
+  .debate { width: 49%; }
+}
+
+@media only screen and (min-width: 72em) {
+  .debate { width: 32.8%; }
+}
+
+@media only screen and (min-width: 112em) {
+  .debate { width: 24.6%; }
 }
 
 .debate.detail {
@@ -65,7 +80,6 @@ li {
 .debate input[type='text'] {
   background-color: rgba(32, 45, 105, 1);
   padding-left: .3rem;
-  width: 29rem;
   border: 0;
 }
 
