@@ -1,4 +1,4 @@
-casper.test.begin('The Debate homepage', 5, function suite(test) {
+casper.test.begin('The Debate homepage', 7, function suite(test) {
   casper.start("http://localhost:9002", function() {
     this.viewport(420, 300);
   });
@@ -11,6 +11,7 @@ casper.test.begin('The Debate homepage', 5, function suite(test) {
     var debateTitle = 'New debate added by capser';
     this.sendKeys('#new-debate', debateTitle);
     this.sendKeys('#new-debate', casper.page.event.key.Enter);
+    test.assertEval(function() { return __utils__.findAll('.debate-list .debate').length > 1; });
     test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .debate-title', debateTitle);
     test.assertSelectorHasText('.debate-list li:nth-last-of-type(2) .debate-score', '0');
   });
@@ -21,6 +22,9 @@ casper.test.begin('The Debate homepage', 5, function suite(test) {
     this.click('.debate-list li:first-of-type .debate');
     test.assertSelectorHasText('.debate.detail .debate-title', debateText);
     test.assertSelectorHasText('.debate.detail .debate-score', debateScore);
+    casper.waitForSelector('.statement', function() {
+      test.assertEval(function() { return __utils__.findAll('.statement').length > 0; });
+    });
   });
 
   casper.run(function() {

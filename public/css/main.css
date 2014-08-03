@@ -82,18 +82,22 @@ li {
   margin-right: .8rem;
 }
 
+.statements {
+  margin-top: 1em;
+}
+
 .statement {
-  margin: .4em 1.4rem;
+  margin: .4em 1.3rem;
   display: block;
   clear: both;
   min-height: 4em;
   border: .3rem solid rgba(216, 221, 243, 1);
   border-radius: .4rem;
+  padding: 0 1rem 1em 0;
 }
 
 .statement .statement-score {
   background-color: rgba(216, 221, 243, 1);
-  border: .3em solid rgba(34, 47, 109, 1);
   color: rgba(32, 45, 105, 1);
   font-size: .8em;
   font-weight: bold;
@@ -103,7 +107,7 @@ li {
   width: 5rem;
   height: 3em;
   position: absolute;
-  border-radius: .3rem;
+  border-bottom-right-radius: .4rem;
   margin: 0;
 }
 
