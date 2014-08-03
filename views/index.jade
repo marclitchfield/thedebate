@@ -19,13 +19,18 @@ html
 
     script(type="text/x-handlebars", data-template-name="debates/index")
       ul.debate-list 
-        | {{#each}}
-        li.debate
-          .score {{score}}
-          .title {{title}}
+        | {{#each debate in content}}
+        li {{#link-to 'debate' debate}}
+          .debate
+            .score {{debate.score}}
+            .title {{debate.title}}
+        | {{/link-to}}
         | {{/each}}
         li.debate
           | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
+
+    script(type="text/x-handlebars", data-template-name="debate")
+      #debate-title {{title}}
 
     script(src="js/application.js")
     script(src="js/router.js")

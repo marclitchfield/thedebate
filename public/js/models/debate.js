@@ -1,9 +1,9 @@
-DebateApp.Debate = DS.Model.extend({
+App.Debate = DS.Model.extend({
   title: DS.attr('string'),
   score: DS.attr('number')
 });
 
-DebateApp.Debate.FIXTURES = [
+App.Debate.FIXTURES = [
   { id: 1, score: 8293, title: 'Lucas ipsum dolor sit amet wyl jusik geonosian elomin bane wicket tchuukthai elrood droid chadra-fan. Solo snivvian whitesun baba cracken shawda grievous.' },
   { id: 2, score: 8112, title: 'Felth chommell hoth hutta r4-p17. Pavan thrawn boss kessel obi-wan boba tarasin anakin raynar' },
   { id: 3, score: 7822, title: 'Yuzzum aparo roan nadon shistavanen. Jamillia kastolar kota skywalker muzzer. Lama stass zhell gendai. Organa vima-da-boda cliegg fode bren ric.' },

@@ -1,3 +1,3 @@
-window.DebateApp = Ember.Application.create();
+window.App = Ember.Application.create();
 
-DebateApp.ApplicationAdapter = DS.FixtureAdapter.extend();
+App.ApplicationAdapter = DS.FixtureAdapter.extend();

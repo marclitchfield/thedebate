@@ -1,4 +1,4 @@
-DebateApp.DebatesIndexController = Ember.ArrayController.extend({
+App.DebatesIndexController = Ember.ArrayController.extend({
   actions: {
     createDebate: function() {
       var title = this.get('newTitle');
