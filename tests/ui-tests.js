@@ -13,7 +13,7 @@ casper.test.begin('The Debate homepage', 3, function suite(test) {
     this.sendKeys('#new-debate', casper.page.event.key.Enter);
     test.assertSelectorHasText('li.debate:nth-last-of-type(2) .title', debateTitle);
     test.assertSelectorHasText('li.debate:nth-last-of-type(2) .score', '0');
-  })
+  });
 
   casper.run(function() {
     test.done();
