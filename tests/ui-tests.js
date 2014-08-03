@@ -19,7 +19,7 @@ casper.test.begin('The Debate homepage', 4, function suite(test) {
     var debateText = this.fetchText('.debate-list li:first-of-type .title');
     this.click('.debate-list li:first-of-type .debate');
     test.assertSelectorHasText('#debate-title', debateText);
-  })
+  });
 
   casper.run(function() {
     test.done();
