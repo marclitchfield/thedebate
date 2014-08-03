@@ -19,7 +19,7 @@ body {
 }
 
 .content {
-  margin: .5em 3em;
+  margin: .5em 0;
 }
 
 li { 
@@ -35,7 +35,7 @@ li {
   cursor: pointer;
   padding: .5em .5rem .8em .5rem;
   float: left;
-  width: 32rem;
+  width: 34rem;
   height: 6em;
   background-color: rgba(32, 45, 105, 1);
   border: .5em solid rgba(42, 59, 137, 1);

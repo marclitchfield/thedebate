@@ -1,5 +1,5 @@
 App.Router.map(function() {
-  this.resource('debates', { path: '/' }, function() { });
+  this.resource('debates', { path: '/' }, function() {});
   this.resource('debate', { path: '/debate/:debate_id' });
 });
 
