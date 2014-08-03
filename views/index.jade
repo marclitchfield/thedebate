@@ -8,12 +8,13 @@ html
     script(src="js/lib/ember-1.6.1.js")
     script(src="js/lib/ember-data.js")
   body
-    .banner
-      .container
-        h1 The Debate
-        p Welcome to the debate
-    .content
-      script(type="text/x-handlebars", data-template-name="debates")
+    script(type="text/x-handlebars")
+      .banner
+        .container
+          h1
+            {{#link-to 'debates'}}The Debate{{/link-to}}
+          p Welcome to the debate
+      .content
         .container
           | {{outlet}}
 
