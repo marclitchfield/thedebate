@@ -45,9 +45,11 @@ html
         | {{/each}}
 
     script(type="text/x-handlebars", data-template-name="statement")
+      | {{#link-to 'debate' debate}}
       .debate.detail
         .debate-score {{debate.score}}
         .debate-title {{debate.title}}
+      | {{/link-to}}
       .statement.detail
         .statement-score {{score}}
         .statement-body {{body}}

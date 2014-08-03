@@ -18,12 +18,6 @@ App.DebateRoute = Ember.Route.extend({
   }
 });
 
-App.StatementsIndexRoute = Ember.Route.extend({
-  model: function(params) {
-    return this.store.find('statement'); // TODO: Filter by params.debate_id
-  }
-});
-
 App.StatementRoute = Ember.Route.extend({
   model: function(params) {
     return this.store.find('statement', params.statement_id);
