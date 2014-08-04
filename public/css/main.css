@@ -83,6 +83,12 @@ li {
   border: 0;
 }
 
+.statement textarea {
+  border: 0;
+  width: 100%;
+  box-shadow: none;
+}
+
 .debate .debate-score {
   background-color: rgba(255,255,255,1);
   border: .3em solid rgba(22, 30, 70, 1);
@@ -145,4 +151,8 @@ li {
   margin-left: 6rem;
   display: block;
   vertical-align: top;
+}
+
+.statements button, .responses button {
+  margin-left: 1.3rem;
 }

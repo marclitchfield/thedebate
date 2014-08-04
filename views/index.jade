@@ -43,13 +43,16 @@ html
           .statement-body {{statement.body}}
         | {{/link-to}}
         | {{/each}}
+        .statement
+          | {{textarea id="new-statement" placeholder="make a statement in this debate ..." value=newBody}}
+        | <button {{action 'createStatement'}} id="submit-statement" class="btn btn-primary">Submit</button>
 
     script(type="text/x-handlebars", data-template-name="statement")
       | {{#link-to 'debate' debate}}
       .debate.detail
         .debate-score {{debate.score}}
         .debate-title {{debate.title}}
-      | {{/link-to}}
+      | {{/link-to}}   
       .statement.detail
         .statement-score {{score}}
         .statement-body {{body}}
@@ -61,10 +64,15 @@ html
           .statement-body {{response.body}}
         | {{/link-to}}
         | {{/each}}
+        .statement
+          | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
+        | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
+
 
     script(src="js/application.js")
     script(src="js/router.js")
     script(src="js/models/debate.js")
     script(src="js/models/statement.js")
+    script(src="js/controllers/debate_controller.js")
     script(src="js/controllers/debates_controller.js")
-    script(src="js/controllers/statements_controller.js")
+    script(src="js/controllers/statement_controller.js")

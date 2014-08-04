@@ -1,4 +1,4 @@
-App.StatementsIndexController = Ember.ArrayController.extend({
+App.DebateController = Ember.ObjectController.extend({
   actions: {
     createStatement: function() {
       var body = this.get('newBody');
@@ -13,6 +13,7 @@ App.StatementsIndexController = Ember.ArrayController.extend({
       });
 
       this.set('newBody', '');
+      this.get('statements').pushObject(statement);
       statement.save();
     }
   }
