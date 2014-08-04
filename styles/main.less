@@ -16,6 +16,7 @@
 
 body {
   font-family: Georgia;
+  min-width: 38em;
 }
 
 html {
@@ -59,12 +60,22 @@ li {
   margin: 0 0 0 .5rem;
 }
 
-.statements, .responses {
-  // margin-top: 1em;
+.statements, .responses, .detail {
+  margin-top: .5em;
 
-  button {
+  button:first-of-type {
     margin-left: 1.3rem;
   }
+}
+
+#new-response {
+  margin-right: .5rem;
+  float: right;
+}
+
+#new-objection {
+  float: right;
+  margin-right: 1.3rem;
 }
 
 @media only screen {
