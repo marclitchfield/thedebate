@@ -1,11 +1,12 @@
-@dark-background: rgba(32, 45, 105, 1);
-@dark-foreground: rgba(32, 45, 105, 1);
-@dark-border: rgba(22, 30, 70, 1);
-@medium-background: rgba(216, 221, 243, 1);
-@medium-border: rgba(42, 59, 137, 1);
-@light-background: rgba(255,255,255,1);
-@light-foreground: rgba(240,240,240,1);
-@light-border: rgba(216, 221, 243, 1);
+@base-color: hsla(225, 50%, 65%, 1);
+@dark-background: darken(@base-color, 40%);
+@dark-foreground: darken(@base-color, 40%);
+@dark-border: darken(@base-color, 40%);
+@medium-background: lighten(@base-color, 30%);
+@medium-border: darken(@base-color, 30%);
+@light-background: hsla(0, 100%, 100%, 1);
+@light-foreground: hsla(0, 0%, 94%, 1);
+@light-border: lighten(@base-color, 30%);
 
 body {
   font-family: Verdana, Geneva, sans-serif;
