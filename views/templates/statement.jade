@@ -1,0 +1,25 @@
+script(type="text/x-handlebars", data-template-name="statement")
+  .detail
+    .context
+      | {{#link-to 'debate' debate}}
+      .debate
+        .debate-score {{debate.score}}
+        .debate-title {{debate.title}}
+      | {{/link-to}}
+      | {{#if parent}}
+      |   {{render 'statement-chain' parent}}
+      | {{/if}}
+      .statement.current
+        .statement-score {{score}}
+        .statement-body {{body}}
+    .responses
+      | {{#each response in responses}}
+      | {{#link-to 'statement' response}}
+      .statement
+        .statement-score {{response.score}}
+        .statement-body {{response.body}}
+      | {{/link-to}}
+      | {{/each}}
+      .statement
+        | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
+      | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>

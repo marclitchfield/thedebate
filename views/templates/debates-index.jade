@@ -1,0 +1,12 @@
+script(type="text/x-handlebars", data-template-name="debates/index")
+  ul.debate-list 
+    | {{#each debate in content}}
+    li
+      | {{#link-to 'debate' debate}}
+      .debate
+        .debate-score {{debate.score}}
+        .debate-title {{debate.title}}
+      | {{/link-to}}
+    | {{/each}}
+    li.debate
+      | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}

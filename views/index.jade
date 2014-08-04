@@ -1,7 +1,7 @@
 html
   head
     title The Debate
-    link(rel="stylesheet", href="css/bootstrap.css")
+    link(rel="stylesheet", href="css/lib/bootstrap.css")
     link(rel="stylesheet", href="css/main.css")
     script(src="//code.jquery.com/jquery-1.11.1.min.js")
     script(src="js/lib/handlebars-1.1.2.js")
@@ -18,72 +18,10 @@ html
         .container
           | {{outlet}}
 
-    script(type="text/x-handlebars", data-template-name="debates/index")
-      ul.debate-list 
-        | {{#each debate in content}}
-        li
-          | {{#link-to 'debate' debate}}
-          .debate
-            .debate-score {{debate.score}}
-            .debate-title {{debate.title}}
-          | {{/link-to}}
-        | {{/each}}
-        li.debate
-          | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
-
-    script(type="text/x-handlebars", data-template-name="debate")
-      .detail
-        .context
-          .debate
-            .debate-score {{score}}
-            .debate-title {{title}}
-        .statements
-          | {{#each statement in statements}}
-          | {{#link-to 'statement' statement}}
-          .statement
-            .statement-score {{statement.score}}
-            .statement-body {{statement.body}}
-          | {{/link-to}}
-          | {{/each}}
-          .statement
-            | {{textarea id="new-statement" placeholder="make a statement in this debate ..." value=newBody}}
-          | <button {{action 'createStatement'}} id="submit-statement" class="btn btn-primary">Submit</button>
-
-    script(type="text/x-handlebars", data-template-name="statement")
-      .detail
-        .context
-          | {{#link-to 'debate' debate}}
-          .debate
-            .debate-score {{debate.score}}
-            .debate-title {{debate.title}}
-          | {{/link-to}}
-          | {{#if parent}}
-          |   {{render 'statement-chain' parent}}
-          | {{/if}}
-          .statement.current
-            .statement-score {{score}}
-            .statement-body {{body}}
-        .responses
-          | {{#each response in responses}}
-          | {{#link-to 'statement' response}}
-          .statement
-            .statement-score {{response.score}}
-            .statement-body {{response.body}}
-          | {{/link-to}}
-          | {{/each}}
-          .statement
-            | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
-          | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
-
-    script(type="text/x-handlebars", data-template-name="statement-chain")
-      | {{#if parent}}
-      |   {{render 'statement-chain' parent}}
-      | {{/if}}
-      | {{#link-to 'statement' model}}
-      .statement
-        .statement-score {{score}}
-        .statement-body {{body}}
-      | {{/link-to}}
+    include templates/debates-index
+    include templates/debate
+    include templates/statement
+    include templates/statement-chain
 
     script(src="js/application.js")
     script(src="js/router.js")
