@@ -6,7 +6,6 @@
 {{/if}}<div class="statement current">{{render 'statement-partial' model}}</div><button id="view-responses" class="btn btn-primary">Responses</button>
 <button id="view-objections" class="btn btn-primary">Objections</button>
 <button id="view-duplicates" class="btn btn-primary">Duplicates</button>
-<button id="create-objection" class="btn btn-primary">Object</button>
 <button id="create-response" class="btn btn-primary">Respond</button></div><div class="responses">{{#each response in responses}}
 {{#link-to 'statement' response}}<div class="statement">{{render 'statement-partial' response}}</div>{{/link-to}}
 {{/each}}<div class="statement">{{textarea id="new-response" placeholder="your response ..." value=newBody}}</div><button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button></div></div></script><script type="text/x-handlebars" data-template-name="statement-chain">{{#if parent}}
