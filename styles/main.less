@@ -29,6 +29,14 @@ li {
   margin: .5em 0;
 }
 
+.btn-primary {
+  background-color: @dark-background;
+
+  &:hover {
+    background-color: lighten(@dark-background, 10%);
+  }
+}
+
 .banner {
   background-color: @dark-background;
   color: @light-foreground;
@@ -42,7 +50,7 @@ li {
 }
 
 .statements, .responses {
-  margin-top: 1em;
+  // margin-top: 1em;
 
   button {
     margin-left: 1.3rem;
@@ -130,6 +138,7 @@ li {
 
   .statement-body {
     margin-left: 6rem;
+    padding-top: .1em;
     display: block;
     vertical-align: top;
   }
@@ -156,9 +165,13 @@ li {
 
   .context .statement {
     background-color: @dark-background;
+    border-color: @medium-border;
+
+    &.current {
+      border-color: @light-border;
+    }
 
     .statement-body {
-      padding-top: .2em;
       color: @light-foreground;
     }
   }
