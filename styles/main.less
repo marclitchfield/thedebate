@@ -8,8 +8,9 @@
 @light-foreground: hsla(0, 0%, 94%, 1);
 @light-border: lighten(@base-color, 30%);
 
-@support-color: white;
-@opposition-color: hsla(0, 0%, 8%, 1);
+@indicator-border: hsla(0, 0%, 20%, 1);
+@support-color: hsla(0, 0%, 100%, 1);
+@opposition-color: hsla(0, 0%, 10%, 1);
 @objection-color: hsla(0, 0%, 60%, 1);
 
 
@@ -153,7 +154,7 @@ li {
       left: 0.3rem;
       width: .95rem;
       height: .8rem;
-      box-shadow: 0 0 .1em .03em black;
+      box-shadow: 0 0 0 .03em @indicator-border;
       margin-bottom: .1rem;
 
       &.support {
