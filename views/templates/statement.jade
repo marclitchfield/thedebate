@@ -14,8 +14,8 @@ script(type="text/x-handlebars", data-template-name="statement")
       | <button id="view-responses" class="btn btn-primary">Responses</button>
       | <button id="view-objections" class="btn btn-primary">Objections</button>
       | <button id="view-duplicates" class="btn btn-primary">Duplicates</button>
-      | <button id="new-objection" class="btn btn-primary">Object</button>
-      | <button id="new-response" class="btn btn-primary">Respond</button>
+      | <button id="create-objection" class="btn btn-primary">Object</button>
+      | <button id="create-response" class="btn btn-primary">Respond</button>
     .responses
       | {{#each response in responses}}
       | {{#link-to 'statement' response}}
