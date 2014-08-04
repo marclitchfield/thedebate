@@ -4,6 +4,9 @@ script(type="text/x-handlebars", data-template-name="debate")
       .debate
         .debate-score {{score}}
         .debate-title {{title}}
+    .controls
+      button.btn.btn-primary Statements
+      button#create-response.btn.btn-primary Submit a Statement
     .statements
       | {{#each statement in statements}}
       | {{#link-to 'statement' statement}}

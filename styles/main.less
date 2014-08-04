@@ -37,13 +37,16 @@ li {
 
 .btn-primary {
   background-color: @dark-background;
+  border-color: @medium-border;
 
   &:active, &:focus {
     background-color: lighten(@dark-background, 10%);
+    border-color: @medium-border;
   }
 
   &:hover {
     background-color: lighten(@dark-background, 20%);
+    border-color: @medium-border;
   }
 }
 
@@ -128,7 +131,7 @@ li {
 }
 
 .statement {
-  margin: .4em 1.3rem;
+  margin: 0 1.3rem .2em 1.3rem;
   display: block;
   clear: both;
   min-height: 5em;
@@ -212,10 +215,9 @@ li {
 .detail {
   .debate {
     display: block;
-    margin: auto;
     float: none;
     width: auto;
-    margin: 0 .5rem;
+    margin: 0 .5rem .2em .5rem;
   }
 
   .statement .statement-body {
