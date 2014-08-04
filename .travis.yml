@@ -16,8 +16,9 @@ script:
 - grunt
 - node server.js &
 - npm test
+- echo "# Build Time: `date`" >> .travis.yml
 - git add -A
-- git commit -am "Travis build"
+- git commit -m "Travis build"
 - git push deploy staging > /dev/null 2>&1
 - set +e
 env:
