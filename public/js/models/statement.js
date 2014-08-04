@@ -4,7 +4,8 @@ App.Statement = DS.Model.extend({
   opposition: DS.attr('number'),
   support: DS.attr('number'),
   debate: DS.belongsTo('debate'),
-  responses: DS.hasMany('statement', { async: true })
+  parent: DS.belongsTo('statement'),
+  responses: DS.hasMany('statement', { async: true, inverse: 'parent' })
 });
 
 App.Statement.FIXTURES = [];
@@ -36,6 +37,7 @@ App.Statement.FIXTURES = [];
     if ((level || 0) < 4) {
       for(var i=0; i<Math.random()*4; i++) {
         var response = makeStatement(debateId, (level || 0) + 1);
+        response.parent = statement.id;
         statement.responses.push(response.id);
       }
     }

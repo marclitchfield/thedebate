@@ -57,6 +57,9 @@ html
             .debate-score {{debate.score}}
             .debate-title {{debate.title}}
           | {{/link-to}}
+          | {{#if parent}}
+          |   {{render 'statement-chain' parent}}
+          | {{/if}}
           .statement.current
             .statement-score {{score}}
             .statement-body {{body}}
@@ -72,6 +75,15 @@ html
             | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
           | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
 
+    script(type="text/x-handlebars", data-template-name="statement-chain")
+      | {{#if parent}}
+      |   {{render 'statement-chain' parent}}
+      | {{/if}}
+      | {{#link-to 'statement' model}}
+      .statement
+        .statement-score {{score}}
+        .statement-body {{body}}
+      | {{/link-to}}
 
     script(src="js/application.js")
     script(src="js/router.js")
