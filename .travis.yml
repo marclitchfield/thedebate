@@ -19,7 +19,7 @@ script:
 - "echo \"# Build Time: `date`\" >> .travis.yml"
 - git add -A
 - git commit -m "Travis build"
-- git push deploy staging > /dev/null 2>&1
+- git push deploy staging
 - set +e
 env:
   global:
