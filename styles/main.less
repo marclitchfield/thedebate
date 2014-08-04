@@ -8,9 +8,9 @@
 @light-foreground: hsla(0, 0%, 94%, 1);
 @light-border: lighten(@base-color, 30%);
 
-@indicator-border: hsla(0, 0%, 20%, 1);
+@indicator-border: hsla(0, 0%, 10%, 1);
 @support-color: hsla(0, 0%, 100%, 1);
-@opposition-color: hsla(0, 0%, 10%, 1);
+@opposition-color: hsla(248, 97%, 4%, 1);
 @objection-color: hsla(0, 0%, 60%, 1);
 
 
@@ -193,8 +193,14 @@ li {
   }
 }
 
-.context .scores .score {
-  background-color: white;
+.context .scores {
+  .indicator.opposition {
+    box-shadow: 0 0 0 .02em @light-border;
+  }
+
+  .score {
+    background-color: white;
+  }
 }
 
 .detail {
