@@ -12,9 +12,14 @@ npm run setup
 npm install
 ```
 
-Lint, Build, Unit Tests
+Lint, Build Less->CSS and Jade->HTML
 ```
 grunt
+```
+
+Watch for changes and automatically lint and build
+```
+grunt watch
 ```
 
 Run the server and watch for file changes
