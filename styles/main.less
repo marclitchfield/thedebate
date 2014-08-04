@@ -8,6 +8,11 @@
 @light-foreground: hsla(0, 0%, 94%, 1);
 @light-border: lighten(@base-color, 30%);
 
+@support-color: hsla(139, 100%, 34%, 1);
+@opposition-color: hsla(11, 100%, 34%, 1);
+@objection-color: hsla(48, 98%, 52%, 1);
+
+
 body {
   font-family: Verdana, Geneva, sans-serif;
 }
@@ -32,8 +37,12 @@ li {
 .btn-primary {
   background-color: @dark-background;
 
-  &:hover {
+  &:active, &:focus {
     background-color: lighten(@dark-background, 10%);
+  }
+
+  &:hover {
+    background-color: lighten(@dark-background, 20%);
   }
 }
 
@@ -116,24 +125,49 @@ li {
   margin: .4em 1.3rem;
   display: block;
   clear: both;
-  min-height: 4em;
+  min-height: 5em;
   border: .3rem solid @light-border;
   border-radius: .4rem;
   padding: 0 1rem 1em 0;
 
-  .statement-score {
-    background-color: @medium-background;
-    color: @dark-foreground;
-    font-size: .8em;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    padding: .4em 0;
-    width: 5rem;
-    height: 3em;
+  .scores {
     position: absolute;
-    border-bottom-right-radius: .4rem;
-    margin: 0;
+    width: 5rem;
+
+    .statement-score {
+      background-color: @medium-background;
+      color: @dark-foreground;
+      font-size: .8em;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      padding: .4em 0;
+      width: 5rem;
+      height: 2.5em;
+      border-bottom-right-radius: .4rem;
+      margin: 0;
+    }
+
+    .score {
+      position: relative;
+      left: 0.3rem;
+      top: .2em;
+      height: .3rem;
+      box-shadow: inset 0 0 .1em black;
+      border-radius: .1em;
+
+      &.support {
+        background-color: @support-color;
+      }
+
+      &.opposition {
+        background-color: @opposition-color;
+      }
+
+      &.objection {
+        background-color: @objection-color;
+      }
+    }
   }
 
   .statement-body {

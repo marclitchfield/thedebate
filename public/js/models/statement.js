@@ -1,16 +1,35 @@
-App.Statement = DS.Model.extend({
-  body: DS.attr('string'),
-  score: DS.attr('number'),
-  opposition: DS.attr('number'),
-  support: DS.attr('number'),
-  debate: DS.belongsTo('debate'),
-  parent: DS.belongsTo('statement'),
-  responses: DS.hasMany('statement', { async: true, inverse: 'parent' })
-});
-
-App.Statement.FIXTURES = [];
-
 (function() {
+
+  App.Statement = DS.Model.extend({
+    body: DS.attr('string'),
+    score: DS.attr('number'),
+    support: DS.attr('number'),
+    opposition: DS.attr('number'),
+    objection: DS.attr('number'),
+    debate: DS.belongsTo('debate'),
+    parent: DS.belongsTo('statement'),  
+    responses: DS.hasMany('statement', { async: true, inverse: 'parent' }),
+
+    supportStyle: function() {
+      return widthStyle(this.get('support'), 7);
+    }.property('support'),
+
+    oppositionStyle: function() {
+      return widthStyle(this.get('opposition'), 7);
+    }.property('opposition'),
+
+    objectionStyle: function() {
+      return widthStyle(this.get('objection'), 14);
+    }.property('objection')
+
+  });
+
+  App.Statement.FIXTURES = [];
+
+  function widthStyle(score, multiplier) {
+    return 'width:' + multiplier * Math.log(score + 0.1) + '%;';
+  }
+
   var statements = [
     'Lucas ipsum dolor sit amet wyl jusik geonosian elomin bane wicket tchuukthai elrood droid chadra-fan. Solo snivvian whitesun baba cracken shawda grievous. Felth chommell hoth hutta r4-p17. Pavan thrawn boss kessel obi-wan boba tarasin anakin raynar',
     'Felth chommell hoth hutta r4-p17. Pavan thrawn boss kessel obi-wan boba tarasin anakin raynar Yuzzum aparo roan nadon shistavanen. Jamillia kastolar kota skywalker muzzer. Lama stass zhell gendai. Organa vima-da-boda cliegg fode bren ric. Ventress darth yowza gizka ubb danni boz leia. Hutt -lom darth qrygg jabba jar hallotan. Bib lars darth gamorrean aruzan ybith.',
@@ -30,6 +49,7 @@ App.Statement.FIXTURES = [];
       score: Math.floor(Math.random()*1000), 
       opposition: Math.floor(Math.random()*1000),
       support: Math.floor(Math.random()*1000),
+      objection: Math.floor(Math.random()*10),
       body: statements[Math.floor(Math.random()*statements.length)]
     };
     App.Statement.FIXTURES.push(statement);

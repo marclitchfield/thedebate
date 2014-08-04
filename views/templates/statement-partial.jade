@@ -1,0 +1,7 @@
+script(type="text/x-handlebars", data-template-name="statement-partial")
+  .scores
+    .statement-score {{score}}
+    | <div class="score support" {{bind-attr style='supportStyle'}}></div>
+    | <div class="score opposition" {{bind-attr style='oppositionStyle'}}></div>
+    | <div class="score objection" {{bind-attr style='objectionStyle'}}></div>
+  .statement-body {{body}}

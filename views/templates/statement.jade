@@ -10,14 +10,12 @@ script(type="text/x-handlebars", data-template-name="statement")
       |   {{render 'statement-chain' parent}}
       | {{/if}}
       .statement.current
-        .statement-score {{score}}
-        .statement-body {{body}}
+        | {{render 'statement-partial' model}}
     .responses
       | {{#each response in responses}}
       | {{#link-to 'statement' response}}
       .statement
-        .statement-score {{response.score}}
-        .statement-body {{response.body}}
+        | {{render 'statement-partial' response}}
       | {{/link-to}}
       | {{/each}}
       .statement

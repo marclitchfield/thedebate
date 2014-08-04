@@ -8,8 +8,7 @@ script(type="text/x-handlebars", data-template-name="debate")
       | {{#each statement in statements}}
       | {{#link-to 'statement' statement}}
       .statement
-        .statement-score {{statement.score}}
-        .statement-body {{statement.body}}
+        | {{render 'statement-partial' statement}}
       | {{/link-to}}
       | {{/each}}
       .statement

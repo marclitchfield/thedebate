@@ -4,6 +4,5 @@ script(type="text/x-handlebars", data-template-name="statement-chain")
   | {{/if}}
   | {{#link-to 'statement' model}}
   .statement
-    .statement-score {{score}}
-    .statement-body {{body}}
+    | {{render 'statement-partial' model}}
   | {{/link-to}}
