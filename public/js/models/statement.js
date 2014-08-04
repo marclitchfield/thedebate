@@ -27,7 +27,7 @@
   App.Statement.FIXTURES = [];
 
   function widthStyle(score, multiplier) {
-    return 'width:' + multiplier * Math.log(score + 1) + '%;';
+    return 'width:' + multiplier * Math.log((score || 0) + 1) + '%;';
   }
 
   var statements = [
