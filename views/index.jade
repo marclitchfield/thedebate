@@ -32,41 +32,45 @@ html
           | {{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}
 
     script(type="text/x-handlebars", data-template-name="debate")
-      .debate.detail
-        .debate-score {{score}}
-        .debate-title {{title}}
-      .statements
-        | {{#each statement in statements}}
-        | {{#link-to 'statement' statement}}
-        .statement
-          .statement-score {{statement.score}}
-          .statement-body {{statement.body}}
-        | {{/link-to}}
-        | {{/each}}
-        .statement
-          | {{textarea id="new-statement" placeholder="make a statement in this debate ..." value=newBody}}
-        | <button {{action 'createStatement'}} id="submit-statement" class="btn btn-primary">Submit</button>
+      .detail
+        .context
+          .debate
+            .debate-score {{score}}
+            .debate-title {{title}}
+        .statements
+          | {{#each statement in statements}}
+          | {{#link-to 'statement' statement}}
+          .statement
+            .statement-score {{statement.score}}
+            .statement-body {{statement.body}}
+          | {{/link-to}}
+          | {{/each}}
+          .statement
+            | {{textarea id="new-statement" placeholder="make a statement in this debate ..." value=newBody}}
+          | <button {{action 'createStatement'}} id="submit-statement" class="btn btn-primary">Submit</button>
 
     script(type="text/x-handlebars", data-template-name="statement")
-      | {{#link-to 'debate' debate}}
-      .debate.detail
-        .debate-score {{debate.score}}
-        .debate-title {{debate.title}}
-      | {{/link-to}}   
-      .statement.detail
-        .statement-score {{score}}
-        .statement-body {{body}}
-      .responses
-        | {{#each response in responses}}
-        | {{#link-to 'statement' response}}
-        .statement
-          .statement-score {{response.score}}
-          .statement-body {{response.body}}
-        | {{/link-to}}
-        | {{/each}}
-        .statement
-          | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
-        | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
+      .detail
+        .context
+          | {{#link-to 'debate' debate}}
+          .debate
+            .debate-score {{debate.score}}
+            .debate-title {{debate.title}}
+          | {{/link-to}}
+          .statement.current
+            .statement-score {{score}}
+            .statement-body {{body}}
+        .responses
+          | {{#each response in responses}}
+          | {{#link-to 'statement' response}}
+          .statement
+            .statement-score {{response.score}}
+            .statement-body {{response.body}}
+          | {{/link-to}}
+          | {{/each}}
+          .statement
+            | {{textarea id="new-response" placeholder="your response ..." value=newBody}}
+          | <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
 
 
     script(src="js/application.js")

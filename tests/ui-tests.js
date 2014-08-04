@@ -5,8 +5,8 @@ casper.test.begin('The Debate homepage', 23, function suite(test) {
 
   var firstDebate = '.debate-list li:first-of-type a';
   var lastDebate = '.debate-list li:nth-last-of-type(2)';
-  var debateDetail = '.debate.detail';
-  var statementDetail = '.statement.detail';
+  var debateDetail = '.detail .context .debate';
+  var statementDetail = '.detail .context .statement.current';
   var firstStatement = '.statements a:first-of-type .statement';
   var firstResponse = '.responses a:first-of-type .statement';
   var lastStatement = '.statements a:last-of-type .statement';

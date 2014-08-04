@@ -48,7 +48,7 @@ li {
 }
 
 @media only screen {
-  .debate { width: 100%; }
+  .debate { width: 99%; }
 }
 
 @media only screen and (min-width: 52em) {
@@ -63,7 +63,7 @@ li {
   .debate { width: 24.6%; }
 }
 
-.debate.detail {
+.detail .debate {
   display: block;
   margin: auto;
   float: none;
@@ -119,15 +119,15 @@ li {
   padding: 0 1rem 1em 0;
 }
 
-.statement .statement-body {
+.detail .statement .statement-body {
   color: rgba(32, 45, 105, 1);
 }
 
-.statement.detail {
+.detail .context .statement {
   background-color: rgba(32, 45, 105, 1);
 }
 
-.statement.detail .statement-body {
+.detail .context .statement .statement-body {
   padding-top: .2em;
   color: rgba(240,240,240,1);
 }
