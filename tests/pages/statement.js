@@ -53,6 +53,13 @@ module.exports = function statement_page(casper, test) {
       };
     },
 
+    lastResponse: function() {
+      return {
+        body: casper.fetchText(lastResponse + ' .statement-body'),
+        score: casper.fetchText(lastResponse + ' .statement-score')
+      };
+    },    
+
     assertLastResponse: function(body, score) {
       test.assertSelectorHasText(lastResponse + ' .statement-body', body);
       test.assertSelectorHasText(lastResponse + ' .statement-score', score);
@@ -60,10 +67,6 @@ module.exports = function statement_page(casper, test) {
 
     assertHasResponses: function() {
       test.assertEval(function() { return __utils__.findAll('.responses .statement').length > 0; });
-    },
-
-    lastResponseUrl: function() {
-      return casper.getElementAttribute(lastResponse, 'href');
     },
 
     navigateToFirst: function(callback) {
