@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marclitchfield/thedebate.git"
+    "url": "https://github.com/marclitchfield/thedebate-web.git"
   },
   "scripts": {
     "setup": "npm install -g grunt-cli mocha phantomjs casperjs supervisor",
