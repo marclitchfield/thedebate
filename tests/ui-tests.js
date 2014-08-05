@@ -33,8 +33,7 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
 
   casper.then(function navigate_to_debate_details() {
     var debate = debateIndexPage.first();
-    this.click(firstDebate);
-    casper.waitForSelector(debateDetail, function() {
+    debateIndexPage.navigateToFirst(function() {
       debatePage.assertCurrent(debate.title, debate.score);
       debatePage.assertHasStatements();
     });
@@ -124,6 +123,12 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
       assertLast: function(title, score) {
         test.assertSelectorHasText(lastDebate + ' .debate-title', title);
         test.assertSelectorHasText(lastDebate + ' .debate-score', '0');
+      },
+
+      navigateToFirst: function(callback) {
+        var url = casper.getElementAttribute(firstDebate, 'href');
+        this.click(firstDebate);
+        casper.waitForUrl(url, callback);
       }
     };
   }
