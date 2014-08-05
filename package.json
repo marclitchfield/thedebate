@@ -12,16 +12,12 @@
     "test": "casperjs --verbose --log-level=debug test tests/ui-tests.js"
   },
   "dependencies": {
-    "express": "~4.6.1",
-    "jade": "~1.5.0",
-    "crypto": "0.0.3"
+    "express": "~4.6.1"
   },
   "devDependencies": {
     "casper": "~0.1.1",
-    "lodash": "~2.4.1",
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.10.0",
-    "grunt-exec": "~0.4.6",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-jade": "~0.12.0",
     "grunt-contrib-less": "~0.11.4"
