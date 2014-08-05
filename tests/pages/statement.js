@@ -5,6 +5,13 @@ var lastResponse = '.responses a:last-of-type .statement';
 var parentStatement = '.detail .context a:last-of-type .statement';
 var grandparentStatement = '.detail .context a:nth-last-of-type(2) .statement';
 
+function getStatement(selector) {
+    return {
+      body: casper.fetchText(selector + ' .statement-body'),
+      score: casper.fetchText(selector + ' .statement-score')
+    };
+}
+
 module.exports = function statement_page(casper, test) {
   return {
     currentDebate: function() {
@@ -15,10 +22,7 @@ module.exports = function statement_page(casper, test) {
     },
 
     current: function() {
-      return {
-        body: casper.fetchText(statementDetail + ' .statement-body'),
-        score: casper.fetchText(statementDetail + ' .statement-score')
-      };
+      return getStatement(statementDetail);
     },
 
     assertDebate: function(title, score) {
@@ -47,17 +51,11 @@ module.exports = function statement_page(casper, test) {
     },
 
     firstResponse: function() {
-      return {
-        body: casper.fetchText(firstResponse + ' .statement-body'),
-        score: casper.fetchText(firstResponse + ' .statement-score')
-      };
+      return getStatement(firstResponse);
     },
 
     lastResponse: function() {
-      return {
-        body: casper.fetchText(lastResponse + ' .statement-body'),
-        score: casper.fetchText(lastResponse + ' .statement-score')
-      };
+      return getStatement(lastResponse);
     },    
 
     assertLastResponse: function(body, score) {
