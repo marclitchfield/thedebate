@@ -1,6 +1,13 @@
-casper.test.begin('The Debate homepage', 32, function suite(test) {
+casper.test.begin('The Debate homepage', 40, function suite(test) {
+  var debateIndexPage;
+  var debatePage;
+  var statementPage;
+
   casper.start("http://localhost:9002", function() {
     this.viewport(420, 300);
+    debateIndexPage = new DebateIndexPage();
+    debatePage = new DebatePage();
+    statementPage = new StatementPage();
   });
 
   var firstDebate = '.debate-list li:first-of-type a';
@@ -20,197 +27,212 @@ casper.test.begin('The Debate homepage', 32, function suite(test) {
 
   casper.then(function create_new_debate() {
     var debateTitle = 'New debate added by capser';
-    this.sendKeys('#new-debate', debateTitle);
-    this.sendKeys('#new-debate', casper.page.event.key.Enter);
-    test.assertEval(function() { return __utils__.findAll('.debate-list .debate').length > 1; });
-    test.assertSelectorHasText(lastDebate + ' .debate-title', debateTitle);
-    test.assertSelectorHasText(lastDebate + ' .debate-score', '0');
+    debateIndexPage.submit(debateTitle);
+    debateIndexPage.assertLast(debateTitle, '0');
   });
 
   casper.then(function navigate_to_debate_details() {
-    var debateText = this.fetchText(firstDebate + ' .debate-title');
-    var debateScore = this.fetchText(firstDebate + ' .debate-score');
+    var debate = debateIndexPage.first();
     this.click(firstDebate);
     casper.waitForSelector(debateDetail, function() {
-      test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
-      test.assertSelectorHasText(debateDetail + ' .debate-score', debateScore);
-      test.assertEval(function() { return __utils__.findAll('.statement').length > 0; });
+      debatePage.assertCurrent(debate.title, debate.score);
+      debatePage.assertHasStatements();
     });
   });
 
   casper.then(function submit_statement() {
-    var debateText = this.fetchText(debateDetail + ' .debate-title');
-    var debateScore = this.fetchText(debateDetail + ' .debate-score');
     var statementBody = 'New statement added by casper';
-    this.sendKeys('#new-statement', statementBody);
-    this.click('#submit-statement');
-    test.assertSelectorHasText(lastStatement + ' .statement-body', statementBody);
-    test.assertSelectorHasText(lastStatement + ' .statement-score', '0');
-  });
-
-  casper.then(function navigate_to_new_statement_details() {
-    var debateText = this.fetchText(debateDetail + ' .debate-title');
-    var debateScore = this.fetchText(debateDetail + ' .debate-score');
-    var statementBody = this.fetchText(lastStatement + ' .statement-body');
-    this.click(lastStatement);
-    casper.waitForSelector(statementDetail, function() {
-      test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
-      test.assertSelectorHasText(debateDetail + ' .debate-score', debateScore);
-      test.assertSelectorHasText(statementDetail + ' .statement-body', statementBody);
-      test.assertSelectorHasText(statementDetail + ' .statement-score', '0');
-      casper.back();
-    });
+    debatePage.submitStatement(statementBody);
+    debatePage.assertLastStatement(statementBody, '0');
   });
 
   casper.then(function navigate_to_statement_details() {
-    var debateText = this.fetchText(debateDetail + ' .debate-title');
-    var debateScore = this.fetchText(debateDetail + ' .debate-score');
-    var statementBody = this.fetchText(firstStatement + ' .statement-body');
-    var statementScore = this.fetchText(firstStatement + ' .statement-score');
+    var debate = debatePage.current();
+    var statement = debatePage.firstStatement();
     this.click(firstStatement);
     casper.waitForSelector(statementDetail, function() {
-      test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
-      test.assertSelectorHasText(debateDetail + ' .debate-score', debateScore);
-      test.assertSelectorHasText(statementDetail + ' .statement-body', statementBody);
-      test.assertSelectorHasText(statementDetail + ' .statement-score', statementScore);
-      test.assertEval(function() { return __utils__.findAll('.responses .statement').length > 0; });
+      statementPage.assertDebate(debate.title, debate.score);
+      statementPage.assertCurrent(statement.body, statement.score);
+      statementPage.assertHasResponses();
     });
   });
 
   casper.then(function navigate_to_response_details() {
-    var statementBody = this.fetchText(firstResponse + ' .statement-body');
-    var statementScore = this.fetchText(firstResponse + ' .statement-score');
+    var debate = statementPage.currentDebate();
+    var statement = statementPage.current();
+    var response = statementPage.firstResponse();
     this.click(firstResponse);
     casper.waitForSelector('.responses .statement', function() {
-      test.assertSelectorHasText(statementDetail + ' .statement-body', statementBody);
-      test.assertSelectorHasText(statementDetail + ' .statement-score', statementScore);
-      test.assertEval(function() { return __utils__.findAll('.responses .statement').length > 0; });
+      statementPage.assertDebate(debate.title, debate.score);
+      statementPage.assertParent(statement.body, statement.score);
+      statementPage.assertCurrent(response.body, response.score);
+      statementPage.assertHasResponses();
     });
   });
 
   casper.then(function submit_response() {
     var responseBody = 'New statement added by casper';
-    this.sendKeys('#new-response', responseBody);
-    this.click('#submit-response');
-    test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody);
-    test.assertSelectorHasText(lastResponse + ' .statement-score', '0');
+    statementPage.submitResponse(responseBody);
+    statementPage.assertLastResponse(responseBody, '0');
   });
 
   casper.then(function submit_responses_and_navigate_chain() {
+    var debate = statementPage.currentDebate();
+    var statement = statementPage.current();
     // submit first response
-    var debateText = this.fetchText(debateDetail + ' .debate-title');
-    var contextStatementText = this.fetchText(statementDetail + ' .statement-body');
     var responseBody1 = 'Statement 1';
-    this.sendKeys('#new-response', responseBody1);
-    this.click('#submit-response');
-    test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody1);
-    var responseUrl1 = this.getElementAttribute(lastResponse, 'href');
+    statementPage.submitResponse(responseBody1);
+    statementPage.assertLastResponse(responseBody1, '0');
+    var responseUrl1 = statementPage.lastResponseUrl();
     // navigate to first response
     this.click(lastResponse);
     casper.waitForUrl(responseUrl1, function() {
-      test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
-      test.assertSelectorHasText(parentStatement + ' .statement-body', contextStatementText);
-      test.assertSelectorHasText(statementDetail + ' .statement-body', responseBody1);
+      statementPage.assertDebate(debate.title, debate.score);
+      statementPage.assertParent(statement.body, statement.score);
+      statementPage.assertCurrent(responseBody1, '0');
 
       // submit second response
       var responseBody2 = 'Statement 2';
-      this.sendKeys('#new-response', responseBody2);
-      this.click('#submit-response');
-      test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody2);
-      var responseUrl2 = this.getElementAttribute(lastResponse, 'href');
+      statementPage.submitResponse(responseBody2);
+      statementPage.assertLastResponse(responseBody2, '0');
+      var responseUrl2 = statementPage.lastResponseUrl();
       // navigate to second response
       this.click(lastResponse);
       casper.waitForUrl(responseUrl2, function() {
-        test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
-        test.assertSelectorHasText(grandparentStatement + ' .statement-body', contextStatementText);
-        test.assertSelectorHasText(parentStatement + ' .statement-body', responseBody1);
-        test.assertSelectorHasText(statementDetail + ' .statement-body', responseBody2);
+        statementPage.assertDebate(debate.title, debate.score);
+        statementPage.assertGrandparent(statement.body, statement.score);
+        statementPage.assertParent(responseBody1, '0');
+        statementPage.assertCurrent(responseBody2, '0');
       });
-    });    
+    });
   });
 
-
-  function getDebate() { 
+  function DebateIndexPage() {
     return {
-      text: casper.fetchText(firstDebate + ' .debate-title'),
-      score: casper.fetchText(firstDebate + ' .debate-score')
+      first: function() {
+        return {
+          title: casper.fetchText(firstDebate + ' .debate-title'),
+          score: casper.fetchText(firstDebate + ' .debate-score')
+        };
+      },
+
+      submit: function(title) {
+        casper.sendKeys('#new-debate', title);
+        casper.sendKeys('#new-debate', casper.page.event.key.Enter);
+      },
+
+      assertLast: function(title, score) {
+        test.assertSelectorHasText(lastDebate + ' .debate-title', title);
+        test.assertSelectorHasText(lastDebate + ' .debate-score', '0');
+      }
     };
   }
 
-  function submitDebate(debateTitle) {
-    casper.sendKeys('#new-debate', debateTitle);
-    casper.sendKeys('#new-debate', casper.page.event.key.Enter);
-  }
-
-  function assertLastDebate(debateTitle, score) {
-    test.assertSelectorHasText(lastDebate + ' .debate-title', debateTitle);
-    test.assertSelectorHasText(lastDebate + ' .debate-score', '0');
-  }
-
-  function assertDebate(debateTitle, score) {
-    test.assertSelectorHasText(debateDetail + ' .debate-title', debateTitle);
-    test.assertSelectorHasText(debateDetail + ' .debate-score', score);
-  }  
-
-  function assertDebateHasStatements() {
-    test.assertEval(function() { return __utils__.findAll('.statement').length > 0; });
-  }
-
-  function getStatement() {
+  function DebatePage() {
     return {
-      body: casper.fetchText(firstStatement + ' .statement-body'),
-      score: casper.fetchText(firstStatement + ' .statement-score')
+      current: function() {
+        return {
+          title: casper.fetchText(debateDetail + ' .debate-title'),
+          score: casper.fetchText(debateDetail + ' .debate-score')
+        };
+      },
+
+      assertCurrent: function(title, score) {
+        test.assertSelectorHasText(debateDetail + ' .debate-title', title);
+        test.assertSelectorHasText(debateDetail + ' .debate-score', score);
+      },
+
+      assertHasStatements: function() {
+        test.assertEval(function() { return __utils__.findAll('.statement').length > 0; });
+      },
+
+      submitStatement: function(body) {
+        casper.sendKeys('#new-statement', body);
+        casper.click('#submit-statement');
+      },
+
+      firstStatement: function() {
+        return {
+          body: casper.fetchText(firstStatement + ' .statement-body'),
+          score: casper.fetchText(firstStatement + ' .statement-score')
+        };
+      },
+
+      lastStatement: function() {
+        return {
+          body: casper.fetchText(lastStatement + ' .statement-body'),
+          score: casper.fetchText(lastStatement + ' .statement-score')
+        };
+      },
+
+      assertLastStatement: function(body, score) {
+        test.assertSelectorHasText(lastStatement + ' .statement-body', body);
+        test.assertSelectorHasText(lastStatement + ' .statement-score', score);
+      }
     };
   }
 
-  function submitStatement(statementBody) {
-    casper.sendKeys('#new-statement', statementBody);
-    casper.click('#submit-statement');
-  }
-
-  function assertStatement(statementBody, score) {
-    test.assertSelectorHasText(statementDetail + ' .statement-body', statementBody);
-    test.assertSelectorHasText(statementDetail + ' .statement-score', statementScore);
-  }
-
-  function assertParentStatement(statementBody, score) {
-    test.assertSelectorHasText(parentStatement + ' .statement-body', statementBody);
-    test.assertSelectorHasText(parentStatement + ' .statement-score', score);
-  }
-
-  function assertGrandparentStatement(statementBody, score) {
-    test.assertSelectorHasText(grandparentStatement + ' .statement-body', statementBody);
-    test.assertSelectorHasText(grandparentStatement + ' .statement-score', score);
-  }
-
-  function assertStatementHasResponses() {
-    test.assertEval(function() { return __utils__.findAll('.responses .statement').length > 0; });
-  }
-
-  function assertLastStatement(statementBody, score) {
-    test.assertSelectorHasText(lastStatement + ' .statement-body', statementBody);
-    test.assertSelectorHasText(lastStatement + ' .statement-score', score);
-  }
-  
-  function getFirstResponse() {
+  function StatementPage() {
     return {
-      body: this.fetchText(firstResponse + ' .statement-body'),
-      score: this.fetchText(firstResponse + ' .statement-score')
-    }
-  }
+      currentDebate: function() {
+        return {
+          title: casper.fetchText(debateDetail + ' .debate-title'),
+          score: casper.fetchText(debateDetail + ' .debate-score')
+        };
+      },
 
-  function getLastResponseUrl() {
-    return casper.getElementAttribute(lastResponse, 'href');
-  }
+      current: function() {
+        return {
+          body: casper.fetchText(statementDetail + ' .statement-body'),
+          score: casper.fetchText(statementDetail + ' .statement-score')
+        };
+      },
 
-  function submitResponse(responseBody) {
-    casper.sendKeys('#new-response', responseBody);
-    casper.click('#submit-response');
-  }
+      assertDebate: function(title, score) {
+        test.assertSelectorHasText(debateDetail + ' .debate-title', title);
+        test.assertSelectorHasText(debateDetail + ' .debate-score', score);
+      },
 
-  function assertLastResponse(responseBody, score) {
-    test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody);
-    test.assertSelectorHasText(lastResponse + ' .statement-score', score);
+      assertCurrent: function(body, score) {
+        test.assertSelectorHasText(statementDetail + ' .statement-body', body);
+        test.assertSelectorHasText(statementDetail + ' .statement-score', score);
+      },
+
+      assertParent: function(body, score) {
+        test.assertSelectorHasText(parentStatement + ' .statement-body', body);
+        test.assertSelectorHasText(parentStatement + ' .statement-score', score);
+      },
+
+      assertGrandparent: function(body, score) {
+        test.assertSelectorHasText(grandparentStatement + ' .statement-body', body);
+        test.assertSelectorHasText(grandparentStatement + ' .statement-score', score);
+      },
+
+      submitResponse: function(body) {
+        casper.sendKeys('#new-response', body);
+        casper.click('#submit-response');
+      },
+
+      firstResponse: function() {
+        return {
+          body: casper.fetchText(firstResponse + ' .statement-body'),
+          score: casper.fetchText(firstResponse + ' .statement-score')
+        };
+      },
+
+      assertLastResponse: function(body, score) {
+        test.assertSelectorHasText(lastResponse + ' .statement-body', body);
+        test.assertSelectorHasText(lastResponse + ' .statement-score', score);
+      },
+
+      assertHasResponses: function() {
+        test.assertEval(function() { return __utils__.findAll('.responses .statement').length > 0; });
+      },
+
+      lastResponseUrl: function() {
+        return casper.getElementAttribute(lastResponse, 'href');
+      }
+    };
   }
 
   casper.run(function() {
