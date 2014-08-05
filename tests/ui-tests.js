@@ -62,7 +62,7 @@ casper.test.begin('The Debate homepage', 38, function suite(test) {
     statementPage.assertLastResponse(responseBody, '0');
   });
 
-  casper.then(function submit_responses_and_navigate_chain() {
+  casper.then(function navigate_response_chain() {
     var debate = statementPage.currentDebate();
     var statement = statementPage.current();
     var response = statementPage.lastResponse();
