@@ -12,12 +12,7 @@ npm run setup
 npm install
 ```
 
-Lint, Build Less->CSS and Jade->HTML
-```
-grunt
-```
-
-Watch for changes and automatically lint and build
+Watch for changes and automatically lint and build Less to CSS, Jade to HTML
 ```
 grunt watch
 ```
