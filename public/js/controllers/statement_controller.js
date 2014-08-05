@@ -10,12 +10,13 @@ App.StatementController = Ember.ObjectController.extend({
         score: 0,
         support: 0,
         opposition: 0,
-        debate: parentStatement.get('debate')
+        debate: parentStatement.get('debate'),
+        parent: parentStatement
       });
 
       this.set('newBody', '');
       parentStatement.get('responses').pushObject(statement);
-      App.store.commit();
+      statement.save();
     }
   }
 });

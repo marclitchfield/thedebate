@@ -1,4 +1,4 @@
-casper.test.begin('The Debate homepage', 23, function suite(test) {
+casper.test.begin('The Debate homepage', 32, function suite(test) {
   casper.start("http://localhost:9002", function() {
     this.viewport(420, 300);
   });
@@ -11,6 +11,8 @@ casper.test.begin('The Debate homepage', 23, function suite(test) {
   var firstResponse = '.responses a:first-of-type .statement';
   var lastStatement = '.statements a:last-of-type .statement';
   var lastResponse = '.responses a:last-of-type .statement';
+  var parentStatement = '.detail .context a:last-of-type .statement';
+  var grandparentStatement = '.detail .context a:nth-last-of-type(2) .statement';
 
   casper.then(function main_page_loads() {
     test.assertSelectorHasText('.banner h1', 'The Debate');
@@ -93,6 +95,42 @@ casper.test.begin('The Debate homepage', 23, function suite(test) {
     test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody);
     test.assertSelectorHasText(lastResponse + ' .statement-score', '0');
   });
+
+  casper.then(function submit_responses_and_navigate_chain() {
+    // submit first response
+    var debateText = this.fetchText(debateDetail + ' .debate-title');
+    var contextStatementText = this.fetchText(statementDetail + ' .statement-body');
+    var responseBody1 = 'Statement 1';
+    this.sendKeys('#new-response', responseBody1);
+    this.click('#submit-response');
+    test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody1);
+    var responseUrl1 = this.getElementAttribute(lastResponse, 'href');
+    // navigate to first response
+    this.click(lastResponse);
+    casper.waitForUrl(responseUrl1, function() {
+      test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
+      test.assertSelectorHasText(parentStatement + ' .statement-body', contextStatementText);
+      test.assertSelectorHasText(statementDetail + ' .statement-body', responseBody1);
+
+      // submit second response
+      var responseBody2 = 'Statement 2';
+      this.sendKeys('#new-response', responseBody2);
+      this.click('#submit-response');
+      test.assertSelectorHasText(lastResponse + ' .statement-body', responseBody2);
+      var responseUrl2 = this.getElementAttribute(lastResponse, 'href');
+      // navigate to second response
+      this.click(lastResponse);
+      casper.waitForUrl(responseUrl2, function() {
+        test.assertSelectorHasText(debateDetail + ' .debate-title', debateText);
+        test.assertSelectorHasText(grandparentStatement + ' .statement-body', contextStatementText);
+        test.assertSelectorHasText(parentStatement + ' .statement-body', responseBody1);
+        test.assertSelectorHasText(statementDetail + ' .statement-body', responseBody2);
+      });
+    });    
+  });
+
+
+
 
   casper.run(function() {
     test.done();
