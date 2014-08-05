@@ -10,17 +10,6 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
     statementPage = new StatementPage();
   });
 
-  var firstDebate = '.debate-list li:first-of-type a';
-  var lastDebate = '.debate-list li:nth-last-of-type(2)';
-  var debateDetail = '.detail .context .debate';
-  var statementDetail = '.detail .context .statement.current';
-  var firstStatement = '.statements a:first-of-type .statement';
-  var firstResponse = '.responses a:first-of-type .statement';
-  var lastStatement = '.statements a:last-of-type .statement';
-  var lastResponse = '.responses a:last-of-type .statement';
-  var parentStatement = '.detail .context a:last-of-type .statement';
-  var grandparentStatement = '.detail .context a:nth-last-of-type(2) .statement';
-
   casper.then(function main_page_loads() {
     test.assertSelectorHasText('.banner h1', 'The Debate');
   });
@@ -48,8 +37,7 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
   casper.then(function navigate_to_statement_details() {
     var debate = debatePage.current();
     var statement = debatePage.firstStatement();
-    this.click(firstStatement);
-    casper.waitForSelector(statementDetail, function() {
+    debatePage.navigateToFirst(function() {
       statementPage.assertDebate(debate.title, debate.score);
       statementPage.assertCurrent(statement.body, statement.score);
       statementPage.assertHasResponses();
@@ -60,8 +48,7 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
     var debate = statementPage.currentDebate();
     var statement = statementPage.current();
     var response = statementPage.firstResponse();
-    this.click(firstResponse);
-    casper.waitForSelector('.responses .statement', function() {
+    statementPage.navigateToFirst(function() {
       statementPage.assertDebate(debate.title, debate.score);
       statementPage.assertParent(statement.body, statement.score);
       statementPage.assertCurrent(response.body, response.score);
@@ -78,14 +65,12 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
   casper.then(function submit_responses_and_navigate_chain() {
     var debate = statementPage.currentDebate();
     var statement = statementPage.current();
+
     // submit first response
     var responseBody1 = 'Statement 1';
     statementPage.submitResponse(responseBody1);
     statementPage.assertLastResponse(responseBody1, '0');
-    var responseUrl1 = statementPage.lastResponseUrl();
-    // navigate to first response
-    this.click(lastResponse);
-    casper.waitForUrl(responseUrl1, function() {
+    statementPage.navigateToLast(function() {
       statementPage.assertDebate(debate.title, debate.score);
       statementPage.assertParent(statement.body, statement.score);
       statementPage.assertCurrent(responseBody1, '0');
@@ -94,10 +79,7 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
       var responseBody2 = 'Statement 2';
       statementPage.submitResponse(responseBody2);
       statementPage.assertLastResponse(responseBody2, '0');
-      var responseUrl2 = statementPage.lastResponseUrl();
-      // navigate to second response
-      this.click(lastResponse);
-      casper.waitForUrl(responseUrl2, function() {
+      statementPage.navigateToLast(function() {
         statementPage.assertDebate(debate.title, debate.score);
         statementPage.assertGrandparent(statement.body, statement.score);
         statementPage.assertParent(responseBody1, '0');
@@ -107,6 +89,9 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
   });
 
   function DebateIndexPage() {
+    var firstDebate = '.debate-list li:first-of-type a';
+    var lastDebate = '.debate-list li:nth-last-of-type(2)';
+
     return {
       first: function() {
         return {
@@ -127,13 +112,17 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
 
       navigateToFirst: function(callback) {
         var url = casper.getElementAttribute(firstDebate, 'href');
-        this.click(firstDebate);
+        casper.click(firstDebate);        
         casper.waitForUrl(url, callback);
       }
     };
   }
 
   function DebatePage() {
+    var debateDetail = '.detail .context .debate';
+    var firstStatement = '.statements a:first-of-type .statement';
+    var lastStatement = '.statements a:last-of-type .statement';
+
     return {
       current: function() {
         return {
@@ -173,11 +162,24 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
       assertLastStatement: function(body, score) {
         test.assertSelectorHasText(lastStatement + ' .statement-body', body);
         test.assertSelectorHasText(lastStatement + ' .statement-score', score);
+      },
+
+      navigateToFirst: function(callback) {
+        var url = casper.getElementAttribute(firstStatement, 'href');
+        casper.click(firstStatement);
+        casper.waitForUrl(url, callback);
       }
     };
   }
 
   function StatementPage() {
+    var debateDetail = '.detail .context .debate';
+    var statementDetail = '.detail .context .statement.current';
+    var firstResponse = '.responses a:first-of-type .statement';
+    var lastResponse = '.responses a:last-of-type .statement';
+    var parentStatement = '.detail .context a:last-of-type .statement';
+    var grandparentStatement = '.detail .context a:nth-last-of-type(2) .statement';
+
     return {
       currentDebate: function() {
         return {
@@ -236,7 +238,19 @@ casper.test.begin('The Debate homepage', 40, function suite(test) {
 
       lastResponseUrl: function() {
         return casper.getElementAttribute(lastResponse, 'href');
-      }
+      },
+
+      navigateToFirst: function(callback) {
+        var url = casper.getElementAttribute(firstResponse, 'href');
+        casper.click(firstResponse);
+        casper.waitForUrl(url, callback);
+      },
+
+      navigateToLast: function(callback) {
+        var url = casper.getElementAttribute(lastResponse, 'href');
+        casper.click(lastResponse);
+        casper.waitForUrl(url, callback);
+      }      
     };
   }
 
