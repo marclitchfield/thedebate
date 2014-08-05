@@ -10,7 +10,7 @@ script:
 - set -e
 - git config --global user.email $GH_EMAIL
 - git config --global user.name $GH_USERNAME
-- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate.git > /dev/null 2>&1
+- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate-web.git > /dev/null 2>&1
 - git checkout -b staging > /dev/null 2>&1
 - git pull deploy staging > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
