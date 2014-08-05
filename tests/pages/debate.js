@@ -50,4 +50,4 @@ module.exports = function debate_page(casper, test) {
       casper.waitForUrl(url, callback);
     }
   };
-}
+};

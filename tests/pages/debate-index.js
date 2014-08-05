@@ -26,4 +26,4 @@ module.exports = function debate_index_page(casper, test) {
       casper.waitForUrl(url, callback);
     }
   };
-}
+};

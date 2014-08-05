@@ -78,4 +78,4 @@ module.exports = function statement_page(casper, test) {
       casper.waitForUrl(url, callback);
     }      
   };
-}
+};
