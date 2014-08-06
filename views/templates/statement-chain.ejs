@@ -1,0 +1,10 @@
+<script type="text/x-handlebars" data-template-name="statement-chain">
+  {{#if parent}}
+    {{render 'statement-chain' parent}}
+  {{/if}}
+  {{#link-to 'statement' model}}
+    <div class="statement">
+      {{render 'statement-partial' model}}
+    </div>
+  {{/link-to}}
+</script>

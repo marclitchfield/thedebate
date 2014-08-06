@@ -1,15 +1,9 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    jade: {
-      default: {
-        options: {
-          data: {
-            debug: false
-          }
-        },
-        files: {
-          'public/index.html': 'views/index.jade'
-        }
+    ejs: {
+      all: {
+        src: ['views/*.ejs'],
+        dest: 'public/index.html'
       }
     },
 
@@ -34,8 +28,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['views/**/*.jade', 'styles/**/*.less', 'tests/**/*.js', 'public/js/**/*.js', '!public/js/lib/**'],
-        tasks: ['jade','less','jshint'],
+        files: ['views/**/*.ejs', 'styles/**/*.less', 'tests/**/*.js', 'public/js/**/*.js', '!public/js/lib/**'],
+        tasks: ['ejs','less','jshint'],
         options: {
           spawn: false
         },
@@ -44,9 +38,9 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-ejs');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['jshint','jade','less']);
+  grunt.registerTask('default', ['jshint','ejs','less']);
 };
