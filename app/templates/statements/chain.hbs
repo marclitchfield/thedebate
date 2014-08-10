@@ -1,0 +1,8 @@
+{{#if parent}}
+  {{render 'statement-chain' parent}}
+{{/if}}
+{{#link-to 'statement' model}}
+  <div class="statement">
+    {{render 'statements/partial' model}}
+  </div>
+{{/link-to}}

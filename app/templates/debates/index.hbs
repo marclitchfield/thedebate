@@ -1,0 +1,13 @@
+<ul class="debate-list">
+  {{#each debate in content}}
+    <li>
+      {{#link-to 'debate' debate}}
+        <div class="debate">
+          <div class="debate-score">{{debate.score}}</div>
+          <div class="debate-title">{{debate.title}}</div>
+        </div>
+      {{/link-to}}
+    </li>
+  {{/each}}
+  <li class="debate">{{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}</li>
+</ul>

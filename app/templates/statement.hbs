@@ -1,0 +1,34 @@
+<div class="detail">
+  <div class="context">
+    {{#link-to 'debate' debate}}
+      <div class="debate">
+        <div class="debate-score">{{debate.score}}</div>
+        <div class="debate-title">{{debate.title}}</div>
+      </div>
+    {{/link-to}}
+    {{#if parent}}
+      {{render 'statements/chain' parent}}
+    {{/if}}
+    <div class="statement current">
+      {{render 'statements/partial' model}}
+    </div>
+  </div>
+  <div class="controls">
+    <button id="view-responses" class="btn btn-primary">Responses</button>
+    <button id="view-objections" class="btn btn-primary">Objections</button>
+    <button id="create-response" class="btn btn-primary">Respond</button>
+  </div>
+  <div class="responses">
+    {{#each response in responses}}
+      {{#link-to 'statement' response}}
+        <div class="statement">
+          {{render 'statements/partial' response}}
+        </div>
+      {{/link-to}}
+    {{/each}}
+    <div class="statement">
+      {{textarea id="new-response" placeholder="your response ..." value=newBody}}
+    </div>
+    <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
+  </div>
+</div>

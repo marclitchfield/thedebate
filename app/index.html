@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>the debate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/thedebate.css">
+  </head>
+  <body>
+    <script>
+      window.ThedebateENV = {{ENV}};
+      window.EmberENV = window.ThedebateENV.EmberENV;
+    </script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/thedebate.js"></script>
+    <script>
+      window.Thedebate = require('thedebate/app')['default'].create(ThedebateENV.APP);
+    </script>
+  </body>
+</html>

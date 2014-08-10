@@ -1,0 +1,18 @@
+<div class="scores">
+  <div class="statement-score">{{score}}</div>
+  {{#if support}}
+    <div class="indicator support"></div>
+    <div class="score support" {{bind-attr style='supportStyle'}}></div>
+  {{/if}}
+
+  {{#if opposition}}
+    <div class="indicator opposition"></div>
+    <div class="score opposition" {{bind-attr style='oppositionStyle'}}></div>
+  {{/if}}
+
+  {{#if objection}}
+    <div class="indicator objection"></div>
+    <div class="score objection" {{bind-attr style='objectionStyle'}}></div>
+  {{/if}}
+</div>
+<div class="statement-body">{{body}}</div>
