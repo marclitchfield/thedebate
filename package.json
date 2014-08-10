@@ -15,8 +15,9 @@
   "scripts": {
     "setup": "npm install -g grunt-cli phantomjs casperjs supervisor ember-cli bower",
     "test": "casperjs --verbose --log-level=debug test ui-tests/ui-tests.js",
-    "start": "ember server --port 9002",
-    "build": "ember build"
+    "start": "ember server --port 9002 --live-reload=false",
+    "start-debug": "ember server --port 9002 --live-reload=true",
+    "build": "ember build --environment=production"
   },
   "engines": {
     "node": ">= 0.10.0"
