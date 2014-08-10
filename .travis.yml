@@ -9,12 +9,12 @@ before_script:
 - npm run setup
 script:
 - set -e
-- git config --global user.email $GH_EMAIL
-- git config --global user.name $GH_USERNAME
-- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate-web.git > /dev/null 2>&1
-- git checkout -b staging > /dev/null 2>&1
-- git pull deploy staging > /dev/null 2>&1
-- git merge master > /dev/null 2>&1
+#- git config --global user.email $GH_EMAIL
+#- git config --global user.name $GH_USERNAME
+#- git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate-web.git > /dev/null 2>&1
+#- git checkout -b staging > /dev/null 2>&1
+#- git pull deploy staging > /dev/null 2>&1
+#- git merge master > /dev/null 2>&1
 - npm run build
 - npm run start &
 - npm test
@@ -22,7 +22,7 @@ script:
 #- git add -A
 #- git commit -m "Travis build"
 #- git push deploy staging > /dev/null 2>&1
-#- set +e
+- set +e
 env:
   global:
   - secure: hu8XZyK9yGJuUDVUvlO5joeCwBRkB2GkdtbqZ+jHD35aRPwgJYDoW5cwYWY8LuPwG4kcS31UIyPVD2M+042C+QGR85VcTpfNoUOrp9ANhx0cZLllbZioe/qHypJ+yDg8eM/jJ3J+6SHMnya2dEeGcMVOScoRdthjtbcBubCqn/I=
