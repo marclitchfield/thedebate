@@ -4,6 +4,7 @@ node_js:
 branches:
   only:
   - master
+  - ember-cli
 before_script:
 - npm run setup
 script:
@@ -17,11 +18,11 @@ script:
 - npm run build
 - npm run start &
 - npm test
-- ! 'echo "# Build Time: `date`" >> .travis.yml'
-- git add -A
-- git commit -m "Travis build"
-- git push deploy staging > /dev/null 2>&1
-- set +e
+#- ! 'echo "# Build Time: `date`" >> .travis.yml'
+#- git add -A
+#- git commit -m "Travis build"
+#- git push deploy staging > /dev/null 2>&1
+#- set +e
 env:
   global:
   - secure: hu8XZyK9yGJuUDVUvlO5joeCwBRkB2GkdtbqZ+jHD35aRPwgJYDoW5cwYWY8LuPwG4kcS31UIyPVD2M+042C+QGR85VcTpfNoUOrp9ANhx0cZLllbZioe/qHypJ+yDg8eM/jJ3J+6SHMnya2dEeGcMVOScoRdthjtbcBubCqn/I=
