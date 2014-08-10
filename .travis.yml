@@ -4,6 +4,7 @@ node_js:
 branches:
   only:
   - master
+  - ember-cli
 before_script:
 - npm run setup
 script:
