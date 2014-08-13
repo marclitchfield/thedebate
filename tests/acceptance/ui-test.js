@@ -24,17 +24,17 @@ test('Visit homepage', function() {
   });
 });
 
-test('Add a new debate', function() {
-  visit('/');
-  andThen(function() {
-    var debateTitle = 'New debate added by capser';
-    fillIn('#new-debate', debateTitle);
-    keyEvent('#new-debate', 'keypress', 13);
-    andThen(function() {
-      debateIndexPage.assertLast(debateTitle, '0');
-    });
-  });
-});
+// test('Add a new debate', function() {
+//   visit('/');
+//   andThen(function() {
+//     var debateTitle = 'New debate added by capser';
+//     fillIn('#new-debate', debateTitle);
+//     keyEvent('#new-debate', 'keypress', 13);
+//     andThen(function() {
+//       debateIndexPage.assertLast(debateTitle, '0');
+//     });
+//   });
+// });
 
 test('Navigate to debate details', function() {
   visit('/');
