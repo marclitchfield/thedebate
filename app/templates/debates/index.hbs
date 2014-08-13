@@ -2,10 +2,7 @@
   {{#each debate in content}}
     <li>
       {{#link-to 'debate' debate}}
-        <div class="debate">
-          <div class="debate-score">{{debate.score}}</div>
-          <div class="debate-title">{{debate.title}}</div>
-        </div>
+        {{render 'debates/detail' debate}}
       {{/link-to}}
     </li>
   {{/each}}

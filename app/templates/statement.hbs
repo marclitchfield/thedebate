@@ -10,7 +10,7 @@
       {{render 'statements/chain' parent}}
     {{/if}}
     <div class="statement current">
-      {{render 'statements/partial' model}}
+      {{render 'statements/detail' model}}
     </div>
   </div>
   <div class="controls">
@@ -22,7 +22,7 @@
     {{#each response in responses}}
       {{#link-to 'statement' response}}
         <div class="statement">
-          {{render 'statements/partial' response}}
+          {{render 'statements/detail' response}}
         </div>
       {{/link-to}}
     {{/each}}

@@ -16,23 +16,25 @@ module('Acceptance: UI Tests', {
 });
 
 test('Visit homepage', function() {
-  visit('/');
-  andThen(function() {
-    equal(find('.banner h1').text(), 'The Debate');
+  Ember.run(function() {
+    visit('/');
+    andThen(function() {
+      equal(find('.banner h1').text(), 'The Debate');
+    });
   });
 });
 
-// test('Add a new debate', function() {
-//   visit('/');
-//   andThen(function() {
-//     var debateTitle = 'New debate added by capser';
-//     fillIn('#new-debate', debateTitle);
-//     keyEvent('#new-debate', 'keypress', 13);
-//     andThen(function() {
-//       debateIndexPage.assertLast(debateTitle, '0');
-//     });
-//   });
-// });
+test('Add a new debate', function() {
+  visit('/');
+  andThen(function() {
+    var debateTitle = 'New debate added by capser';
+    fillIn('#new-debate', debateTitle);
+    keyEvent('#new-debate', 'keypress', 13);
+    andThen(function() {
+      debateIndexPage.assertLast(debateTitle, '0');
+    });
+  });
+});
 
 test('Navigate to debate details', function() {
   visit('/');
@@ -60,12 +62,10 @@ test('Submit statement', function() {
 test('Navigate to statement details', function() {
   visit('/debate/1');
   andThen(function() {
-    console.log('visited /debate/1');
     var debate = debatePage.current();
     var statement = debatePage.firstStatement();
     debatePage.visitFirstStatement();
     andThen(function() {
-      console.log('visited first statement');
       statementPage.assertDebate(debate.title, debate.score);
       statementPage.assertCurrent(statement.body, statement.score);
       statementPage.assertHasResponses();
@@ -73,22 +73,22 @@ test('Navigate to statement details', function() {
   });
 });
 
-// test('Navigate to response details', function() {
-//   visit('/statement/1');
-//   andThen(function() {
-//     var debate = statementPage.currentDebate();
-//     var statement = statementPage.current();
-//     var response = statementPage.firstResponse();
+test('Navigate to response details', function() {
+  visit('/statement/1');
+  andThen(function() {
+    var debate = statementPage.currentDebate();
+    var statement = statementPage.current();
+    var response = statementPage.firstResponse();
 
-//     statementPage.visitFirstResponse();
-//     andThen(function() {
-//       statementPage.assertDebate(debate.title, debate.score);
-//       statementPage.assertParent(statement.body, statement.score);
-//       statementPage.assertCurrent(response.body, response.score);
-//       statementPage.assertHasResponses();
-//     });
-//   });
-// });
+    statementPage.visitFirstResponse();
+    andThen(function() {
+      statementPage.assertDebate(debate.title, debate.score);
+      statementPage.assertParent(statement.body, statement.score);
+      statementPage.assertCurrent(response.body, response.score);
+      statementPage.assertHasResponses();
+    });
+  });
+});
 
 // test('Submit response', function() {
 //   var responseBody = 'New response added by casper';
