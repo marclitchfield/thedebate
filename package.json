@@ -14,7 +14,7 @@
   },
   "scripts": {
     "setup": "npm install -g phantomjs casperjs supervisor ember-cli bower",
-    "test": "casperjs --verbose --log-level=debug test ui-tests/ui-tests.js",
+    "test": "ember test",
     "start": "ember server --port 9002 --live-reload=false",
     "start-debug": "ember server --port 9002 --live-reload=true",
     "build": "ember build --environment=production"
