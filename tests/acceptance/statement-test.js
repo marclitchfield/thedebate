@@ -22,9 +22,9 @@ test('Navigate to response details', function() {
 
     statementPage.visitFirstResponse();
     andThen(function() {
-      statementPage.assertDebate(debate.title, debate.score);
-      statementPage.assertParent(statement.body, statement.score);
-      statementPage.assertCurrent(response.body, response.score);
+      statementPage.assertDebate(debate);
+      statementPage.assertParent(statement);
+      statementPage.assertCurrent(response);
       statementPage.assertHasResponses();
     });
   });
@@ -33,7 +33,7 @@ test('Navigate to response details', function() {
 // test('Submit response', function() {
 //   var responseBody = 'New response added by casper';
 //   statementPage.submitResponse(responseBody);
-//   statementPage.assertLastResponse(responseBody, '0');
+//   statementPage.assertLastResponse({ body: responseBody, score: '0' });
 // });
 
 // test('Navigate response chain', function() {
@@ -42,17 +42,17 @@ test('Navigate to response details', function() {
 //   var response = statementPage.lastResponse();
 
 //   statementPage.navigateToLast(function() {
-//     statementPage.assertDebate(debate.title, debate.score);
-//     statementPage.assertParent(statement.body, statement.score);
-//     statementPage.assertCurrent(response.body, response.score);
+//     statementPage.assertDebate(debate);
+//     statementPage.assertParent(statement);
+//     statementPage.assertCurrent(response);
 
 //     // submit second response
 //     var responseBody = 'Another response added by casper';
 //     statementPage.submitResponse(responseBody);
-//     statementPage.assertLastResponse(responseBody, '0');
+//     statementPage.assertLastResponse({ body: responseBody, score: '0' });
 //     statementPage.navigateToLast(function() {
-//       statementPage.assertDebate(debate.title, debate.score);
-//       statementPage.assertGrandparent(statement.body, statement.score);
+//       statementPage.assertDebate(debate);
+//       statementPage.assertGrandparent(statement);
 //       statementPage.assertParent(response.body, '0');
 //       statementPage.assertCurrent(responseBody, '0');
 //     });

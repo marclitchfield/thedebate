@@ -15,9 +15,9 @@ export default {
     wait();
   },
 
-  assertLast: function(title, score) {
-    equal(find(lastDebate + ' .debate-title').text(), title);
-    equal(find(lastDebate + ' .debate-score').text(), '0');
+  assertLast: function(debate) {
+    equal(find(lastDebate + ' .debate-title').text(), debate.title);
+    equal(find(lastDebate + ' .debate-score').text(), debate.score);
   },
 
   visitFirstDebate: function() {

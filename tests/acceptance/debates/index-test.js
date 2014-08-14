@@ -21,7 +21,7 @@ module('Acceptance: Debate Index Page Tests', {
 //     fillIn('#new-debate', debateTitle);
 //     keyEvent('#new-debate', 'keypress', 13);
 //     andThen(function() {
-//       debateIndexPage.assertLast(debateTitle, '0');
+//       debateIndexPage.assertLast({ title: debateTitle, score: '0' });
 //     });
 //   });
 // });
@@ -32,7 +32,7 @@ test('Navigate to debate details', function() {
     var debate = debateIndexPage.first();
     debateIndexPage.visitFirstDebate();
     andThen(function() {
-      debatePage.assertCurrent(debate.title, debate.score);
+      debatePage.assertCurrent(debate);
       debatePage.assertHasStatements();
     });
   });

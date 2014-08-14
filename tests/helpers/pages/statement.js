@@ -24,24 +24,24 @@ export default {
     return getStatement(statementDetail);
   },
 
-  assertDebate: function(title, score) {
-    equal(find(debateDetail + ' .debate-title').text(), title);
-    equal(find(debateDetail + ' .debate-score').text(), score);
+  assertDebate: function(debate) {
+    equal(find(debateDetail + ' .debate-title').text(), debate.title);
+    equal(find(debateDetail + ' .debate-score').text(), debate.score);
   },
 
-  assertCurrent: function(body, score) {
-    equal(find(statementDetail + ' .statement-body').text(), body);
-    equal(find(statementDetail + ' .statement-score').text(), score);
+  assertCurrent: function(statement) {
+    equal(find(statementDetail + ' .statement-body').text(), statement.body);
+    equal(find(statementDetail + ' .statement-score').text(), statement.score);
   },
 
-  assertParent: function(body, score) {
-    equal(find(parentStatement + ' .statement-body').text(), body);
-    equal(find(parentStatement + ' .statement-score').text(), score);
+  assertParent: function(statement) {
+    equal(find(parentStatement + ' .statement-body').text(), statement.body);
+    equal(find(parentStatement + ' .statement-score').text(), statement.score);
   },
 
-  assertGrandparent: function(body, score) {
-    equal(find(grandparentStatement + ' .statement-body').text(), body);
-    equal(find(grandparentStatement + ' .statement-score').text(), score);
+  assertGrandparent: function(statement) {
+    equal(find(grandparentStatement + ' .statement-body').text(), statement.body);
+    equal(find(grandparentStatement + ' .statement-score').text(), statement.score);
   },
 
   submitResponse: function(body) {
@@ -57,9 +57,9 @@ export default {
     return getStatement(lastResponse);
   },    
 
-  assertLastResponse: function(body, score) {
-    equal(find(lastResponse + ' .statement-body').text(), body);
-    equal(find(lastResponse + ' .statement-score').text(), score);
+  assertLastResponse: function(response) {
+    equal(find(lastResponse + ' .statement-body').text(), response.body);
+    equal(find(lastResponse + ' .statement-score').text(), response.score);
   },
 
   assertHasResponses: function() {

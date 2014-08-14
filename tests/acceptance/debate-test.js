@@ -21,7 +21,7 @@ test('Submit statement', function() {
     debatePage.submitStatement(statementBody);
   });
   andThen(function() {
-    debatePage.assertLastStatement(statementBody, '0');
+    debatePage.assertLastStatement({ body: statementBody, score: '0' });
   });
 });
 
@@ -32,8 +32,8 @@ test('Navigate to statement details', function() {
     var statement = debatePage.firstStatement();
     debatePage.visitFirstStatement();
     andThen(function() {
-      statementPage.assertDebate(debate.title, debate.score);
-      statementPage.assertCurrent(statement.body, statement.score);
+      statementPage.assertDebate(debate);
+      statementPage.assertCurrent(statement);
       statementPage.assertHasResponses();
     });  
   });

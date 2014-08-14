@@ -10,18 +10,18 @@ export default {
     };
   },
 
-  assertCurrent: function(title, score) {
-    equal(find(debateDetail + ' .debate-title').text(), title);
-    equal(find(debateDetail + ' .debate-score').text(), score);
+  assertCurrent: function(debate) {
+    equal(find(debateDetail + ' .debate-title').text(), debate.title);
+    equal(find(debateDetail + ' .debate-score').text(), debate.score);
   },
 
   assertHasStatements: function() {
     notEqual(find('.statement').length, 0);
   },
 
-  assertLastStatement: function(body, score) {
-    equal(find(lastStatement + ' .statement-body').text(), body);
-    equal(find(lastStatement + ' .statement-score').text(), score);
+  assertLastStatement: function(statement) {
+    equal(find(lastStatement + ' .statement-body').text(), statement.body);
+    equal(find(lastStatement + ' .statement-score').text(), statement.score);
   },
 
   submitStatement: function(body) {
