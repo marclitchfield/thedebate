@@ -12,6 +12,7 @@ Install dependencies
 ```
 npm run setup
 npm install
+bower install
 ```
 
 Start server process launch in browser with live reload.

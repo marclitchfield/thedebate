@@ -10,6 +10,24 @@ export default {
     };
   },
 
+  firstStatement: function() {
+    return {
+      body: find(firstStatement + ' .statement-body').text(),
+      score: find(firstStatement + ' .statement-score').text()
+    };
+  },
+
+  submitStatement: function(body) {
+    fillIn('#new-statement', body);
+    click('#submit-statement');
+    wait();
+  },
+
+  visitFirstStatement: function() {
+    click(firstStatement);
+    wait();
+  },
+
   assertCurrent: function(debate) {
     equal(find(debateDetail + ' .debate-title').text(), debate.title);
     equal(find(debateDetail + ' .debate-score').text(), debate.score);
@@ -22,23 +40,6 @@ export default {
   assertLastStatement: function(statement) {
     equal(find(lastStatement + ' .statement-body').text(), statement.body);
     equal(find(lastStatement + ' .statement-score').text(), statement.score);
-  },
-
-  submitStatement: function(body) {
-    fillIn('#new-statement', body);
-    click('#submit-statement');
-    wait();
-  },
-
-  firstStatement: function() {
-    return {
-      body: find(firstStatement + ' .statement-body').text(),
-      score: find(firstStatement + ' .statement-score').text()
-    };
-  },
-
-  visitFirstStatement: function() {
-    click(firstStatement);
-    wait();
   }
+
 };

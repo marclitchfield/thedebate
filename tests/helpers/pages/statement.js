@@ -24,6 +24,27 @@ export default {
     return getStatement(statementDetail);
   },
 
+  firstResponse: function() {
+    return getStatement(firstResponse);
+  },
+
+  lastResponse: function() {
+    return getStatement(lastResponse);
+  },    
+
+  submitResponse: function(body) {
+    fillIn('#new-response', body);
+    click('#submit-response');
+  },
+
+  visitFirstResponse: function() {
+    click(firstResponse);
+  },
+
+  visitLastResponse: function(callback) {
+    click(lastResponse);
+  },
+
   assertDebate: function(debate) {
     equal(find(debateDetail + ' .debate-title').text(), debate.title);
     equal(find(debateDetail + ' .debate-score').text(), debate.score);
@@ -44,19 +65,6 @@ export default {
     equal(find(grandparentStatement + ' .statement-score').text(), statement.score);
   },
 
-  submitResponse: function(body) {
-    fillIn('#new-response', body);
-    click('#submit-response');
-  },
-
-  firstResponse: function() {
-    return getStatement(firstResponse);
-  },
-
-  lastResponse: function() {
-    return getStatement(lastResponse);
-  },    
-
   assertLastResponse: function(response) {
     equal(find(lastResponse + ' .statement-body').text(), response.body);
     equal(find(lastResponse + ' .statement-score').text(), response.score);
@@ -64,13 +72,5 @@ export default {
 
   assertHasResponses: function() {
     notEqual(find('.responses .statement').length, 0);
-  },
-
-  visitFirstResponse: function() {
-    click(firstResponse);
-  },
-
-  visitLastResponse: function(callback) {
-    click(lastResponse);
-  }      
+  }  
 };

@@ -15,13 +15,13 @@ export default {
     wait();
   },
 
-  assertLast: function(debate) {
-    equal(find(lastDebate + ' .debate-title').text(), debate.title);
-    equal(find(lastDebate + ' .debate-score').text(), debate.score);
-  },
-
   visitFirstDebate: function() {
     click(firstDebate);
     wait();
+  },
+
+  assertLast: function(debate) {
+    equal(find(lastDebate + ' .debate-title').text(), debate.title);
+    equal(find(lastDebate + ' .debate-score').text(), debate.score);
   }
 };
