@@ -14,19 +14,19 @@ npm run setup
 npm install
 ```
 
-Watch for changes and automatically lint and build Less to CSS, Jade to HTML
+Start server process launch in browser with live reload.
 ```
-grunt watch
-```
-
-Run the server and watch for file changes
-```
-supervisor -w . server.js
+ember server
 ```
 
-Run UI tests (requires the server to be running)
+Start an instance of the server and start a testem session. Will watch for changes and rerun tests.
 ```
-npm test
+ember watch --server
+```
+
+Run tests in CI mode
+```
+ember test
 ```
 
 
