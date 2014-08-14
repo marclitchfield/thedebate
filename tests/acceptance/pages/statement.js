@@ -68,11 +68,9 @@ export default {
 
   visitFirstResponse: function() {
     click(firstResponse);
-    wait();
   },
 
   visitLastResponse: function(callback) {
     click(lastResponse);
-    wait();
   }      
 };

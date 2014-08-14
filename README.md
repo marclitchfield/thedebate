@@ -21,7 +21,7 @@ ember server
 
 Start an instance of the server and start a testem session. Will watch for changes and rerun tests.
 ```
-ember watch --server
+ember test --server
 ```
 
 Run tests in CI mode
