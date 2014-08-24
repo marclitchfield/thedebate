@@ -15,9 +15,9 @@
   "scripts": {
     "setup": "npm install -g phantomjs casperjs supervisor ember-cli bower",
     "test": "ember test",
-    "start": "ember server --port 9002 --live-reload=false",
+    "start": "ember server --port 9002 --live-reload=false --environment=production",
     "start-debug": "ember server --port 9002 --live-reload=true",
-    "build": "ember build --environment=production"
+    "build": "ember build"
   },
   "engines": {
     "node": ">= 0.10.0"
