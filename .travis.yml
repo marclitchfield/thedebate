@@ -3,8 +3,7 @@ node_js:
 - '0.10'
 branches:
   only:
-  - master
-  - ember-cli
+  - development
 before_script:
 - npm run setup
 script:
@@ -13,14 +12,14 @@ script:
 - git config --global user.email $GH_EMAIL
 - git config --global user.name $GH_USERNAME
 - git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate-web.git > /dev/null 2>&1
-- git checkout -b staging > /dev/null 2>&1
-- git pull deploy staging > /dev/null 2>&1
+- git checkout -b master > /dev/null 2>&1
+- git pull deploy master > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
 - npm test
 - ! 'echo "# Build Time: `date`" >> .travis.yml'
 - git add -A
 - git commit -m "Travis build"
-- git push deploy staging > /dev/null 2>&1
+- git push deploy master > /dev/null 2>&1
 - set +e
 env:
   global:
