@@ -8,21 +8,5 @@ export default DS.Model.extend({
   objection: DS.attr('number'),
   debate: DS.belongsTo('debate', { inverse: 'statements' }),
   parent: DS.belongsTo('statement', { inverse: 'responses'}),  
-  responses: DS.hasMany('statement', { async: true, inverse: 'parent' }),
-
-  supportStyle: function() {
-    return widthStyle(this.get('support'), 7);
-  }.property('support'),
-
-  oppositionStyle: function() {
-    return widthStyle(this.get('opposition'), 7);
-  }.property('opposition'),
-
-  objectionStyle: function() {
-    return widthStyle(this.get('objection'), 14);
-  }.property('objection')
+  responses: DS.hasMany('statement', { async: true, inverse: 'parent' })
 });
-
-function widthStyle(score, multiplier) {
-    return 'width:' + multiplier * Math.log((score || 0) + 1) + '%;';
-}
