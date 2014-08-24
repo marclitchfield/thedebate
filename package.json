@@ -13,7 +13,7 @@
     "url": "https://github.com/marclitchfield/thedebate-web.git"
   },
   "scripts": {
-    "setup": "npm install -g phantomjs casperjs supervisor ember-cli bower",
+    "setup": "npm install -g phantomjs ember-cli bower",
     "test": "ember test",
     "start": "ember server --port 9002 --live-reload=false --environment=production",
     "start-debug": "ember server --port 9002 --live-reload=true",
