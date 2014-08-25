@@ -20,22 +20,6 @@ export default Ember.ObjectController.extend({
       parentStatement.get('responses').pushObject(statement);
       statement.save();
     }
-  },
-
-  supportStyle: function() {
-    return widthStyle(this.get('support'), 7);
-  },
-
-  oppositionStyle: function() {
-    return widthStyle(this.get('opposition'), 7);
-  },
-
-  objectionStyle: function() {
-    return widthStyle(this.get('objection'), 14);
   }
 
 });
-
-function widthStyle(score, multiplier) {
-    return 'width:' + multiplier * Math.log((score || 0) + 1) + '%;';
-}

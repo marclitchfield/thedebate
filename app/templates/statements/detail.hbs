@@ -2,17 +2,17 @@
   <div class="statement-score">{{score}}</div>
   {{#if support}}
     <div class="indicator support"></div>
-    {{score-indicator model 'support'}}
+    <div class="score support" {{bind-attr style="supportStyle"}}></div>
   {{/if}}
 
   {{#if opposition}}
     <div class="indicator opposition"></div>
-    {{score-indicator model 'opposition'}}
+    <div class="score opposition" {{bind-attr style="oppositionStyle"}}></div>
   {{/if}}
 
   {{#if objection}}
     <div class="indicator objection"></div>
-    {{score-indicator model 'objection'}}
+    <div class="score objection" {{bind-attr style="objectionStyle"}}></div>
   {{/if}}
 </div>
 <div class="statement-body">{{body}}</div>
