@@ -1,5 +1,5 @@
 var firstDebate = '.debate-list li:first-of-type a';
-var lastDebate = '.debate-list li:nth-last-of-type(2)';
+var lastDebate = '.debate-list li:last';
 
 export default {
   first: function() {
@@ -10,9 +10,8 @@ export default {
   },
 
   submit: function(title) {
-    fillIn('#new-debate', title);
-    keyEvent('#new-debate', 'keypress', 13);
-    wait();
+    fillIn('#debate-title', title);
+    click('#submit-debate');
   },
 
   visitFirstDebate: function() {

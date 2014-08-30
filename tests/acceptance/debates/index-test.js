@@ -14,17 +14,16 @@ module('Acceptance: Debate Index Page Tests', {
   }
 });
 
-// test('Add a new debate', function() {
-//   visit('/');
-//   andThen(function() {
-//     var debateTitle = 'New debate added by capser';
-//     fillIn('#new-debate', debateTitle);
-//     keyEvent('#new-debate', 'keypress', 13);
-//     andThen(function() {
-//       debateIndexPage.assertLast({ title: debateTitle, score: '0' });
-//     });
-//   });
-// });
+test('Add a new debate', function() {
+  visit('/');
+  andThen(function() {
+    var debateTitle = 'New debate added by automated test';
+    debateIndexPage.submit(debateTitle);
+    andThen(function() {
+      debateIndexPage.assertLast({ title: debateTitle, score: '0' });
+    });
+  });
+});
 
 test('Navigate to debate details', function() {
   visit('/');
@@ -37,4 +36,3 @@ test('Navigate to debate details', function() {
     });
   });
 });
-

@@ -26,9 +26,6 @@
         </div>
       {{/link-to}}
     {{/each}}
-    <div class="statement">
-      {{textarea id="new-response" placeholder="your response ..." value=newBody}}
-    </div>
-    <button {{action 'createResponse' model}} id="submit-response" class="btn btn-primary">Submit</button>
   </div>
+  {{render 'statements/create' model}}
 </div>

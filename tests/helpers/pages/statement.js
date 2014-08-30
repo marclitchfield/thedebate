@@ -33,15 +33,15 @@ export default {
   },    
 
   submitResponse: function(body) {
-    fillIn('#new-response', body);
-    click('#submit-response');
+    fillIn('#statement-body', body);
+    click('#submit-statement');
   },
 
   visitFirstResponse: function() {
     click(firstResponse);
   },
 
-  visitLastResponse: function(callback) {
+  visitLastResponse: function() {
     click(lastResponse);
   },
 

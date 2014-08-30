@@ -6,5 +6,5 @@
       {{/link-to}}
     </li>
   {{/each}}
-  <li class="debate">{{input type="text" id="new-debate" placeholder="new debate topic" value=newTitle action="createDebate"}}</li>
 </ul>
+{{render 'debates/create' model}}

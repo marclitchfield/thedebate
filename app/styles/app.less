@@ -65,14 +65,11 @@ li {
 .statements, .responses, .detail {
   margin-top: .3em;
 
-  button:first-of-type {
-    margin-left: 1.3rem;
+  .controls {
+    button:first-of-type {
+      margin-left: 1.3rem;
+    }
   }
-}
-
-#create-response {
-  margin-right: 1.3rem;
-  float: right;
 }
 
 @media only screen {
@@ -235,5 +232,15 @@ li {
     .statement-body {
       color: @light-foreground;
     }
+  }
+}
+
+
+#create-debate-form, #create-statement-form {
+  display: block;
+  margin: 0 1.3rem .2em 1.3rem;
+
+  #debate-title, #statement-body {
+    width: 100%;
   }
 }

@@ -18,7 +18,7 @@ export default {
   },
 
   submitStatement: function(body) {
-    fillIn('#new-statement', body);
+    fillIn('#statement-body', body);
     click('#submit-statement');
     wait();
   },

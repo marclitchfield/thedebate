@@ -1,6 +1,6 @@
 import { test, moduleFor } from 'ember-qunit';
 
-moduleFor('controller:debates/index', 'DebatesIndexController', {
+moduleFor('controller:statements/create', 'StatementsCreateController', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

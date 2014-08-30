@@ -33,15 +33,14 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
 
-    <script>
-      window.ThedebateENV = {{ENV}};
-      window.EmberENV = window.ThedebateENV.EmberENV;
-    </script>
-    <script src="assets/test-support.js"></script>
     <script src="assets/vendor.js"></script>
+    <script src="assets/test-support.js"></script>
     <script src="assets/thedebate.js"></script>
     <script src="testem.js"></script>
     <script>
+      window.ThedebateENV = require('thedebate/config/environment')['default'];
+      window.EmberENV = window.ThedebateENV.EmberENV;
+
       require('thedebate/tests/test-helper');
     </script>
     <script src="assets/test-loader.js"></script>

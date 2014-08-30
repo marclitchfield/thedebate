@@ -30,31 +30,40 @@ test('Navigate to response details', function() {
   });
 });
 
-// test('Submit response', function() {
-//   var responseBody = 'New response added by casper';
-//   statementPage.submitResponse(responseBody);
-//   statementPage.assertLastResponse({ body: responseBody, score: '0' });
-// });
+test('Submit response', function() {
+  var responseBody = 'Response For Test: Submit response';
+  visit('/statement/1');
+  andThen(function() {
+    statementPage.submitResponse(responseBody);
+  });
+  andThen(function() {
+    statementPage.assertLastResponse({ body: responseBody, score: '0' });
+  });
+});
 
-// test('Navigate response chain', function() {
-//   var debate = statementPage.currentDebate();
-//   var statement = statementPage.current();
-//   var response = statementPage.lastResponse();
-
-//   statementPage.navigateToLast(function() {
-//     statementPage.assertDebate(debate);
-//     statementPage.assertParent(statement);
-//     statementPage.assertCurrent(response);
-
-//     // submit second response
-//     var responseBody = 'Another response added by casper';
-//     statementPage.submitResponse(responseBody);
-//     statementPage.assertLastResponse({ body: responseBody, score: '0' });
-//     statementPage.navigateToLast(function() {
-//       statementPage.assertDebate(debate);
-//       statementPage.assertGrandparent(statement);
-//       statementPage.assertParent(response.body, '0');
-//       statementPage.assertCurrent(responseBody, '0');
-//     });
-//   });
-// });
+test('Navigate to response, submit response, and navigate to new response', function() {
+  var responseBody = 'Response For Test: Navigate to response, submit response, and navigate to new response';
+  visit('/statement/1');
+  andThen(function() {
+    var debate = statementPage.currentDebate();
+    var statement = statementPage.current();
+    var response = statementPage.lastResponse();
+    statementPage.visitLastResponse();
+    andThen(function() {
+      statementPage.assertDebate(debate);
+      statementPage.assertParent(statement);
+      statementPage.assertCurrent(response);
+      statementPage.submitResponse(responseBody);
+    });
+    andThen(function() {
+      statementPage.assertLastResponse({ body: responseBody, score: '0' });
+      statementPage.visitLastResponse();
+    });
+    andThen(function() {
+      statementPage.assertDebate(debate);
+      statementPage.assertGrandparent(statement);
+      statementPage.assertParent(response);
+      statementPage.assertCurrent({ body: responseBody, score: '0' });
+    });
+  });
+});

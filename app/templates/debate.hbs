@@ -15,9 +15,6 @@
         <div class="statement">{{render 'statements/detail' statement}}</div>
       {{/link-to}}
     {{/each}}
-    <div class="statement">
-      {{textarea id="new-statement" placeholder="make a statement in this debate ..." value=newBody}}
-    </div>
-    <button {{action 'createStatement'}} id="submit-statement" class="btn btn-primary">Submit</button>
   </div>
+  {{render 'statements/create' model}}
 </div>

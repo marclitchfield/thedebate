@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
   actions: {
-    createDebate: function() {
+    create: function() {
       var title = this.get('newTitle');
       if (!title) { return false; }
       if (!title.trim()) { return; }
@@ -15,5 +15,5 @@ export default Ember.ArrayController.extend({
       this.set('newTitle', '');
       debate.save();
     }
-  }    
+  }
 });
