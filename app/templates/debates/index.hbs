@@ -1,9 +1,7 @@
 <ul class="debate-list">
   {{#each debate in content}}
     <li>
-      {{#link-to 'debate' debate}}
-        {{render 'debates/detail' debate}}
-      {{/link-to}}
+      {{render 'debates/item' debate}}
     </li>
   {{/each}}
 </ul>

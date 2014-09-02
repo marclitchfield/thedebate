@@ -6,15 +6,8 @@
     </div>
   </div>
   <div class="controls">
-    <button class="btn btn-primary">Statements</button>
-    <button id="create-response" class="btn btn-primary">Submit a Statement</button>
+    {{#link-to 'debate.index' model classNames="btn btn-primary"}}Statements{{/link-to}}
+    {{#link-to 'statements.create' model classNames="btn btn-primary action"}}Submit a Statement{{/link-to}}
   </div>
-  <div class="statements">
-    {{#each statement in statements}}
-      {{#link-to 'statement' statement}}
-        <div class="statement">{{render 'statements/detail' statement}}</div>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  {{render 'statements/create' model}}
+  {{outlet}}
 </div>

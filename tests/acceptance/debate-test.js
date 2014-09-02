@@ -16,7 +16,7 @@ module('Acceptance: Debate Page Tests', {
 
 test('Submit statement', function() {
   var statementBody = 'New statement added by casper';
-  visit('/debate/1');
+  visit('/debate/1/statements/create');
   andThen(function() {
     debatePage.submitStatement(statementBody);
   });

@@ -14,7 +14,7 @@ module('Acceptance: Statement Page Tests', {
 });
 
 test('Navigate to response details', function() {
-  visit('/statement/1');
+  visit('/statement/1/responses');
   andThen(function() {
     var debate = statementPage.currentDebate();
     var statement = statementPage.current();
@@ -32,7 +32,7 @@ test('Navigate to response details', function() {
 
 test('Submit response', function() {
   var responseBody = 'Response For Test: Submit response';
-  visit('/statement/1');
+  visit('/statement/1/responses/create');
   andThen(function() {
     statementPage.submitResponse(responseBody);
   });
@@ -43,7 +43,7 @@ test('Submit response', function() {
 
 test('Navigate to response, submit response, and navigate to new response', function() {
   var responseBody = 'Response For Test: Navigate to response, submit response, and navigate to new response';
-  visit('/statement/1');
+  visit('/statement/1/responses');
   andThen(function() {
     var debate = statementPage.currentDebate();
     var statement = statementPage.current();
@@ -53,6 +53,9 @@ test('Navigate to response, submit response, and navigate to new response', func
       statementPage.assertDebate(debate);
       statementPage.assertParent(statement);
       statementPage.assertCurrent(response);
+      statementPage.newResponse();
+    });
+    andThen(function() {
       statementPage.submitResponse(responseBody);
     });
     andThen(function() {

@@ -5,7 +5,7 @@ export default Ember.ObjectController.extend({
     this.set('newBody', '');
   },
   actions: {
-    create: function(parentDebate) {
+    create: function(parentStatement) {
       var body = this.get('newBody');
       if (!body) { return; }
       if (!body.trim()) { return; }
@@ -18,13 +18,15 @@ export default Ember.ObjectController.extend({
       });
 
       var self = this;
-      statement.set('debate', parentDebate);
-      return this.get('statements').then(function(statements) {
-        statements.pushObject(statement);
+      statement.set('debate', parentStatement.get('debate'));
+      statement.set('parent', parentStatement);
+
+      return parentStatement.get('responses').then(function(responses) {
+        responses.pushObject(statement);
         return statement.save();
       }).then(function() {
         self.set('newBody', '');
-        self.transitionToRoute('debate');
+        self.transitionToRoute('responses');
       });
     }
   }

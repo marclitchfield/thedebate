@@ -1,9 +1,9 @@
 var debateDetail = '.detail .context .debate';
-var statementDetail = '.detail .context .statement.current';
-var firstResponse = '.responses a:first-of-type .statement';
-var lastResponse = '.responses a:last-of-type .statement';
-var parentStatement = '.detail .context a:last-of-type .statement';
-var grandparentStatement = '.detail .context a:nth-last-of-type(2) .statement';
+var statementDetail = '.detail .context .current .statement';
+var firstResponse = '.statements a:first-of-type .statement';
+var lastResponse = '.statements a:last-of-type .statement';
+var parentStatement = '.detail .context .chain a:last .statement';
+var grandparentStatement = '.detail .context .chain a:nth-last-of-type(3) .statement';
 
 function getStatement(selector) {
   return {
@@ -30,7 +30,11 @@ export default {
 
   lastResponse: function() {
     return getStatement(lastResponse);
-  },    
+  },
+
+  newResponse: function() {
+    click('.action.new-response');
+  },
 
   submitResponse: function(body) {
     fillIn('#statement-body', body);
@@ -71,6 +75,6 @@ export default {
   },
 
   assertHasResponses: function() {
-    notEqual(find('.responses .statement').length, 0);
+    notEqual(find('.statements .statement').length, 0);
   }  
 };

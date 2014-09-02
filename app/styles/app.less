@@ -62,12 +62,25 @@ li {
   margin: 0 0 0 .5rem;
 }
 
-.statements, .responses, .detail {
+.statements, .detail {
   margin-top: .3em;
 
   .controls {
-    button:first-of-type {
-      margin-left: 1.3rem;
+    margin: .4rem .5rem 0 1.3rem;
+    color: @dark-foreground;
+
+    .btn {
+      background-color: @medium-background;
+      border-color: @light-border;
+
+      &.active {
+        background-color: @dark-background;
+        color: @light-foreground;
+      }
+    }
+
+    .action {
+      float: right;
     }
   }
 }
@@ -128,7 +141,7 @@ li {
 }
 
 .statement {
-  margin: 0 1.3rem .2em 1.3rem;
+  margin: 0 .5rem .2em 1.3rem;
   display: block;
   clear: both;
   min-height: 5em;
@@ -221,11 +234,13 @@ li {
     color: @dark-foreground;
   }
 
-  .context .statement {
-    background-color: @dark-background;
-    border-color: @medium-border;
+  .context {
+    .statement {
+      background-color: @dark-background;
+      border-color: @medium-border;
+    }
 
-    &.current {
+    .current .statement {
       border-color: @light-border;
     }
 
@@ -238,9 +253,11 @@ li {
 
 #create-debate-form, #create-statement-form {
   display: block;
-  margin: 0 1.3rem .2em 1.3rem;
+  margin: .5rem .5rem 0 1.3rem;
 
   #debate-title, #statement-body {
     width: 100%;
+    margin-bottom: .5rem;
   }
 }
+
