@@ -9,6 +9,7 @@ export default DS.Model.extend({
   debate: DS.belongsTo('debate', { inverse: 'statements' }),
   parent: DS.belongsTo('statement', { inverse: 'responses'}),  
   responses: DS.hasMany('statement', { async: true, inverse: 'parent' }),
+  objections: DS.hasMany('statement', { async: true, inverse: 'parent' }),
 
   isResponse: function() {
     return this.get('parent') !== undefined;

@@ -1,0 +1,4 @@
+<form id="create-statement-form" class="form">
+  {{textarea id="statement-body" placeholder="describe the objection to this statement ..." value=newBody classNames="form-control"}}
+  <button {{action 'create' model}} id="submit-statement" class="btn btn-primary">Submit</button>
+</form>

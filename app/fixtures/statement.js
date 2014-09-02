@@ -21,6 +21,7 @@ export default {
         id: fixtures.length + 1,
         debate: debateId,
         responses: [],
+        objections: [],
         score: Math.floor(Math.random()*1000), 
         opposition: Math.floor(Math.random()*1000),
         support: Math.floor(Math.random()*1000),
@@ -31,10 +32,17 @@ export default {
       fixtures.push(statement);
 
       if ((level || 0) < 4) {
-        for(var i=0; i<Math.random()*4; i++) {
+        var i;
+        for(i=0; i<Math.random()*4; i++) {
           var response = makeStatement(debateId, (level || 0) + 1);
           response.parent = statement.id;
           statement.responses.push(response.id);
+        }
+
+        for(i=0; i<Math.random()*4; i++) {
+          var objection = makeStatement(debateId, (level || 0) + 1);
+          objection.parent = statement.id;
+          statement.objections.push(objection.id);
         }
       }
 

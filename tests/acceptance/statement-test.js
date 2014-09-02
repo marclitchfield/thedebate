@@ -41,6 +41,20 @@ test('Submit response', function() {
   });
 });
 
+test('Submit objection', function() {
+  var responseBody = 'Objection For Test: Submit objection';
+  visit('/statement/1/objections/create');
+  andThen(function() {
+    statementPage.submitResponse(responseBody);
+  });
+  andThen(function() {
+    statementPage.showObjections();
+  });
+  andThen(function() {
+    statementPage.assertLastResponse({ body: responseBody, score: '0' });
+  });
+});
+
 test('Navigate to response, submit response, and navigate to new response', function() {
   var responseBody = 'Response For Test: Navigate to response, submit response, and navigate to new response';
   visit('/statement/1/responses');

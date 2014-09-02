@@ -36,6 +36,14 @@ export default {
     click('.action.new-response');
   },
 
+  showResponses: function() {
+    click('.show-responses');
+  },
+
+  showObjections: function() {
+    click('.show-objections');
+  },
+
   submitResponse: function(body) {
     fillIn('#statement-body', body);
     click('#submit-statement');
