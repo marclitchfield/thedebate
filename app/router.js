@@ -14,7 +14,7 @@ Router.map(function() {
   });
 
   this.resource('statement', { path: '/statement/:statement_id' }, function() {
-    this.resource('responses', { path: 'responses' }, function() {
+    this.resource('responses', function() {
       this.route('create');
     });
     this.resource('objections', function() {
