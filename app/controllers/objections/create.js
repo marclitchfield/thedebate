@@ -1,33 +1,19 @@
-import Ember from 'ember';
+import CreateStatementController from '../shared/create-statement';
 
-export default Ember.ObjectController.extend({
-  init: function() {
-    this.set('newBody', '');
+export default CreateStatementController.extend({
+  _getDebate: function(parentStatement) {
+    return parentStatement.get('debate');
   },
-  actions: {
-    create: function(parentStatement) {
-      var body = this.get('newBody');
-      if (!body) { return; }
-      if (!body.trim()) { return; }
 
-      var statement = this.store.createRecord('statement', {
-        body: body,
-        score: 0,
-        support: 0,
-        opposition: 0
-      });
+  _getParent: function(parentStatement) {
+    return parentStatement;
+  },
 
-      var self = this;
-      statement.set('debate', parentStatement.get('debate'));
-      statement.set('parent', parentStatement);
+  _getCollection: function(parentStatement) {
+    return parentStatement.get('objections');
+  },
 
-      return parentStatement.get('objections').then(function(objections) {
-        objections.pushObject(statement);
-        return statement.save();
-      }).then(function() {
-        self.set('newBody', '');
-        self.transitionToRoute('objections');
-      });
-    }
+  _transitionAfterSave: function() {
+    this.transitionToRoute('objections');
   }
 });

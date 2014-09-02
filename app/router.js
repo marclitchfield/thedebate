@@ -17,7 +17,6 @@ Router.map(function() {
     this.resource('responses', { path: 'responses' }, function() {
       this.route('create');
     });
-
     this.resource('objections', function() {
       this.route('create');
     });
