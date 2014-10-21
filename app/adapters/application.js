@@ -1,5 +1,1 @@
-import DS from 'ember-data';
-
-export default DS.FixtureAdapter.extend();
-
-
+App.ApplicationAdapter = DS.FixtureAdapter;

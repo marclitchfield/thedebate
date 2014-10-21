@@ -1,11 +1,9 @@
-import Ember from 'ember';
-
-export default Ember.Controller.extend({
+App.DebatesController = Ember.Controller.extend({
   actions: {
     create: function() {
       var title = this.get('newTitle');
       if (!title) { return false; }
-      if (!title.trim()) { return; }
+      if (!title.trim()) { return false; }
 
       var debate = this.store.createRecord('debate', {
         title: title,

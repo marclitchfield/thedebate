@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-export default Ember.Route.extend({
+App.ObjectionsIndexRoute = Ember.Route.extend({
   model: function() {
     return this.modelFor('statement');
   }

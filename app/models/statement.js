@@ -1,6 +1,4 @@
-import DS from 'ember-data';
-
-export default DS.Model.extend({
+App.Statement = DS.Model.extend({
   body: DS.attr('string'),
   score: DS.attr('number'),
   support: DS.attr('number'),

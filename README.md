@@ -17,17 +17,17 @@ bower install
 
 Start server process launch in browser with live reload.
 ```
-ember server
+
 ```
 
 Start an instance of the server and start a testem session. Will watch for changes and rerun tests.
 ```
-ember test --server
+
 ```
 
 Run tests in CI mode
 ```
-ember test
+
 ```
 
 

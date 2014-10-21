@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-export default Ember.ObjectController.extend({
+App.BaseStatementController = Ember.ObjectController.extend({
   init: function() {
     this.set('newBody', '');
   },

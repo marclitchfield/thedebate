@@ -39,7 +39,7 @@ li {
   background-color: @dark-background;
   border-color: @medium-border;
 
-  &:active, &:focus {
+  &.active, &:focus {
     background-color: lighten(@dark-background, 10%);
     border-color: @medium-border;
   }
@@ -73,6 +73,10 @@ li {
 #create-response {
   margin-right: 1.3rem;
   float: right;
+}
+
+#create-debate-form {
+  display: block;
 }
 
 @media only screen {

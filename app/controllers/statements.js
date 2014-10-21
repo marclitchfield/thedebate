@@ -1,6 +1,4 @@
-import CreateStatementController from '../shared/create-statement';
-
-export default CreateStatementController.extend({
+App.StatementsController = App.BaseStatementController.extend({
   _getDebate: function(parentDebate) {
     return parentDebate;
   },
