@@ -13,13 +13,13 @@
 @opposition-color: hsla(248, 97%, 4%, 1);
 @objection-color: hsla(0, 0%, 60%, 1);
 
+html {
+  overflow-y: scroll;
+}
 
 body {
   font-family: Georgia;
-}
-
-html {
-  overflow-y: scroll;
+  min-width: 24em;
 }
 
 a, a:hover, a:link, a:visited, a:active {
@@ -39,7 +39,7 @@ li {
   background-color: @dark-background;
   border-color: @medium-border;
 
-  &.active, &:focus {
+  &:active, &:focus {
     background-color: lighten(@dark-background, 10%);
     border-color: @medium-border;
   }
@@ -62,21 +62,34 @@ li {
   margin: 0 0 0 .5rem;
 }
 
-.statements, .responses, .detail {
+.statements, .detail {
   margin-top: .3em;
 
-  button:first-of-type {
-    margin-left: 1.3rem;
+  .controls {
+    margin: .4rem .5rem 0 1.3rem;
+    color: @dark-foreground;
+
+    .btn {
+      padding-left: .8rem;
+      padding-right: .8rem;
+      font-size: 0.9em;
+      background-color: @medium-background;
+      border-color: @light-border;
+
+      &.active {
+        background-color: @dark-background;
+        color: @light-foreground;
+      }
+    }
+
+    .action:nth-last-child(1) {
+      margin-right: .3rem;
+    }
+
+    .action {
+      float: right;
+    }
   }
-}
-
-#create-response {
-  margin-right: 1.3rem;
-  float: right;
-}
-
-#create-debate-form {
-  display: block;
 }
 
 @media only screen {
@@ -135,7 +148,7 @@ li {
 }
 
 .statement {
-  margin: 0 1.3rem .2em 1.3rem;
+  margin: 0 .5rem .2em 1.3rem;
   display: block;
   clear: both;
   min-height: 5em;
@@ -228,11 +241,13 @@ li {
     color: @dark-foreground;
   }
 
-  .context .statement {
-    background-color: @dark-background;
-    border-color: @medium-border;
+  .context {
+    .statement {
+      background-color: @dark-background;
+      border-color: @medium-border;
+    }
 
-    &.current {
+    .current .statement {
       border-color: @light-border;
     }
 
@@ -241,3 +256,15 @@ li {
     }
   }
 }
+
+
+#create-debate-form, #create-statement-form {
+  display: block;
+  margin: .5rem .5rem 0 1.3rem;
+
+  #debate-title, #statement-body {
+    width: 100%;
+    margin-bottom: .5rem;
+  }
+}
+
