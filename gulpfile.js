@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   emberTemplates = require('gulp-ember-templates'),
   changed = require('gulp-changed'),
+  livereload = require('gulp-livereload'),
   del = require('del'),
   path = require('path');
 
@@ -79,7 +80,8 @@ gulp.task('clean', function(cb) {
 
 gulp.task('public', function() {
   return gulp.src(paths.public.files)
-    .pipe(gulp.dest(paths.dist.public));
+    .pipe(gulp.dest(paths.dist.public))
+    .pipe(livereload());
 });
 
 gulp.task('styles', function() {
@@ -88,7 +90,8 @@ gulp.task('styles', function() {
       .pipe(less())
       .pipe(minifycss())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.less.root }))
-    .pipe(gulp.dest(paths.dist.assets));
+    .pipe(gulp.dest(paths.dist.assets))
+    .pipe(livereload());
 });
 
 gulp.task('emberApp', ['emberTemplates'], function() {
@@ -97,9 +100,10 @@ gulp.task('emberApp', ['emberTemplates'], function() {
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
-      .pipe(uglify())
+      //.pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.app.root }))
-    .pipe(gulp.dest(paths.dist.assets));
+    .pipe(gulp.dest(paths.dist.assets))
+    .pipe(livereload());
 });
 
 gulp.task('emberTemplates', function() {
@@ -109,20 +113,23 @@ gulp.task('emberTemplates', function() {
       .pipe(concat('templates.js'))
       .pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.templates.root }))
-    .pipe(gulp.dest(paths.dist.assets));
+    .pipe(gulp.dest(paths.dist.assets))
+    .pipe(livereload());
 });
 
 gulp.task('vendor', function() {
   return gulp.src(paths.vendor)
     .pipe(changed(paths.dist.vendor))
-    .pipe(gulp.dest(paths.dist.vendor));
+    .pipe(gulp.dest(paths.dist.vendor))
+    .pipe(livereload());
 });
 
 gulp.task('server', ['server node_modules'], function() {
   return gulp.src(paths.server.files)
     .pipe(jshint(path.join(paths.server.root, '.jshintrc')))
     .pipe(jshint.reporter('default'))
-    .pipe(gulp.dest(paths.dist.server));
+    .pipe(gulp.dest(paths.dist.server))
+    .pipe(livereload());
 });
 
 gulp.task('server node_modules', function() {
@@ -135,6 +142,7 @@ gulp.task('server node_modules', function() {
 });
 
 gulp.task('watch', function() {
+  livereload.listen();
   gulp.watch(paths.public.files, ['public']);
   gulp.watch(paths.less.files, ['styles']);
   gulp.watch(paths.ember.app.files, ['emberApp']);

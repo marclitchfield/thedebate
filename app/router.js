@@ -17,6 +17,10 @@ App.Router.map(function() {
   });
 });
 
-App.Router.reopen({
-  location: 'auto'
-});
+// TODO: Server needs to pass through to index.html instead of looking
+// for an object endpoint, e.g. /debate/4 should stream contents of index.html.
+// Uncommenting these lines will remove the # from urls within the app.
+//
+// App.Router.reopen({
+//   location: 'auto'
+// });
