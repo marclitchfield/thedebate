@@ -63,7 +63,10 @@ var paths = {
     root: 'server/',
     files: ['server/**/*.js'],
     // node_modules that the server application depends on
-    modules: ['express']
+    modules: [
+      'express',
+      'mime'
+    ]
   },
   test: {
     root: 'tests/',
@@ -100,7 +103,7 @@ gulp.task('emberApp', ['emberTemplates'], function() {
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
-      //.pipe(uglify())
+      .pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.app.root }))
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload());

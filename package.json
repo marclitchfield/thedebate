@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "express": "~4.8.5",
-    "glob": "~4.0.5"
+    "mime": "~1.2.11"
   },
   "devDependencies": {
     "gulp": "~3.8.8",
