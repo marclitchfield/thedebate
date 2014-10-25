@@ -4,12 +4,7 @@ App.Statement = DS.Model.extend({
   support: DS.attr('number'),
   opposition: DS.attr('number'),
   objection: DS.attr('number'),
-  debate: DS.belongsTo('debate', { inverse: 'statements' }),
-  parent: DS.belongsTo('statement', { inverse: 'responses'}),  
-  responses: DS.hasMany('statement', { async: true, inverse: 'parent' }),
-  objections: DS.hasMany('statement', { async: true, inverse: 'parent' }),
-
-  isResponse: function() {
-    return this.get('parent') !== undefined;
-  }.property()
+  debate: DS.belongsTo('debate', { async: true, inverse: 'statements' }),
+  responses: DS.hasMany('response', { async: true, inverse: 'subject' }),
+  objections: DS.hasMany('objection', { async: true, inverse: 'subject' })
 });

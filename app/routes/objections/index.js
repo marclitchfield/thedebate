@@ -1,5 +1,6 @@
 App.ObjectionsIndexRoute = Ember.Route.extend({
   model: function() {
-    return this.modelFor('statement');
+    var statement = this.modelFor('statement');
+    return statement instanceof App.Objection ? this.modelFor('objection') : statement;
   }
 });

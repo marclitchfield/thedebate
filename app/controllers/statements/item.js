@@ -1,5 +1,5 @@
 (function() {
-  App.StatementController = Ember.ObjectController.extend({
+  App.StatementsItemController = Ember.ObjectController.extend({
     supportStyle: function() {
       return widthStyle(this.get('support'), 7);
     }.property('supportStyle'),
@@ -11,7 +11,7 @@
     objectionStyle: function() {
       return widthStyle(this.get('objection'), 14);
     }.property('objectionStyle')
-  });  
+  });
 
   function widthStyle(score, multiplier) {
     return 'width:' + multiplier * Math.log((score || 0) + 1) + '%;';

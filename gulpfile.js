@@ -20,13 +20,14 @@ var paths = {
     app: {
       root: 'app/',
       // Define load order for ember objects.
-      // TODO: introduce module system to manage dependencies
+      // TODO: introduce module system to manage dependency ordering
       files: [
         // first create the App object
         'app/app.js', 
         // base classes
         'app/controllers/shared/**',
         // models need to be defined before fixtures
+        'app/models/statement.js',  // statement is a base class
         'app/models/**',
         'app/fixtures/**', 
         // the remainder are order-agnostic

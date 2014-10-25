@@ -1,1 +1,5 @@
-{{render 'statements.index' objections}}
+<div class="statements">
+  {{#each objection in objections}}
+    {{render 'objections.item' objection}}
+  {{/each}}
+</div>

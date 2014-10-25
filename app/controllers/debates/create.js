@@ -1,4 +1,4 @@
-App.DebatesController = Ember.Controller.extend({
+App.DebatesCreateController = Ember.Controller.extend({
   actions: {
     create: function() {
       var title = this.get('newTitle');

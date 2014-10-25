@@ -1,4 +1,7 @@
 App.Statement.FIXTURES = (function() {
+  App.Response.FIXTURES = App.Response.FIXTURES || [];
+  App.Objection.FIXTURES = App.Objection.FIXTURES || [];
+
   var statements = [];
 
   var statementBodies = [
@@ -13,12 +16,13 @@ App.Statement.FIXTURES = (function() {
   ];
 
   for(var i=0; i<App.Debate.FIXTURES.length; i++) {
-    for(var j=0; j<Math.random()*5; j++) {
+    for(var j=0; j<2 /*Math.random()*5*/; j++) {
       var statement = makeStatement(App.Debate.FIXTURES[i].id);
       App.Debate.FIXTURES[i].statements.push(statement.id);
     }
   }
 
+  console.log('statements', statements);
   return statements;
 
   function makeStatement(debateId, level) {
@@ -35,19 +39,21 @@ App.Statement.FIXTURES = (function() {
     };
 
     statements.push(statement);
-
-    if ((level || 0) < 4) {
+    
+    var thisLevel = level || 0;
+    if (thisLevel < 4) {
       var i;
-      for(i=0; i<Math.random()*4; i++) {
-        var response = makeStatement(debateId, (level || 0) + 1);
-        response.parent = statement.id;
+      for(i=0; i<2/*Math.random()*4*/; i++) {
+        var response = makeStatement(debateId, thisLevel + 1);
+        response.subject = statement.id;
         statement.responses.push(response.id);
+        App.Response.FIXTURES.push(response);
       }
-
-      for(i=0; i<Math.random()*4; i++) {
-        var objection = makeStatement(debateId, (level || 0) + 1);
-        objection.parent = statement.id;
+      for(i=0; i<2 /*Math.random()*4*/; i++) {
+        var objection = makeStatement(debateId, thisLevel + 1);
+        objection.subject = statement.id;
         statement.objections.push(objection.id);
+        App.Objection.FIXTURES.push(objection);
       }
     }
 

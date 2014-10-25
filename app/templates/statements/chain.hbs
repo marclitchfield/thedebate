@@ -1,6 +1,6 @@
-{{#if parent}}
-  {{render 'statements/chain' parent}}
+{{#if subject}}
+  {{render 'statements.chain' subject}}
 {{/if}}
 {{#link-to 'statement' model}}
-  {{render 'statements/item' model}}
+  {{render 'statements.item' model}}
 {{/link-to}}

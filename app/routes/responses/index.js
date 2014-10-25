@@ -1,5 +1,6 @@
 App.ResponsesIndexRoute = Ember.Route.extend({
   model: function() {
-    return this.modelFor('statement');
+    var statement = this.modelFor('statement');
+    return statement instanceof App.Response ? this.modelFor('response') : statement;
   }
 });
