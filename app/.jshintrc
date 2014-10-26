@@ -2,11 +2,9 @@
   "predef": {
     "document": true,
     "window": true,
-    "-Promise": true,
-    "Ember": true,
-    "DS": true,
-    "App": true
+    "angular": true
   },
+  "indent" : 2,
   "browser" : true,
   "boss" : true,
   "curly": true,

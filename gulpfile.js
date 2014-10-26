@@ -2,10 +2,10 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   minifycss = require('gulp-minify-css'),
   sourcemaps = require('gulp-sourcemaps'),
+  ngHtml2Js = require("gulp-ng-html2js"),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
-  emberTemplates = require('gulp-ember-templates'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
   del = require('del'),
@@ -16,28 +16,13 @@ var paths = {
     root: 'app/styles/',
     files: ['app/styles/**/*.less']
   },
-  ember: {
-    app: {
-      root: 'app/',
-      // Define load order for ember objects.
-      // TODO: introduce module system to manage dependency ordering
-      files: [
-        // first create the App object
-        'app/app.js', 
-        // base classes
-        'app/controllers/shared/**',
-        // models need to be defined before fixtures
-        'app/models/statement.js',  // statement is a base class
-        'app/models/**',
-        'app/fixtures/**', 
-        // the remainder are order-agnostic
-        'app/**/*.js'
-      ]
-    },
-    templates: {
-      root: 'app/templates/',
-      files: ['app/templates/**/*.hbs']
-    }
+  app: {
+    root: 'app/',
+    files: 'app/**/*.js'
+  },
+  templates: {
+    root: 'app/',
+    files: 'app/**/*.tpl.html'
   },
   dist: {
     root: 'dist/',
@@ -52,11 +37,9 @@ var paths = {
     files: 'app/public/**'
   },
   vendor: [
-      'vendor/ember/ember.js',
-      'vendor/ember-data/ember-data.js',
-      'vendor/handlebars/handlebars.min.js',
-      'vendor/jquery/dist/jquery.min.js',
-      'vendor/jquery/dist/jquery.min.map',
+      'vendor/angular/angular.min.js',
+      'vendor/angular/angular.min.js.map',
+      'vendor/angular-boostrap/ui-bootstrap.min.js',
       'vendor/bootstrap/dist/css/bootstrap.min.css',
       'vendor/bootstrap/dist/css/bootstrap.css.map'
   ],
@@ -98,25 +81,25 @@ gulp.task('styles', function() {
     .pipe(livereload({ auto: false }));
 });
 
-gulp.task('emberApp', ['emberTemplates'], function() {
-  return gulp.src(paths.ember.app.files, { base: 'app' })
-    .pipe(jshint(path.join(paths.ember.app.root, '.jshintrc')))
+gulp.task('app', ['templates'], function() {
+  return gulp.src(paths.app.files, { base: 'app' })
+    .pipe(jshint(path.join(paths.app.root, '.jshintrc')))
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
       .pipe(uglify())
-    .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.app.root }))
+    .pipe(sourcemaps.write('./', { sourceRoot: paths.app.root }))
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload({ auto: false }));
 });
 
-gulp.task('emberTemplates', function() {
-  return gulp.src(paths.ember.templates.files)
-    .pipe(emberTemplates({ name: { replace: '\\', with: '/' } }))
+gulp.task('templates', function() {
+  return gulp.src(paths.templates.files)
+    .pipe(ngHtml2Js({ moduleName: 'thedebate.templates' }))
     .pipe(sourcemaps.init())
       .pipe(concat('templates.js'))
       .pipe(uglify())
-    .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.templates.root }))
+    .pipe(sourcemaps.write('./', { sourceRoot: paths.templates.root }))
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload({ auto: false }));
 });
@@ -149,12 +132,12 @@ gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(paths.public.files, ['public']);
   gulp.watch(paths.less.files, ['styles']);
-  gulp.watch(paths.ember.app.files, ['emberApp']);
-  gulp.watch(paths.ember.templates.files, ['emberTemplates']);
+  gulp.watch(paths.app.files, ['app']);
+  //gulp.watch(paths.templates.files, ['templates']);
   gulp.watch(paths.vendor, ['vendor']);
   gulp.watch(paths.server.files, ['server']);
 });
 
 gulp.task('default', function() {
-  gulp.start('public', 'styles', 'emberApp', 'vendor', 'server');
+  gulp.start('public', 'styles', 'app', 'vendor', 'server');
 });

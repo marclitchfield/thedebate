@@ -1,4 +1,6 @@
-window.App = Ember.Application.create({
-  LOG_TRANSITIONS: true,
-  LOG_ACTIVE_GENERATION: true
-});
+(function() {
+  angular.module('the-debate', [
+    'thedebate.templates',
+    'thedebate.directives.debate'
+  ]);
+})();
