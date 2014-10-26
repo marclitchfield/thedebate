@@ -8,7 +8,6 @@ var baseUrl = '/';
 var rootDirectory = './dist/public/';
 
 app.get('*', function(req, res) {
-  var acceptHeaders = req.headers.accept || [];
   var isForBaseURL = req.path === baseUrl;
 
   var assetPath = req.path.slice(baseUrl.length);

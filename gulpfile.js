@@ -85,7 +85,7 @@ gulp.task('clean', function(cb) {
 gulp.task('public', function() {
   return gulp.src(paths.public.files)
     .pipe(gulp.dest(paths.dist.public))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('styles', function() {
@@ -95,7 +95,7 @@ gulp.task('styles', function() {
       .pipe(minifycss())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.less.root }))
     .pipe(gulp.dest(paths.dist.assets))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('emberApp', ['emberTemplates'], function() {
@@ -107,7 +107,7 @@ gulp.task('emberApp', ['emberTemplates'], function() {
       .pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.app.root }))
     .pipe(gulp.dest(paths.dist.assets))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('emberTemplates', function() {
@@ -118,14 +118,14 @@ gulp.task('emberTemplates', function() {
       .pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.ember.templates.root }))
     .pipe(gulp.dest(paths.dist.assets))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('vendor', function() {
   return gulp.src(paths.vendor)
     .pipe(changed(paths.dist.vendor))
     .pipe(gulp.dest(paths.dist.vendor))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('server', ['server node_modules'], function() {
@@ -133,7 +133,7 @@ gulp.task('server', ['server node_modules'], function() {
     .pipe(jshint(path.join(paths.server.root, '.jshintrc')))
     .pipe(jshint.reporter('default'))
     .pipe(gulp.dest(paths.dist.server))
-    .pipe(livereload());
+    .pipe(livereload({ auto: false }));
 });
 
 gulp.task('server node_modules', function() {
