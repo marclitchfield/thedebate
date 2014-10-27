@@ -1,0 +1,8 @@
+<ul class="debate-list">
+  <li ng-repeat="debate in debates">
+    <a ui-sref="statements({ id: debate.id })">
+      <debate-item></debate-item>
+    </a>
+  </li>
+</ul>
+<debate-new></debate-new>

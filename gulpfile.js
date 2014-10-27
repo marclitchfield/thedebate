@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   minifycss = require('gulp-minify-css'),
   sourcemaps = require('gulp-sourcemaps'),
   ngHtml2Js = require("gulp-ng-html2js"),
+  ngAnnotate = require('gulp-ng-annotate'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
@@ -39,9 +40,10 @@ var paths = {
   vendor: [
       'vendor/angular/angular.min.js',
       'vendor/angular/angular.min.js.map',
-      'vendor/angular-boostrap/ui-bootstrap.min.js',
+      'vendor/angular-ui-router/release/angular-ui-router.min.js',
       'vendor/bootstrap/dist/css/bootstrap.min.css',
-      'vendor/bootstrap/dist/css/bootstrap.css.map'
+      'vendor/bootstrap/dist/css/bootstrap.css.map',
+      'vendor/lodash/dist/lodash.min.js'
   ],
   server: {
     root: 'server/',
@@ -86,6 +88,7 @@ gulp.task('app', ['templates'], function() {
     .pipe(jshint(path.join(paths.app.root, '.jshintrc')))
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
+    .pipe(ngAnnotate())
       .pipe(concat('app.js'))
       .pipe(uglify())
     .pipe(sourcemaps.write('./', { sourceRoot: paths.app.root }))
@@ -133,7 +136,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.public.files, ['public']);
   gulp.watch(paths.less.files, ['styles']);
   gulp.watch(paths.app.files, ['app']);
-  //gulp.watch(paths.templates.files, ['templates']);
+  gulp.watch(paths.templates.files, ['templates']);
   gulp.watch(paths.vendor, ['vendor']);
   gulp.watch(paths.server.files, ['server']);
 });
