@@ -1,5 +1,7 @@
 angular.module('the-debate', [
   'thedebate.controllers.debates',
+  'thedebate.controllers.statements',
+  'thedebate.controllers.responses',
   'thedebate.templates',
   'ui.router'
 ])

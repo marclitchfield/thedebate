@@ -1,17 +1,17 @@
 angular.module('thedebate.controllers.statements', [
   'ui.router',
-  'thedebate.directives.statementItem',
-  'thedebate.directives.statementNew',
+  'thedebate.directives.statement'
 ])
   .config(function($stateProvider) {
     $stateProvider
       .state('statements', {
-        url: '/debate/{id}/statements',
+        url: '/debate/:id/statements',
         templateUrl: 'templates/controllers/statements/index.tpl.html',
-        controller: function($scope) {
+        controller: function($scope, $stateParams) {
           $scope.debate = {
-            id: 1,
-            title: 'debate 1',
+            id: $stateParams.id,
+            title: 'debate ' + $stateParams.id,
+            score: 785,
             statements: [
               {id:1,score:994,body:'statement 1'},
               {id:2,score:824,body:'statement 2'},
@@ -22,7 +22,7 @@ angular.module('thedebate.controllers.statements', [
           };
         }
       })
-      .state('statements.new', {
+      .state('statements-new', {
         url: '/debate/{id}/statements/new',
         templateUrl: 'templates/controllers/statements/new.tpl.html',
         controller: function($scope) {

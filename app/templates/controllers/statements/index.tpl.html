@@ -6,10 +6,10 @@
     </div>
   </div>
   <div class="controls">
-    <a sref="/debate({ id: debate.id })/statements" class="btn btn-primary">Statements</a>
-    <a sref="/debate({ id: debate.id })/statements/new" class="btn btn-primary">Submit a Statement</a>
+    <a sref="/debate/{{debate.id}}/statements" class="btn btn-primary">Statements</a>
+    <a sref="/debate/{{debate.id}}/statements/new" class="btn btn-primary">Submit a Statement</a>
   </div>
   <div class="statements">
-    <statement-item ng-repeat="statement in debate.statements"></statement-item>
+    <statement ng-repeat="statement in debate.statements"></statement>
   </div>
 </div>

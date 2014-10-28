@@ -1,0 +1,16 @@
+<div class="detail">
+  <div class="context">
+    <debate ng-repeat="debate in [statement.debate]"></debate>
+    <statement-chain></statement-chain>
+    <statement></statement>
+  </div>
+  <div class="controls">
+    <a href="/statement/{statement.id}/responses" class="show-responses btn btn-primary">Responses</a>
+    <a href="/statement/{statement.id}/objections" class="show-objections btn btn-primary">Objections</a>
+    <a href="/statement/{statement.id}/objections/new" class="new-objection btn btn-primary action">Object</a>
+    <a href="/statement/{statement.id}/responses/new" class="new-response btn btn-primary action">Respond</a>
+  </div>
+  <div class="statements">
+    <statement ng-repeat="statement in statement.responses"></statement>
+  </div>
+</div>

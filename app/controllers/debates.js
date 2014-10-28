@@ -1,7 +1,6 @@
 angular.module('thedebate.controllers.debates', [
   'ui.router',
-  'thedebate.directives.debateItem',
-  'thedebate.directives.debateNew',
+  'thedebate.directives.debate'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -16,6 +15,13 @@ angular.module('thedebate.controllers.debates', [
             {id:4,score:80, title:'debate 4'},
             {id:5,score:71, title:'debate 5'}
           ];
+        }
+      })
+      .state('debates-new', {
+        url: '/debates/new',
+        templateUrl: 'templates/controllers/debates/new.tpl.html',
+        controller: function($scope) {
+          $scope.foo = 'bar';
         }
       });
   });
