@@ -1,7 +1,8 @@
 angular.module('thedebate.controllers.responses', [
   'ui.router',
   'thedebate.directives.debate',
-  'thedebate.directives.statement'
+  'thedebate.directives.statement',
+  'thedebate.directives.statement-chain'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -15,6 +16,16 @@ angular.module('thedebate.controllers.responses', [
               id: 1,
               score: 888,
               title: 'debate 1'
+            },
+            subject: {
+              id: $stateParams.id + ".1",
+              score: 887,
+              title: 'subject ' + $stateParams.id + ".1",
+              subject: {
+                id: $stateParams.id + ".1.1",
+                score: 886,
+                title: 'subject ' + $stateParams.id + ".1.1",
+              }
             },
             body: 'context statement ' + $stateParams.id,
             score: 785,
