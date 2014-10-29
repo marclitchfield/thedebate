@@ -1,0 +1,14 @@
+<div class="detail">
+  <div class="context">
+    <debate model="statement.debate"></debate>
+    <statement-chain></statement-chain>
+    <statement model="statement"></statement>
+  </div>
+  <div class="controls">
+    <a href="/statement/{{statement.id}}/responses" class="show-responses btn btn-primary">Responses</a>
+    <a href="/statement/{{statement.id}}/objections" class="show-objections btn btn-primary">Objections</a>
+    <a href="/statement/{{statement.id}}/objections/new" class="new-objection btn btn-primary action">Object</a>
+    <a href="/statement/{{statement.id}}/responses/new" class="new-response btn btn-primary action">Respond</a>
+  </div>
+  <ui-view />
+</div>

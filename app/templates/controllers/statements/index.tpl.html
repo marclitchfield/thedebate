@@ -1,15 +1,3 @@
-<div class="detail">
-  <div class="context">
-    <div class="debate">
-      <div class="debate-score">{{debate.score}}</div> 
-      <div class="debate-title">{{debate.title}}</div>
-    </div>
-  </div>
-  <div class="controls">
-    <a sref="/debate/{{debate.id}}/statements" class="btn btn-primary">Statements</a>
-    <a sref="/debate/{{debate.id}}/statements/new" class="btn btn-primary">Submit a Statement</a>
-  </div>
-  <div class="statements">
-    <statement model="statement" ng-repeat="statement in debate.statements"></statement>
-  </div>
+<div class="statements">
+  <statement model="statement" ng-repeat="statement in debate.statements"></statement>
 </div>
