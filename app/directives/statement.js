@@ -2,6 +2,9 @@ angular.module('thedebate.directives.statement', [])
   .directive('statement', function() {
     return {
       restrict: 'E',
-      templateUrl: 'templates/directives/statement.tpl.html'
+      templateUrl: 'templates/directives/statement.tpl.html',
+      scope: {
+        statement: '=model'
+      }
     };
   });

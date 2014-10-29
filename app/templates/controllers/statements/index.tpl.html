@@ -10,6 +10,6 @@
     <a sref="/debate/{{debate.id}}/statements/new" class="btn btn-primary">Submit a Statement</a>
   </div>
   <div class="statements">
-    <statement ng-repeat="statement in debate.statements"></statement>
+    <statement model="statement" ng-repeat="statement in debate.statements"></statement>
   </div>
 </div>
