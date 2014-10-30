@@ -6,8 +6,8 @@
     </div>
   </div>
   <div class="controls">
-    <a href="/debate/{{debate.id}}/statements" class="btn btn-primary">Statements</a>
-    <a href="/debate/{{debate.id}}/statements/new" class="btn btn-primary">Submit a Statement</a>
+    <a ui-sref="statements.index({ id: debate.id })" class="btn btn-primary">Statements</a>
+    <a ui-sref="statements.new({ id: debate.id })" class="btn btn-primary">Submit a Statement</a>
   </div>
   <ui-view />
 </div>

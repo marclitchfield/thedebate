@@ -1,26 +1,16 @@
 angular.module('thedebate.controllers.statements', [
   'ui.router',
   'thedebate.directives.debate',
-  'thedebate.directives.statement'
+  'thedebate.directives.statement',
+  'thedebate.fixtures'
 ])
   .config(function($stateProvider) {
     $stateProvider
       .state('statements', {
         url: '/debate/:id',
         templateUrl: 'templates/pages/statements.tpl.html',
-        controller: function($scope, $stateParams) {
-          $scope.debate = {
-            id: $stateParams.id,
-            title: 'debate ' + $stateParams.id,
-            score: 785,
-            statements: [
-              {id:1,score:994,body:'statement 1'},
-              {id:2,score:824,body:'statement 2'},
-              {id:3,score:122,body:'statement 3'},
-              {id:4,score:80, body:'statement 4'},
-              {id:5,score:71, body:'statement 5'}
-            ]
-          };
+        controller: function($scope, $stateParams, fixtures) {
+          $scope.debate = fixtures.debates[$stateParams.id];
         }
       })
       .state('statements.index', {

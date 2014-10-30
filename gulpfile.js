@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
+  plumber = require('gulp-plumber'),
   del = require('del'),
   path = require('path');
 
@@ -61,6 +62,24 @@ var paths = {
 };
 
 //----------------------------------------------------------------------
+// Customizations
+
+// var pipe = gulp.pipe;
+// gulp.pipe = function() {
+//   pipe.apply(gulp, Array.prototype.slice.call(arguments))
+//     .on('error', function(err) {
+//         console.log('*** got error');
+//         new gutil.PluginError('CSS', err, { showStack: true });
+//         this.emit('end');
+//     });
+// }
+
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
+//----------------------------------------------------------------------
 // Tasks
 
 gulp.task('clean', function(cb) {
@@ -76,23 +95,35 @@ gulp.task('public', function() {
 gulp.task('styles', function() {
   return gulp.src(paths.less.files)
     .pipe(sourcemaps.init())
+    .on("error", handleError)
       .pipe(less())
+      .on("error", handleError)
       .pipe(minifycss())
+      .on("error", handleError)
     .pipe(sourcemaps.write('./', { sourceRoot: paths.less.root }))
+    .on("error", handleError)
     .pipe(gulp.dest(paths.dist.assets))
+    .on("error", handleError)
     .pipe(livereload({ auto: false }));
 });
 
 gulp.task('app', ['templates'], function() {
   return gulp.src(paths.app.files, { base: 'app' })
     .pipe(jshint(path.join(paths.app.root, '.jshintrc')))
+    .on("error", handleError)
     .pipe(jshint.reporter('default'))
+    .on("error", handleError)
     .pipe(sourcemaps.init())
-    .pipe(ngAnnotate())
+    .on("error", handleError)
+      .pipe(ngAnnotate())
+      .on("error", handleError)
       .pipe(concat('app.js'))
       .pipe(uglify())
+      .on("error", handleError)
     .pipe(sourcemaps.write('./', { sourceRoot: paths.app.root }))
+    .on("error", handleError)
     .pipe(gulp.dest(paths.dist.assets))
+    .on("error", handleError)
     .pipe(livereload({ auto: false }));
 });
 

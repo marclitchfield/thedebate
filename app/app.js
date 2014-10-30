@@ -1,4 +1,4 @@
-angular.module('the-debate', [
+angular.module('thedebate', [
   'thedebate.controllers.debates',
   'thedebate.controllers.statements',
   'thedebate.controllers.responses',

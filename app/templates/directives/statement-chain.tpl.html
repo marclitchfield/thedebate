@@ -1,4 +1,3 @@
-<div ng-if="statement">
-  <statement-chain model="statement.subject" />
-  <statement model="statement" />
+<div ng-repeat="item in statement.chain">
+  <statement model="item" />
 </div>
