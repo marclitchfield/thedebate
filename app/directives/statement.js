@@ -8,11 +8,14 @@ angular.module('thedebate.directives.statement', [])
       },
       controller: function($scope) {
         $scope.supportWidth = width($scope.statement.support);
-        $scope.oppositionWith = width($scope.statement.opposition);
+        $scope.oppositionWidth = width($scope.statement.opposition);
         $scope.objectionWidth = width($scope.statement.objection);
 
+        console.log('scores', $scope.statement.support, $scope.statement.opposition, $scope.statement.objection);
+        console.log('widths', $scope.supportWidth, $scope.oppositionWidth, $scope.objectionWidth);
+
         function width(score) {
-          return 14 * Math.log((score || 0) + 1) + '%;';
+          return Math.min(100, 5 * Math.log((score || 0) + 1)) + '%';
         }  
       }
     };

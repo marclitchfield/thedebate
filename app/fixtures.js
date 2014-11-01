@@ -31,9 +31,9 @@
     var statement = {
       id: ++id,
       score: id,
-      support: id,
-      opposition: id,
-      objection: id,
+      support: Math.random() * 10000,
+      opposition: Math.random() * 10000,
+      objection: Math.random() * 10000,
       debate: debate
     };
 
