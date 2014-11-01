@@ -7,10 +7,10 @@
     <statement model="statement"></statement>
   </div>
   <div class="controls">
-    <a ui-sref="responses.index({ id: statement.id })" class="show-responses btn btn-primary">Responses</a>
-    <a ui-sref="objections.index({ id: statement.id })" class="show-objections btn btn-primary">Objections</a>
-    <a ui-sref="objections.new({ id: statement.id })" class="new-objection btn btn-primary action">Object</a>
-    <a ui-sref="responses.new({ id: statement.id })" class="new-response btn btn-primary action">Respond</a>
+    <a ui-sref="responses.index({ id: statement.id })" ui-sref-active="active" class="show-responses btn btn-primary">Responses</a>
+    <a ui-sref="objections.index({ id: statement.id })" ui-sref-active="active" class="show-objections btn btn-primary">Objections</a>
+    <a ui-sref="objections.new({ id: statement.id })" ui-sref-active="active" class="new-objection btn btn-primary action">Object</a>
+    <a ui-sref="responses.new({ id: statement.id })" ui-sref-active="active" class="new-response btn btn-primary action">Respond</a>
   </div>
   <ui-view />
 </div>
