@@ -22,7 +22,7 @@
       title: 'debate ' + id
     };
 
-    debate.statements = _.range(2 + Math.random(3)).map(function() { return createStatement('statement', debate); });
+    debate.statements = _.range(3).map(function() { return createStatement('statement', debate); });
     debates[debate.id.toString()] = debate;
   }
 
@@ -41,13 +41,15 @@
       parents[statement.id] = parent;
     }
     statement.chain = buildChain(statement.id);
-    statement.body = type + ' ' + statement.id + ' level ' + (thisLevel+1) + 
+    statement.body = type + ' ' + statement.id +  
       ' [' + statement.chain.map(function(p) { return p.id; }).reverse().join('.') + ']' + 
+      ' at level ' + (thisLevel+1) +
       ' in debate ' + debate.id;
+      
 
-    if (thisLevel < 3 + Math.random(3)) {
-      statement.responses = _.range(2 + Math.random(4)).map(function() { return createStatement('response', debate, statement, thisLevel + 1); });
-      statement.objections = _.range(1 + Math.random(3)).map(function() { return createStatement('objection', debate, statement, thisLevel + 1); });
+    if (thisLevel < 3) {
+      statement.responses = _.range(3).map(function() { return createStatement('response', debate, statement, thisLevel + 1); });
+      statement.objections = _.range(2).map(function() { return createStatement('objection', debate, statement, thisLevel + 1); });
     }
 
     statements[statement.id.toString()] = statement;

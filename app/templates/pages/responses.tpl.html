@@ -1,7 +1,9 @@
 <div class="detail">
   <div class="context">
     <debate model="statement.debate"></debate>
-    <statement-chain model="statement"></statement-chain>
+    <div ng-repeat="item in statement.chain">
+      <statement model="item" />
+    </div>
     <statement model="statement"></statement>
   </div>
   <div class="controls">

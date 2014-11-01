@@ -2,7 +2,6 @@ angular.module('thedebate.controllers.objections', [
   'ui.router',
   'thedebate.directives.debate',
   'thedebate.directives.statement',
-  'thedebate.directives.statement-chain',
   'thedebate.fixtures'
 ])
   .config(function($stateProvider) {
