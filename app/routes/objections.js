@@ -19,6 +19,9 @@ angular.module('thedebate.routes.objections', [
       })
       .state('objections.new', {
         url: '/objections/new',
-        templateUrl: 'templates/routes/objections/new.tpl.html'
+        templateUrl: 'templates/routes/objections/new.tpl.html',
+        controller: function($scope) {
+          $scope.newObjection = {};
+        }
       });
   });

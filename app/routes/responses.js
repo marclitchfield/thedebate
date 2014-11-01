@@ -19,6 +19,9 @@ angular.module('thedebate.routes.responses', [
       })
       .state('responses.new', {
         url: '/responses/new',
-        templateUrl: 'templates/routes/responses/new.tpl.html'
+        templateUrl: 'templates/routes/responses/new.tpl.html',
+        controller: function($scope) {
+          $scope.newResponse = {};
+        }
       });
   });
