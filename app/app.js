@@ -1,8 +1,8 @@
 angular.module('thedebate', [
-  'thedebate.controllers.debates',
-  'thedebate.controllers.statements',
-  'thedebate.controllers.responses',
-  'thedebate.controllers.objections',
+  'thedebate.routes.debates',
+  'thedebate.routes.statements',
+  'thedebate.routes.responses',
+  'thedebate.routes.objections',
   'thedebate.templates',
   'ui.router'
 ])

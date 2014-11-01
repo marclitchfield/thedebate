@@ -4,15 +4,15 @@
       <div class="statement-score" ng-bind="statement.score"></div>
       <div ng-show="statement.support">
         <div class="indicator support"></div>
-        <div class="score support" ng-style="supportStyle"></div>
+        <div class="score support" ng-style="{ width: supportWidth }"></div>
       </div>
       <div ng-show="statement.opposition">
         <div class="indicator opposition"></div>
-        <div class="score opposition" ng-style="oppositionStyle"></div>
+        <div class="score opposition" ng-style="{ width: oppositionWidth }"></div>
       </div>
       <div ng-show="statement.objection">
         <div class="indicator objection"></div>
-        <div class="score objection" ng-style="objectionStyle"></div>
+        <div class="score objection" ng-style="{ width: objectionWidth }"></div>
       </div>
     </div>
     <div class="statement-body" ng-bind="statement.body"></div>

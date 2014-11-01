@@ -1,4 +1,4 @@
-angular.module('thedebate.controllers.objections', [
+angular.module('thedebate.routes.responses', [
   'ui.router',
   'thedebate.directives.debate',
   'thedebate.directives.statement',
@@ -6,19 +6,19 @@ angular.module('thedebate.controllers.objections', [
 ])
   .config(function($stateProvider) {
     $stateProvider
-      .state('objections', {
+      .state('responses', {
         url: '/statement/:id',
         templateUrl: 'templates/pages/responses.tpl.html',
         controller: function($scope, $stateParams, fixtures) {
           $scope.statement = fixtures.statements[$stateParams.id];
         }
       })
-      .state('objections.index', {
-        url: '/objections',
-        templateUrl: 'templates/controllers/objections/index.tpl.html'
+      .state('responses.index', {
+        url: '/responses',
+        templateUrl: 'templates/routes/responses/index.tpl.html'
       })
-      .state('objections.new', {
-        url: '/objections/new',
-        templateUrl: 'templates/controllers/objections/new.tpl.html'
+      .state('responses.new', {
+        url: '/responses/new',
+        templateUrl: 'templates/routes/responses/new.tpl.html'
       });
   });

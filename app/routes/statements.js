@@ -1,4 +1,4 @@
-angular.module('thedebate.controllers.statements', [
+angular.module('thedebate.routes.statements', [
   'ui.router',
   'thedebate.directives.debate',
   'thedebate.directives.statement',
@@ -15,11 +15,11 @@ angular.module('thedebate.controllers.statements', [
       })
       .state('statements.index', {
         url: '/statements',
-        templateUrl: 'templates/controllers/statements/index.tpl.html'
+        templateUrl: 'templates/routes/statements/index.tpl.html'
       })
       .state('statements.new', {
         url: '/statements/new',
-        templateUrl: 'templates/controllers/statements/new.tpl.html',
+        templateUrl: 'templates/routes/statements/new.tpl.html',
         controller: function($scope) {
           $scope.newStatement = {};
         }

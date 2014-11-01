@@ -1,4 +1,4 @@
-angular.module('thedebate.controllers.debates', [
+angular.module('thedebate.routes.debates', [
   'ui.router',
   'thedebate.directives.debate',
   'thedebate.fixtures'
@@ -7,14 +7,14 @@ angular.module('thedebate.controllers.debates', [
     $stateProvider
       .state('debates', {
         url: '/',
-        templateUrl: 'templates/controllers/debates/index.tpl.html',
+        templateUrl: 'templates/routes/debates/index.tpl.html',
         controller: function($scope, fixtures) {
           $scope.debates = _.values(fixtures.debates);
         }
       })
       .state('debates-new', {
         url: '/debates/new',
-        templateUrl: 'templates/controllers/debates/new.tpl.html',
+        templateUrl: 'templates/routes/debates/new.tpl.html',
         controller: function($scope) {
           $scope.foo = 'bar';
         }
