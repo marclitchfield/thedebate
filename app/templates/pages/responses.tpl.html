@@ -1,10 +1,12 @@
 <div class="detail">
   <div class="context">
     <debate model="statement.debate"></debate>
-    <div ng-repeat="item in statement.chain">
-      <statement model="item" />
+    <div class="chain">
+      <div ng-repeat="item in statement.chain">
+        <statement model="item" />
+      </div>
     </div>
-    <statement model="statement"></statement>
+    <statement model="statement" class="current"></statement>
   </div>
   <div class="controls">
     <a ui-sref="responses.index({ id: statement.id })" ui-sref-active="active" class="show-responses btn btn-primary">Responses</a>

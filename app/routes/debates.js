@@ -24,7 +24,7 @@ angular.module('thedebate.routes.debates', [
         controller: function($scope, $state, fixtures) {
           $scope.title = '';
           $scope.submit = function() {
-            $scope.debates.push(fixtures.debates.create({ title: $scope.title }));
+            $scope.debates.push(fixtures.debates.create({ title: $scope.title, score: 0 }));
             $state.go('debates.index');
           };
         }
