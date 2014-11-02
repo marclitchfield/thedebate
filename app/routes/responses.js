@@ -10,7 +10,7 @@ angular.module('thedebate.routes.responses', [
         url: '/statement/:id',
         templateUrl: 'templates/pages/responses.tpl.html',
         controller: function($scope, $stateParams, fixtures) {
-          $scope.statement = fixtures.statements[$stateParams.id];
+          $scope.statement = fixtures.statements.all[$stateParams.id];
         }
       })
       .state('responses.index', {

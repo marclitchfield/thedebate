@@ -5,8 +5,14 @@
   angular.module('thedebate.fixtures', [])
     .factory('fixtures', function() {
       return {
-        debates: debates,
-        statements: statements
+        debates: {
+          all: debates,
+          create: createDebate,
+        },
+        statements: {
+          all: statements,
+          create: createStatement
+        }
       };
     })
     .run(function() {
@@ -14,42 +20,55 @@
       _.range(10).map(createDebate);
     });
 
-
-  function createDebate() {
+  function createDebate(data) {
     var debate = {
       id: ++id,
-      score: id,
-      title: 'debate ' + id
+      score: data.score || id,
+      title: data.title || ('debate ' + id)
     };
 
-    debate.statements = _.range(3).map(function() { return createStatement('statement', debate); });
+    debate.statements = data.title ? [] : _.range(3).map(function() { return createStatement({ debate: debate, level: 0 }); });
     debates[debate.id.toString()] = debate;
+    return debate;
   }
 
-  function createStatement(type, debate, parent, level) {
-    var thisLevel = level || 0;
+  function createStatement(data) {
     var statement = {
       id: ++id,
       score: id,
-      support: Math.random() * 10000,
-      opposition: Math.random() * 10000,
-      objection: Math.random() * 10000,
-      debate: debate
+      support: data.support || Math.random() * 10000,
+      opposition: data.opposition || Math.random() * 10000,
+      objection: data.objection || Math.random() * 10000,
+      debate: data.debate
     };
 
-    if (parent !== undefined) {
-      parents[statement.id] = parent;
+    if (data.parent !== undefined) {
+      parents[statement.id] = data.parent;
     }
     statement.chain = buildChain(statement.id);
-    statement.body = type + ' ' + statement.id +  
+    statement.body = data.body || ((data.type || 'statement') + ' ' + statement.id +  
       ' [' + statement.chain.map(function(p) { return p.id; }).reverse().join('.') + ']' + 
-      ' at level ' + (thisLevel+1) +
-      ' in debate ' + debate.id;
+      ' at level ' + ((data.level || 0)+1) +
+      ' in debate ' + data.debate.id);
       
 
-    if (thisLevel < 3) {
-      statement.responses = _.range(3).map(function() { return createStatement('response', debate, statement, thisLevel + 1); });
-      statement.objections = _.range(2).map(function() { return createStatement('objection', debate, statement, thisLevel + 1); });
+    if (data.level && data.level < 3) {
+      statement.responses = _.range(3).map(function() { 
+        return createStatement({ 
+          type: 'response', 
+          debate: data.debate, 
+          parent: statement, 
+          level: data.level + 1 
+        });
+      });
+      statement.objections = _.range(2).map(function() { 
+        return createStatement({ 
+          type: 'objection', 
+          debate: data.debate, 
+          parent: statement, 
+          level: data.level + 1
+        });
+      });
     }
 
     statements[statement.id.toString()] = statement;

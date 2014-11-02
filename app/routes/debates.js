@@ -11,7 +11,7 @@ angular.module('thedebate.routes.debates', [
       .state('debates', {
         templateUrl: 'templates/pages/debates.tpl.html',
         controller: function($scope, fixtures) {
-          $scope.debates = _.values(fixtures.debates);
+          $scope.debates = _.values(fixtures.debates.all);
         }
       })
       .state('debates.index', {
@@ -21,8 +21,12 @@ angular.module('thedebate.routes.debates', [
       .state('debates.new', {
         url: '/debates/new',
         templateUrl: 'templates/routes/debates/new.tpl.html',
-        controller: function($scope) {
-          $scope.newDebate = {};
+        controller: function($scope, $state, fixtures) {
+          $scope.title = '';
+          $scope.submit = function() {
+            $scope.debates.push(fixtures.debates.create({ title: $scope.title }));
+            $state.transitionTo('debates.index');
+          };
         }
       });
   });
