@@ -42,18 +42,17 @@
       debate: data.debate
     };
 
-
     if (data.parent !== undefined) {
       parents[statement.id] = data.parent;
     }
+
     statement.chain = buildChain(statement.id);
     statement.body = data.body || ((data.type || 'statement') + ' ' + statement.id +  
       ' [' + statement.chain.map(function(p) { return p.id; }).reverse().join('.') + ']' + 
       ' at level ' + ((data.level || 0)+1) +
-      ' in debate ' + data.debate.id);
-      
+      ' in debate ' + data.debate.id);  
 
-    if (data.level && data.level < 3) {
+    if (data.level !== undefined && data.level < 3) {
       statement.responses = _.range(3).map(function() { 
         return createStatement({ 
           type: 'response', 
@@ -62,6 +61,7 @@
           level: data.level + 1 
         });
       });
+
       statement.objections = _.range(2).map(function() { 
         return createStatement({ 
           type: 'objection', 
