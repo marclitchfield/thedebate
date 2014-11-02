@@ -20,8 +20,20 @@ angular.module('thedebate.routes.responses', [
       .state('responses.new', {
         url: '/responses/new',
         templateUrl: 'templates/routes/responses/new.tpl.html',
-        controller: function($scope) {
-          $scope.newResponse = {};
+        controller: function($scope, $state, fixtures) {
+          $scope.body = '';
+          $scope.submit = function() {
+            $scope.statement.responses.push(fixtures.statements.create({ 
+              body: $scope.body, 
+              debate: $scope.statement.debate,
+              parent: $scope.statement,
+              score: 0, 
+              support: 0, 
+              opposition: 0, 
+              objection: 0 
+            }));
+            $state.go('responses.index', { id: $scope.statement.id });
+          };
         }
       });
   });

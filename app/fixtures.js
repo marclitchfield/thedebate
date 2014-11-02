@@ -39,7 +39,9 @@
       support: data.support === undefined ? Math.random() * 10000 : data.support,
       opposition: data.opposition === undefined ? Math.random() * 10000 : data.opposition,
       objection: data.objection === undefined ? Math.random() * 10000 : data.objection,
-      debate: data.debate
+      debate: data.debate,
+      responses: [],
+      objections: []
     };
 
     if (data.parent !== undefined) {
