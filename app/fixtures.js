@@ -23,7 +23,7 @@
   function createDebate(data) {
     var debate = {
       id: ++id,
-      score: data.score || id,
+      score: data.score === undefined ? id : data.score,
       title: data.title || ('debate ' + id)
     };
 
@@ -35,12 +35,13 @@
   function createStatement(data) {
     var statement = {
       id: ++id,
-      score: id,
-      support: data.support || Math.random() * 10000,
-      opposition: data.opposition || Math.random() * 10000,
-      objection: data.objection || Math.random() * 10000,
+      score: data.score === undefined ? id : data.score,
+      support: data.support === undefined ? Math.random() * 10000 : data.support,
+      opposition: data.opposition === undefined ? Math.random() * 10000 : data.opposition,
+      objection: data.objection === undefined ? Math.random() * 10000 : data.objection,
       debate: data.debate
     };
+
 
     if (data.parent !== undefined) {
       parents[statement.id] = data.parent;

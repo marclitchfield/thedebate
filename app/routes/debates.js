@@ -25,7 +25,7 @@ angular.module('thedebate.routes.debates', [
           $scope.title = '';
           $scope.submit = function() {
             $scope.debates.push(fixtures.debates.create({ title: $scope.title }));
-            $state.transitionTo('debates.index');
+            $state.go('debates.index');
           };
         }
       });
