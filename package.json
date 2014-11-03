@@ -17,8 +17,7 @@
     "clean": "gulp clean",
     "build": "gulp",
     "watch": "gulp watch",
-    "start": "supervisor --reload dist/server.js",
-    "test": "protractor tests/protractor.conf.js"
+    "start": "supervisor --reload dist/server.js"
   },
   "engines": {
     "node": ">= 0.10.0"

@@ -15,7 +15,8 @@ script:
 - git checkout -b master > /dev/null 2>&1
 - git pull deploy master > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
-- npm test
+- npm start &
+- protractor tests/protractor.conf.js
 - ! 'echo "# Build Time: `date`" >> .travis.yml'
 - git add -A
 - git commit -m "Travis build"
