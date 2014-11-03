@@ -9,7 +9,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
-  protractor = require("gulp-protractor").protractor,
+  exec = require('child_process').exec,
   del = require('del'),
   path = require('path');
 

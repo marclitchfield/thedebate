@@ -15,6 +15,7 @@ script:
 - git checkout -b master > /dev/null 2>&1
 - git pull deploy master > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
+- webdriver-manager update
 - npm start &
 - protractor tests/protractor.conf.js
 - ! 'echo "# Build Time: `date`" >> .travis.yml'
