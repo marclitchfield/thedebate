@@ -9,8 +9,11 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
+  protractor = require("gulp-protractor").protractor,
   del = require('del'),
   path = require('path');
+
+var testUrl = 'http://localhost:9002';
 
 var paths = {
   less: {
@@ -54,9 +57,11 @@ var paths = {
       'mime'
     ]
   },
-  test: {
-    root: 'tests/',
-    files: ['tests/**/*.js']
+  tests: {
+    acceptance: {
+      specs: 'tests/acceptance/**.spec.js',
+      config: 'tests/protractor.conf.js'
+    }
   }
 };
 
@@ -120,6 +125,15 @@ gulp.task('server', ['server node_modules'], function() {
     .pipe(jshint.reporter('default'))
     .pipe(gulp.dest(paths.dist.server))
     .pipe(livereload({ auto: false }));
+});
+
+gulp.task('tests', function() {
+  gulp.src(paths.tests.acceptance.specs)
+    .pipe(protractor({
+      configFile: paths.tests.acceptance.config,
+      args: ['--baseUrl', testUrl]
+    })) 
+    .on('error', function(e) { throw e })
 });
 
 gulp.task('server node_modules', function() {
