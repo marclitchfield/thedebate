@@ -18,7 +18,8 @@
     "build": "gulp",
     "watch": "gulp watch",
     "test": "gulp test",
-    "start": "supervisor --reload dist/server.js"
+    "start": "node dist/server.js",
+    "dev": "node dist/server.js"
   },
   "engines": {
     "node": ">= 0.10.0"

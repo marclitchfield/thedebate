@@ -8,14 +8,16 @@ before_script:
 - npm run setup
 script:
 - set -e
-- bower install
 - git config --global user.email $GH_EMAIL
 - git config --global user.name $GH_USERNAME
 - git remote add deploy https://${GH_TOKEN}@github.com/${GH_USERNAME}/thedebate-web.git > /dev/null 2>&1
 - git checkout -b master > /dev/null 2>&1
 - git pull deploy master > /dev/null 2>&1
 - git merge master > /dev/null 2>&1
-- webdriver-manager update
+- bower install
+- npm install
+- webdriver-manager update --out_dir=node_modules/protractor/selenium
+- npm build
 - npm start &
 - protractor tests/protractor.conf.js
 - ! 'echo "# Build Time: `date`" >> .travis.yml'
