@@ -13,11 +13,11 @@
     "url": "https://github.com/marclitchfield/thedebate-web.git"
   },
   "scripts": {
-    "setup": "npm install -g phantomjs bower gulp supervisor protractor",
+    "preinstall": "npm install -g phantomjs bower gulp supervisor protractor",
     "clean": "gulp clean",
     "build": "gulp",
     "watch": "gulp watch",
-    "test": "gulp tests",
+    "test": "protractor tests/protractor.conf.js",
     "start": "node dist/server.js",
     "dev": "supervisor --reload dist/server.js"
   },
@@ -42,6 +42,7 @@
     "gulp-protractor": "0.0.11",
     "gulp-sourcemaps": "~1.2.4",
     "gulp-uglify": "~1.0.1",
-    "protractor": "~1.3.1"
+    "protractor": "~1.3.1",
+    "node-prefix": "~0.1.0"
   }
 }

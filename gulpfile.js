@@ -127,15 +127,6 @@ gulp.task('server', ['server node_modules'], function() {
     .pipe(livereload({ auto: false }));
 });
 
-gulp.task('tests', function() {
-  gulp.src(paths.tests.acceptance.specs)
-    .pipe(protractor({
-      configFile: paths.tests.acceptance.config,
-      args: ['--baseUrl', testUrl]
-    })) 
-    .on('error', function(e) { throw e })
-});
-
 gulp.task('server node_modules', function() {
   // copy node_modules listed in paths.server.modules to node_modules in paths.dist.server
   return gulp.src(paths.server.modules.map(function(m) {
