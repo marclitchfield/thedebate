@@ -9,7 +9,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
-  exec = require('child_process').exec,
+  protractor = require("gulp-protractor").protractor,
   del = require('del'),
   path = require('path');
 
@@ -134,6 +134,15 @@ gulp.task('server node_modules', function() {
   }), { base: './' })
   .pipe(changed(paths.dist.server))
   .pipe(gulp.dest(paths.dist.server));
+});
+
+gulp.task('test', function() {
+  gulp.src(paths.tests.acceptance.specs)
+    .pipe(protractor({
+      configFile: paths.tests.acceptance.config,
+      args: ['--baseUrl', 'http://localhost:9002']
+    }))
+    .on('error', function(e) { throw e });
 });
 
 gulp.task('watch', function() {
