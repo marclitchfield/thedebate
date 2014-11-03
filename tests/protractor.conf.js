@@ -1,5 +1,6 @@
 exports.config = {
   //seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumServerJar: '../lib/selenium-server-standalone-2.43.1.jar',
   
   specs: ['acceptance/*.spec.js'],
 

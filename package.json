@@ -1,7 +1,7 @@
 {
-  "name": "thedebate",
+  "name": "the-debate",
   "version": "0.0.1",
-  "description": "thedebate\r =========",
+  "description": "The Debate: Web Site\r =========",
   "main": "dist/server.js",
   "private": true,
   "directories": {
@@ -14,10 +14,12 @@
   },
   "scripts": {
     "setup": "npm install -g phantomjs bower gulp supervisor protractor",
-    "test": "protractor ./tests/protractor.conf.js",
+    "clean": "gulp clean",
+    "build": "gulp",
+    "watch": "gulp watch",
+    "test": "gulp tests",
     "start": "node dist/server.js",
-    "dev": "supervisor --reload dist/server.js",
-    "build": ""
+    "dev": "supervisor --reload dist/server.js"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -27,19 +29,19 @@
     "mime": "~1.2.11"
   },
   "devDependencies": {
-    "gulp": "~3.8.9",
-    "gulp-minify-css": "~0.3.11",
-    "gulp-concat": "~2.4.1",
-    "gulp-uglify": "~1.0.1",
-    "gulp-jshint": "~1.8.5",
-    "gulp-sourcemaps": "~1.2.4",
-    "gulp-less": "~1.3.6",
     "del": "~0.1.3",
+    "gulp": "~3.8.9",
     "gulp-changed": "~1.0.0",
+    "gulp-concat": "~2.4.1",
+    "gulp-jshint": "~1.8.5",
+    "gulp-less": "~1.3.6",
     "gulp-livereload": "~2.1.1",
-    "gulp-ng-html2js": "~0.1.8",
+    "gulp-minify-css": "~0.3.11",
     "gulp-ng-annotate": "~0.3.3",
-    "protractor": "~1.3.1",
-    "gulp-protractor": "0.0.11"
+    "gulp-ng-html2js": "~0.1.8",
+    "gulp-protractor": "0.0.11",
+    "gulp-sourcemaps": "~1.2.4",
+    "gulp-uglify": "~1.0.1",
+    "protractor": "~1.3.1"
   }
 }
