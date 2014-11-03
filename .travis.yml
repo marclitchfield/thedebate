@@ -19,7 +19,7 @@ script:
 - webdriver-manager update --out_dir=node_modules/protractor/selenium
 - npm build
 - npm start &
-- protractor tests/protractor.conf.js
+- npm test
 - ! 'echo "# Build Time: `date`" >> .travis.yml'
 - git add -A
 - git commit -m "Travis build"
