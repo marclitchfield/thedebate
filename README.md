@@ -15,19 +15,24 @@ npm install
 bower install
 ```
 
-Start server process launch in browser with live reload.
+Build
+```
+npm build
 ```
 
+Watch
+```
+npm watch
 ```
 
-Start an instance of the server and start a testem session. Will watch for changes and rerun tests.
+Start web server process under supervisor, listening on port 9002
+```
+npm run dev
 ```
 
+Run the tests
 ```
-
-Run tests in CI mode
-```
-
+npm test
 ```
 
 

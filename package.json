@@ -13,7 +13,7 @@
     "url": "https://github.com/marclitchfield/thedebate-web.git"
   },
   "scripts": {
-    "setup": "npm install -g phantomjs bower gulp supervisor",
+    "setup": "npm install -g phantomjs bower gulp supervisor protractor",
     "clean": "gulp clean",
     "build": "gulp",
     "watch": "gulp watch",
