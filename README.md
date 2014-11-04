@@ -17,18 +17,10 @@ bower install
 
 Build
 ```
-npm run build
-```
-or
-```
 gulp
 ```
 
 Watch
-```
-npm run watch
-```
-or
 ```
 gulp watch
 ```
@@ -39,10 +31,6 @@ npm run dev
 ```
 
 Run the tests
-```
-npm test
-```
-or
 ```
 gulp test
 ```
