@@ -17,7 +17,7 @@ script:
 - bower install
 - npm install
 - webdriver-manager update --out_dir=node_modules/protractor/selenium
-- npm build
+- npm run build
 - npm start &
 - npm test
 - ! 'echo "# Build Time: `date`" >> .travis.yml'

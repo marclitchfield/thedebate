@@ -17,12 +17,20 @@ bower install
 
 Build
 ```
-npm build
+npm run build
+```
+or
+```
+gulp
 ```
 
 Watch
 ```
-npm watch
+npm run watch
+```
+or
+```
+gulp watch
 ```
 
 Start web server process under supervisor, listening on port 9002
@@ -33,6 +41,10 @@ npm run dev
 Run the tests
 ```
 npm test
+```
+or
+```
+gulp test
 ```
 
 
