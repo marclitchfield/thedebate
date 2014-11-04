@@ -51,4 +51,9 @@ describe('responses page', function() {
     expect(responses.parent.body()).toEqual(statementBody);
     expect(responses.current.body()).toEqual(objectionBody);
   });  
+
+  it('  should be able to navigate to parent', function() {
+    responses.parent.click();
+    expect(responses.current.body()).toEqual(statementBody);
+  });
 });
