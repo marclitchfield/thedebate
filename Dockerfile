@@ -10,7 +10,15 @@ RUN apt-get install -y npm
 
 EXPOSE 9002
 
-COPY dist /usr/sbin/thedebate-web/dist
+COPY . /tmp/the-debate
+WORKDIR /tmp/the-debate
+RUN npm install -g bower gulp
+RUN npm install
+RUN bower install --allow-root
+RUN gulp
+RUN mkdir /usr/sbin/thedebate-web
+RUN cp -r /tmp/the-debate/dist /usr/sbin/thedebate-web
 
-WORKDIR /usr/sbin/thedebate-web
-CMD node dist/server.js 
+WORKDIR /usr/sbin/thedebate-web/dist
+CMD node server.js 
+
