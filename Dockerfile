@@ -20,6 +20,6 @@ RUN gulp
 RUN mkdir /usr/sbin/thedebate-web
 RUN cp -r /tmp/the-debate/dist /usr/sbin/thedebate-web
 
-WORKDIR /usr/sbin/thedebate-web/dist
-CMD node server.js 
+WORKDIR /usr/sbin/thedebate-web
+CMD node dist/server.js 
 
