@@ -3,6 +3,7 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get upgrade -y
 
+RUN apt-get install -y git
 RUN apt-get install -y nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
 
