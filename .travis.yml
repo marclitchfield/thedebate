@@ -16,7 +16,7 @@ script:
 - git merge master > /dev/null 2>&1
 - bower install
 - npm install
-- webdriver-manager update --out_dir=node_modules/protractor/selenium
+- webdriver-manager update
 - npm run build
 - npm start &
 - npm test
