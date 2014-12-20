@@ -1,11 +1,9 @@
 var gulp = require('gulp'),
   less = require('gulp-less'),
   minifycss = require('gulp-minify-css'),
-  sourcemaps = require('gulp-sourcemaps'),
   ngHtml2Js = require("gulp-ng-html2js"),
   ngAnnotate = require('gulp-ng-annotate'),
   jshint = require('gulp-jshint'),
-  uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
@@ -80,10 +78,7 @@ gulp.task('public', function() {
 
 gulp.task('styles', function() {
   return gulp.src(paths.less.files)
-    .pipe(sourcemaps.init())
-      .pipe(less())
-      .pipe(minifycss())
-    .pipe(sourcemaps.write('./', { sourceRoot: paths.less.root }))
+    .pipe(less())
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload({ auto: false }));
 });
@@ -92,11 +87,8 @@ gulp.task('app', ['templates'], function() {
   return gulp.src(paths.app.files, { base: 'app' })
     .pipe(jshint(path.join(paths.app.root, '.jshintrc')))
     .pipe(jshint.reporter('default'))
-    .pipe(sourcemaps.init())
-      .pipe(ngAnnotate())
-      .pipe(concat('app.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('./', { sourceRoot: paths.app.root }))
+    .pipe(ngAnnotate())
+    .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload({ auto: false }));
 });
@@ -104,10 +96,7 @@ gulp.task('app', ['templates'], function() {
 gulp.task('templates', function() {
   return gulp.src(paths.templates.files)
     .pipe(ngHtml2Js({ moduleName: 'thedebate.templates' }))
-    .pipe(sourcemaps.init())
-      .pipe(concat('templates.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('./', { sourceRoot: paths.templates.root }))
+    .pipe(concat('templates.js'))
     .pipe(gulp.dest(paths.dist.assets))
     .pipe(livereload({ auto: false }));
 });

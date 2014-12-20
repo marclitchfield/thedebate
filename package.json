@@ -44,6 +44,8 @@
     "gulp-uglify": "~1.0.1",
     "node-prefix": "~0.1.0",
     "protractor": "~1.5.0",
-    "gulp-protractor": "0.0.12"
+    "gulp-protractor": "0.0.12",
+    "dos2unix": "~1.1.1",
+    "gulp-tap": "~0.1.3"
   }
 }
