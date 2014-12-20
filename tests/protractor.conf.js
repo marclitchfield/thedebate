@@ -6,8 +6,8 @@ exports.config = {
   specs: ['acceptance/*.spec.js'],
 
   multiCapabilities: [
-    {'browserName': 'phantomjs'},
-    //{'browserName': 'firefox'},
+    //{'browserName': 'phantomjs'},
+    {'browserName': 'firefox'},
     //{'browserName': 'chrome'},
   ],
 

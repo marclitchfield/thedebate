@@ -10,7 +10,7 @@ var gulp = require('gulp'),
   changed = require('gulp-changed'),
   livereload = require('gulp-livereload'),
   del = require('del'),
-  exec = require('child_process').exec,
+  protractor = require('gulp-protractor').protractor,
   path = require('path');
 
 var testUrl = 'http://localhost:9002';
@@ -137,11 +137,12 @@ gulp.task('server node_modules', function() {
 });
 
 gulp.task('test', function(cb) {
-  exec('protractor --baseUrl=http://localhost:9002 ' + paths.tests.acceptance.config, function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+  gulp.src(paths.tests.acceptance.specs)
+    .pipe(protractor({
+      configFile: paths.tests.acceptance.config,
+      args: ['--baseUrl', 'http://localhost:9002']
+    }))
+    .on('error', function(e) { throw e });
 });
 
 gulp.task('watch', function() {
