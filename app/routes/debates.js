@@ -23,6 +23,11 @@ angular.module('thedebate.routes.debates', [
         templateUrl: 'templates/routes/debates/new.tpl.html',
         controller: function($scope, $state, fixtures) {
           $scope.title = '';
+
+          $scope.cancel = function() {
+            window.history.back();
+          };
+                    
           $scope.submit = function() {
             $scope.debates.push(fixtures.debates.create({ title: $scope.title, score: 0 }));
             $state.go('debates.index');

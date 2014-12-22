@@ -1,4 +1,5 @@
-<form id="create-statement-form" class="form" ng-submit="submit()">
+<form id="create-statement-form" class="form">
   <textarea id="statement-body" ng-model="body" placeholder="make a statement in this debate ..." class="form-control"></textarea>
-  <button id="submit-statement" class="btn btn-primary">Submit</button>
+  <button id="cancel-submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+  <button id="submit-statement" class="btn btn-primary selected" ng-click="submit()">Submit</button>
 </form>

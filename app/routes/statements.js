@@ -22,6 +22,11 @@ angular.module('thedebate.routes.statements', [
         templateUrl: 'templates/routes/statements/new.tpl.html',
         controller: function($scope, $state, fixtures) {
           $scope.body = '';
+
+          $scope.cancel = function() {
+            window.history.back();
+          };
+                    
           $scope.submit = function() {
             $scope.debate.statements.push(fixtures.statements.create({ 
               body: $scope.body, 

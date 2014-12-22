@@ -7,7 +7,9 @@
   </div>
   <div class="controls">
     <a ui-sref="statements.index({ id: debate.id })" ui-sref-active="active" class="btn btn-primary">Statements</a>
-    <a ui-sref="statements.new({ id: debate.id })" ui-sref-active="active" class="new-statement btn btn-primary action">Submit a Statement</a>
+    <div class="actions">
+      <a ui-sref="statements.new({ id: debate.id })" ui-sref-active="active" class="new-statement btn btn-primary action">Submit a Statement</a>
+    </div>
   </div>
   <ui-view />
 </div>
