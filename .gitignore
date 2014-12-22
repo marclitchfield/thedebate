@@ -13,3 +13,4 @@
 /coverage/*
 /libpeerconnection.log
 npm-debug.log
+/screenshots/*

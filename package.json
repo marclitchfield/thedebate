@@ -42,6 +42,7 @@
     "gulp-ng-html2js": "~0.1.8",
     "node-prefix": "~0.1.0",
     "protractor": "~1.5.0",
-    "gulp-protractor": "0.0.12"
+    "gulp-protractor": "0.0.12",
+    "protractor-screenshot-reporter": "0.0.5"
   }
 }
