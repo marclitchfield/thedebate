@@ -17,7 +17,7 @@
     "clean": "gulp clean",
     "build": "gulp",
     "watch": "gulp watch",
-    "test": "gulp test",
+    "test": "protractor tests/protractor.conf.js",
     "browser-test": "protractor tests/protractor.conf.js --multiCapabilities.browserName firefox",
     "start": "node dist/server.js",
     "dev": "supervisor -w . dist/server.js"

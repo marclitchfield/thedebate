@@ -5,7 +5,8 @@ var statementsSelector = '.statements .statement ';
 
 module.exports = {
   add: function(type, body) {
-    element(by.css('.new-' + type)).click();
+    element(by.css('.new-response')).click();
+    element(by.css('button.' + type)).click();
     element(by.id('statement-body')).sendKeys(body);
     element(by.id('submit-statement')).click();
   },

@@ -1,4 +1,10 @@
-<form id="create-statement-form" class="form" ng-submit="submit()">
+<form id="create-statement-form" class="form">
+  <div class="response-type btn-group" data-toggle="buttons">
+    <button class="btn btn-primary support" ng-class="{active:responseType==='support'}" ng-click="responseType='support'">Support</button>
+    <button class="btn btn-primary opposition" ng-class="{active:responseType==='opposition'}" ng-click="responseType='opposition'">Oppose</button>
+    <button class="btn btn-primary objection" ng-class="{active:responseType==='objection'}" ng-click="responseType='objection'">Object!</button>
+  </div>
   <textarea id="statement-body" ng-model="body" placeholder="respond to this statement ..." class="form-control"></textarea>
-  <button id="submit-statement" class="btn btn-primary">Submit</button>
+  <button id="cancel-submit" class="btn" ng-click="cancel()">Cancel</button>
+  <button id="submit-statement" class="btn btn-primary" ng-click="submit()">Submit</button>
 </form>

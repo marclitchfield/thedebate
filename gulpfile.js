@@ -39,11 +39,11 @@ var paths = {
     files: 'app/public/**'
   },
   vendor: [
-      'vendor/angular/angular.min.js',
-      'vendor/angular/angular.min.js.map',
-      'vendor/angular-ui-router/release/angular-ui-router.min.js',
-      'vendor/bootstrap/dist/css/bootstrap.min.css',
-      'vendor/bootstrap/dist/css/bootstrap.css.map',
+      'vendor/angular/angular.js',
+      //'vendor/angular/angular.min.js.map',
+      'vendor/angular-ui-router/release/angular-ui-router.js',
+      'vendor/bootstrap/dist/css/bootstrap.css',
+      //'vendor/bootstrap/dist/css/bootstrap.css.map',
       'vendor/lodash/dist/lodash.min.js'
   ],
   server: {

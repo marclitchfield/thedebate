@@ -29,7 +29,7 @@ angular.module('thedebate.routes.statements', [
               score: 0, 
               support: 0, 
               opposition: 0, 
-              objection: 0 
+              objection: 0
             }));
             $state.go('statements.index', { id: $scope.debate.id });
           };

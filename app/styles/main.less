@@ -6,7 +6,7 @@
 @medium-border: darken(@base-color, 30%);
 @light-background: hsla(0, 100%, 100%, 1);
 @light-foreground: hsla(0, 0%, 94%, 1);
-@light-border: lighten(@base-color, 30%);
+@light-border: lighten(@base-color, 20%);
 
 @indicator-border: hsla(0, 0%, 10%, 1);
 @support-color: hsla(0, 0%, 100%, 1);
@@ -35,20 +35,31 @@ li {
   margin: .5em 0;
 }
 
-.btn-primary {
-  background-color: @dark-background;
-  border-color: @medium-border;
 
-  &:active, &:focus {
-    background-color: lighten(@dark-background, 10%);
-    border-color: @medium-border;
-  }
+.btn-primary, .btn-primary:focus {
+  outline: 0;
+  background-color: @medium-background;
+  border-color: @light-border;
+  color: @dark-foreground;
 
   &:hover {
-    background-color: lighten(@dark-background, 20%);
-    border-color: @medium-border;
+    background-color: lighten(@medium-background,5);
+    color: @dark-foreground;
+    border-color: @light-border;
+  }
+
+  &.active, &:active {
+    background-color: @dark-background;
+    color: @light-foreground;
+
+    &:focus {
+      outline: 0;
+      background-color: @dark-background;
+      color: @light-foreground;
+    }
   }
 }
+
 
 .banner {
   background-color: @dark-background;
@@ -69,31 +80,22 @@ li {
 .statements, .detail {
   margin-top: .3em;
 
+  .response-types {
+    padding-left: 0;
+    float: left;
+  }
+
+  .actions {
+    float: right;
+    padding-right: 0;
+  }
+
   .controls {
     margin: .4rem .5rem 0 1.3rem;
-    color: @dark-foreground;
-
-    .btn {
-      padding-left: .8rem;
-      padding-right: .8rem;
-      font-size: 0.9em;
-      background-color: @medium-background;
-      border-color: @light-border;
-
-      &.active {
-        background-color: @dark-background;
-        color: @light-foreground;
-      }
-    }
-
-    .action:nth-last-child(1) {
-      margin-right: .3rem;
-    }
-
-    .action {
-      float: right;
-    }
+    padding-left: 0;
+    padding-right: 0;
   }
+
 }
 
 @media only screen {
@@ -156,7 +158,7 @@ li {
   display: block;
   clear: both;
   min-height: 5em;
-  border: .3rem solid @light-border;
+  border: .2rem solid @light-border;
   border-radius: .4rem;
   padding: 0 1rem 1em 0;
 
@@ -269,6 +271,10 @@ li {
   #debate-title, #statement-body {
     width: 100%;
     margin-bottom: .5rem;
+  }
+
+  #statement-body {
+    margin-top: .5rem;
   }
 }
 

@@ -8,11 +8,19 @@
     </div>
     <statement model="statement" class="current"></statement>
   </div>
-  <div class="controls">
-    <a ui-sref="responses.index({ id: statement.id })" ui-sref-active="active" class="show-responses btn btn-primary">Responses</a>
-    <a ui-sref="objections.index({ id: statement.id })" ui-sref-active="active" class="show-objections btn btn-primary">Objections</a>
-    <a ui-sref="objections.new({ id: statement.id })" ui-sref-active="active" class="new-objection btn btn-primary action">Object</a>
-    <a ui-sref="responses.new({ id: statement.id })" ui-sref-active="active" class="new-response btn btn-primary action">Respond</a>
+  <div class="controls container-fluid" ng-show="$state.is('responses.index')">
+    <div class="response-types">
+      <a ui-sref="responses.index({ id: statement.id, type: toggle('support') })" 
+         class="show-support btn btn-primary" ng-class="{active:responseType==='support'}">Supporting</a>
+      <a ui-sref="responses.index({ id: statement.id, type: toggle('opposition') })" 
+         class="show-opposition btn btn-primary" ng-class="{active:responseType==='opposition'}">Opposing</a>
+      <a ui-sref="responses.index({ id: statement.id, type: toggle('objection') })" 
+         class="show-objection btn btn-primary" ng-class="{active:responseType==='objection'}">Objections</a>
+    </div>
+    <div class="actions">
+      <a ui-sref="responses.new({ id: statement.id, type: responseType })" ui-sref-active="active" 
+        class="new-response btn btn-primary action active">Respond</a>
+    </div>
   </div>
   <ui-view />
 </div>

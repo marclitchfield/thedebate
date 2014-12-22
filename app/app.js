@@ -2,7 +2,6 @@ angular.module('thedebate', [
   'thedebate.routes.debates',
   'thedebate.routes.statements',
   'thedebate.routes.responses',
-  'thedebate.routes.objections',
   'thedebate.templates',
   'ui.router'
 ])

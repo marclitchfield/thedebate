@@ -40,8 +40,8 @@
       opposition: data.opposition === undefined ? Math.random() * 10000 : data.opposition,
       objection: data.objection === undefined ? Math.random() * 10000 : data.objection,
       debate: data.debate,
-      responses: [],
-      objections: []
+      type: data.type,
+      responses: []
     };
 
     if (data.parent !== undefined) {
@@ -52,24 +52,17 @@
     statement.body = data.body || ((data.type || 'statement') + ' ' + statement.id +  
       ' [' + statement.chain.map(function(p) { return p.id; }).reverse().join('.') + ']' + 
       ' at level ' + ((data.level || 0)+1) +
-      ' in debate ' + data.debate.id);  
+      ' in debate ' + data.debate.id);
 
     if (data.level !== undefined && data.level < 3) {
-      statement.responses = _.range(3).map(function() { 
-        return createStatement({ 
-          type: 'response', 
-          debate: data.debate, 
-          parent: statement, 
-          level: data.level + 1 
-        });
-      });
-
-      statement.objections = _.range(2).map(function() { 
-        return createStatement({ 
-          type: 'objection', 
-          debate: data.debate, 
-          parent: statement, 
-          level: data.level + 1
+      ['support','opposition','objection'].forEach(function(type) {
+        _.range(3).forEach(function() {
+          statement.responses.push(createStatement({ 
+            type: type, 
+            debate: data.debate, 
+            parent: statement, 
+            level: data.level + 1 
+          }));
         });
       });
     }
