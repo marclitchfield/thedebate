@@ -8,10 +8,12 @@
 @light-foreground: hsla(0, 0%, 94%, 1);
 @light-border: lighten(@base-color, 20%);
 
-@indicator-border: hsla(0, 0%, 10%, 1);
-@support-color: hsla(0, 0%, 100%, 1);
-@opposition-color: hsla(248, 97%, 4%, 1);
-@objection-color: hsla(0, 0%, 60%, 1);
+@support-background: hsla(107, 28%, 31%, 1);
+@support-foreground: @light-foreground;
+@opposition-background: hsla(0, 28%, 31%, 1);
+@opposition-foreground: @light-foreground;
+@objection-background: hsla(44, 78%, 56%, 1);
+@objection-foreground: hsla(0, 0%, 12%, 1);
 
 html {
   overflow-y: scroll;
@@ -162,9 +164,10 @@ li {
   border-radius: .4rem;
   padding: 0 1rem 1em 0;
 
-  .scores {
-    position: absolute;
-    width: 5rem;
+  .statement-info {
+    display: inline-block;
+    width: 6rem;
+    float: left;
 
     .statement-score {
       background-color: @medium-background;
@@ -174,44 +177,65 @@ li {
       text-align: center;
       vertical-align: middle;
       padding: .4em 0;
-      width: 5rem;
-      height: 2.5em;
+      height: 2.2em;
       border-bottom-right-radius: .4rem;
-      margin: 0 0 .5rem 0;
+      margin: 0;
     }
 
-    .indicator {
-      position: relative;
-      left: 0.3rem;
-      width: .95rem;
-      height: .8rem;
-      box-shadow: 0 0 0 .03em @indicator-border;
-      margin-bottom: .1rem;
+    .response-type {
+      height: 1.5em;
+      margin-top: .2em;
+      font-size: .8em;
+      line-height: 1.3em;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: .2rem;
 
       &.support {
-        background-color: @support-color;
+        background-color: @support-background;
+        color: @support-foreground;
       }
 
       &.opposition {
-        background-color: @opposition-color;
+        background-color: @opposition-background;
+        color: @opposition-foreground;
       }
 
       &.objection {
-        background-color: @objection-color;
+        background-color: @objection-background;
+        color: @objection-foreground;
+      }
+    }  
+
+    .score-indicator {
+      position: relative;
+      margin-top: .2em;
+      height: .5em;
+
+      .indicator-percentage {
+        position: absolute;
+        display: inline-block;
+        height: .5em;
+        border-radius: .15rem;
+
+        &.support {
+          background-color: @support-background;
+        }
+
+        &.opposition {
+          background-color: @opposition-background;
+        }
+
+        &.objection {
+          background-color: @objection-background;
+        }        
       }
     }
 
-    .score {
-      position: relative;
-      left: 1.3rem;
-      top: -.5rem;
-      height: .7px;
-      background-color: @dark-background;
-    }
   }
 
   .statement-body {
-    margin-left: 6rem;
+    margin-left: 6.7rem;
     padding-top: .1em;
     display: block;
     vertical-align: top;

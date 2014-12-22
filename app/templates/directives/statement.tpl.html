@@ -1,19 +1,9 @@
 <a ui-sref="responses.index({ id: statement.id, type: '' })">
   <div class="statement">
-    <div class="scores">
+    <div class="statement-info">
       <div class="statement-score" ng-bind="statement.score"></div>
-      <div ng-show="statement.support">
-        <div class="indicator support"></div>
-        <score-indicator score="statement.support" />
-      </div>
-      <div ng-show="statement.opposition">
-        <div class="indicator opposition"></div>
-        <score-indicator score="statement.opposition" />
-      </div>
-      <div ng-show="statement.objection">
-        <div class="indicator objection"></div>
-        <score-indicator score="statement.objection" />
-      </div>
+      <div class="response-type {{ statement.type }}" ng-bind="statement.type" ng-show="statement.type"></div>
+      <score-indicator scores="statement.scores" />
     </div>
     <div class="statement-body" ng-bind="statement.body"></div>
   </div>

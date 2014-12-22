@@ -4,10 +4,13 @@ angular.module('thedebate.directives.score-indicator', [])
       restrict: 'E',
       templateUrl: 'templates/directives/score-indicator.tpl.html',
       scope: {
-        score: '='
+        scores: '='
       },
       controller: function($scope) {
-        $scope.scoreWidth = Math.min(100, 5 * Math.log(($scope.score || 0) + 1)) + '%';
+        var total = $scope.scores.support + $scope.scores.opposition + $scope.scores.objection;
+        $scope.supportPercentage = total ? (100 * $scope.scores.support / total) : 0;
+        $scope.oppositionPercentage = total ? (100 * $scope.scores.opposition / total) : 0;
+        $scope.objectionPercentage = total ? (100 * $scope.scores.objection / total) : 0;
       }
     };
   });

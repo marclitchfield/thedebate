@@ -36,9 +36,11 @@
     var statement = {
       id: ++id,
       score: data.score === undefined ? id : data.score,
-      support: data.support === undefined ? Math.random() * 10000 : data.support,
-      opposition: data.opposition === undefined ? Math.random() * 10000 : data.opposition,
-      objection: data.objection === undefined ? Math.random() * 10000 : data.objection,
+      scores: {
+        support: data.support === undefined ? Math.random() * 10000 : data.support,
+        opposition: data.opposition === undefined ? Math.random() * 10000 : data.opposition,
+        objection: data.objection === undefined ? Math.random() * 10000 : data.objection,
+      },
       debate: data.debate,
       type: data.type,
       responses: []
