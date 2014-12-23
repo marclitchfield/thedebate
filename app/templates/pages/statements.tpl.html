@@ -5,10 +5,11 @@
       <div class="debate-title" ng-bind="debate.title"></div>
     </div>
   </div>
-  <div class="controls">
+  <div class="controls" ng-show="$state.is('statements.index')">
     <a ui-sref="statements.index({ id: debate.id })" ui-sref-active="active" class="btn btn-primary">Statements</a>
     <div class="actions">
-      <a ui-sref="statements.new({ id: debate.id })" ui-sref-active="active" class="new-statement btn btn-primary action">Submit a Statement</a>
+      <a ui-sref="statements.new({ id: debate.id })" ui-sref-active="active" 
+        class="new-statement btn btn-primary action">Submit a Statement</a>
     </div>
   </div>
   <ui-view />

@@ -9,7 +9,8 @@ angular.module('thedebate.routes.statements', [
       .state('statements', {
         url: '/debate/:id',
         templateUrl: 'templates/pages/statements.tpl.html',
-        controller: function($scope, $stateParams, fixtures) {
+        controller: function($scope, $state, $stateParams, fixtures) {
+          $scope.$state = $state;
           $scope.debate = fixtures.debates.all[$stateParams.id];
         }
       })

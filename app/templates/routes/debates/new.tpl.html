@@ -1,5 +1,5 @@
 <form id="create-debate-form" role="form">
   <input type="text" ng-model="title" class="form-control" id="debate-title" placeholder="new debate topic"></input>
   <button id="cancel-submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
-  <button id="submit-debate" class="btn btn-primary selected" ng-click="submit()">Create Debate</button>
+  <button id="submit-debate" class="btn btn-primary selected" ng-disabled="!title" ng-click="submit()">Create Debate</button>
 </form>
