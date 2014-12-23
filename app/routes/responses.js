@@ -38,7 +38,7 @@ angular.module('thedebate.routes.responses', [
         url: '/respond/:type',
         templateUrl: 'templates/routes/responses/new.tpl.html',
         controller: function($scope, $state, $stateParams, fixtures) {
-          $scope.body = '';
+          $scope.responseBody = '';
           $scope.responseType = $stateParams.type;
 
           $scope.cancel = function() {
@@ -47,7 +47,7 @@ angular.module('thedebate.routes.responses', [
 
           $scope.submit = function() {
             $scope.statement.responses.push(fixtures.statements.create({ 
-              body: $scope.body, 
+              body: $scope.responseBody, 
               debate: $scope.statement.debate,
               parent: $scope.statement,
               type: $scope.responseType,
@@ -56,6 +56,7 @@ angular.module('thedebate.routes.responses', [
               opposition: 0, 
               objection: 0
             }));
+
             $state.go('responses.index', { id: $scope.statement.id, type: $scope.responseType });
           };
         }

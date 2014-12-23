@@ -50,7 +50,7 @@ li {
     border-color: @light-border;
   }
 
-  &.active, &:active, &.selected {
+  &.active, &:active, &:checked, &.selected {
     background-color: @dark-background;
     color: @light-foreground;
 
@@ -62,6 +62,9 @@ li {
   }
 }
 
+input[type='radio'] {
+  display: none;
+}
 
 .banner {
   background-color: @dark-background;

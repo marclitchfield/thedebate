@@ -1,10 +1,20 @@
-<form id="create-statement-form" class="form">
-  <div class="response-type btn-group" data-toggle="buttons">
-    <button class="btn btn-primary support" ng-class="{active:responseType==='support'}" ng-click="responseType='support'">Support</button>
-    <button class="btn btn-primary opposition" ng-class="{active:responseType==='opposition'}" ng-click="responseType='opposition'">Oppose</button>
-    <button class="btn btn-primary objection" ng-class="{active:responseType==='objection'}" ng-click="responseType='objection'">Object!</button>
+<form id="create-statement-form" name="NewResponseForm">
+  <div class="response-type btn-group">
+    <label class="btn btn-primary support" ng-class="{active:responseType=='support'}">
+      <input type="radio" ng-model="responseType" name="responseType" value="support">Support</input>
+    </label>
+    <label class="btn btn-primary opposition" ng-class="{active:responseType=='opposition'}">
+      <input type="radio" ng-model="responseType" name="responseType" value="opposition">Oppose</input>
+    </label>
+    <label class="btn btn-primary objection" ng-class="{active:responseType=='objection'}">
+      <input type="radio" ng-model="responseType" name="responseType" value="objection">Object!</input>
+    </label>
   </div>
-  <textarea id="statement-body" ng-model="body" placeholder="respond to this statement ..." class="form-control"></textarea>
+
+  <textarea id="statement-body" name="responseBody" ng-model="responseBody" 
+    placeholder="respond to this statement ..." class="form-control" required></textarea>
+
   <button id="cancel-submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
-  <button id="submit-statement" class="btn btn-primary selected" ng-click="submit()">Submit</button>
+  <button id="submit-statement" class="btn btn-primary selected" 
+    ng-disabled="!responseType || !responseBody" ng-click="submit(NewResponseForm)">Submit</button>
 </form>

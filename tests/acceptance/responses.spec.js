@@ -57,4 +57,16 @@ describe('responses page', function() {
 
   });
 
+  it('when adding a response, a body is required', function() {
+    responses.add('support', '');
+    expect(responses.submitButton().isEnabled()).toBe(false);
+  });
+
+  it('  should validate a new response has a type', function() {
+    responses.cancel();
+    responses.add('', 'body');
+    expect(responses.submitButton().isEnabled()).toBe(false);
+  });
+
+
 });

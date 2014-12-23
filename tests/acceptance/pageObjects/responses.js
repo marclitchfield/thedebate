@@ -8,9 +8,21 @@ var statement = require('./statement');
 module.exports = {
   add: function(type, body) {
     element(by.css('.new-response')).click();
-    element(by.css('button.' + type)).click();
-    element(by.id('statement-body')).sendKeys(body);
+    if (type) {
+      element(by.css('label.' + type)).click();
+    }
+    if (body) {
+      element(by.id('statement-body')).sendKeys(body);
+    }
     element(by.id('submit-statement')).click();
+  },
+
+  submitButton: function() {
+    return element(by.id('submit-statement'));
+  },
+
+  cancel: function() {
+    element(by.id('cancel-submit')).click();
   },
 
   show: function(type) {
