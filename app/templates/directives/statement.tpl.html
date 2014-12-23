@@ -7,7 +7,7 @@
     </div>
     <div class="statement-body" ng-bind="statement.body"></div>
     <div class="statement-vote">
-        <button class="btn btn-primary" ng-click="upvote()">+1</div>
+        <button class="btn btn-primary" ng-class="{support:statement.upvoted}" ng-click="upvote($event)">+1</div>
     </div>
   </div>
 </a>

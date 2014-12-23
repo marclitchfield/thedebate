@@ -26,7 +26,7 @@ angular.module('thedebate.routes.statements', [
           $scope.cancel = function() {
             window.history.back();
           };
-                    
+
           $scope.submit = function() {
             $scope.debate.statements.push(fixtures.statements.create({ 
               body: $scope.body, 
