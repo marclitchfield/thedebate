@@ -1,5 +1,5 @@
-var debates = require('./pages/debates');
-var statements = require('./pages/statements');
+var debates = require('./pageObjects/debates');
+var statements = require('./pageObjects/statements');
 
 describe('debates page', function() {
   var debateTitle = 'new debate';
@@ -10,12 +10,12 @@ describe('debates page', function() {
   });
 
   it('  new debate should be at the end of the list', function() {
-    expect(debates.last.title()).toEqual(debateTitle);
-    expect(debates.last.score()).toEqual('0');
+    expect(debates.last().title()).toEqual(debateTitle);
+    expect(debates.last().score()).toEqual('0');
   });
 
   it('  should be able to navigate to new debate', function() {
-    debates.last.click();
-    expect(statements.debate.title()).toEqual(debateTitle);
+    debates.last().click();
+    expect(statements.debate().title()).toEqual(debateTitle);
   });
 });

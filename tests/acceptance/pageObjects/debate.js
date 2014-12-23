@@ -1,13 +1,11 @@
-var _ = require('lodash');
-
 module.exports = function debate(element) {
   return {
-    click: function() {
-      element.click();
+    click: function() { 
+      element.element(by.css('.debate-title')).click();
     },
 
     title: function() {
-      return element.clone().element(by.css('.debate-title')).getText();
+      return element.element(by.css('.debate-title')).getText();
     },
 
     score: function() {
