@@ -1,0 +1,39 @@
+<div ng-controller="LogicObjectionController">
+  <p class="help">
+    You are indicating the statement immediately above is illogical. If this objection gains sufficient support, the statement will be tagged with the logical fallacy it makes, but it will not be removed from the debate. Select the specific logical fallacy that the statement makes:
+  </p>
+
+  <div class="fallacy">
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='adhominem'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="adhominem">Ad Hominem</input>
+    </label>
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='authority'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="authority">Appeal to Authority</input>
+    </label>
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='emotion'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="emotion">Appeal to Emotion</input>
+    </label>
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='posthoc'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="posthoc">Post Hoc</input>
+    </label>
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='strawman'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="strawman">Strawman</input>
+    </label>
+    <label class="btn btn-primary" ng-class="{active:newResponse.objection.logic.fallacy=='slippery'}">
+      <input type="radio" ng-model="newResponse.objection.logic.fallacy" name="fallacy" value="slippery">Slippery Slope</input>
+    </label>
+  </div>
+
+  <p class="help logic-type-description">
+    <span ng-hide="newResponse.objection.logic.fallacy">Select a logical fallacy above</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='adhominem'">The statement attacks the person making the argument, instead of the argument itself.</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='authority'">The statement claims to be true because it is made by a person or source that is commonly regarded as authoritative.</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='emotion'">The statement is intended to manipulate an emotional response instead of making a demonstrable assertion.</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='posthoc'">The statement asserts that because one thing happens after the first, the second is caused by the first.</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='strawman'">The statement misrepresents the argument to make it easier to attack.</span>
+    <span ng-show="newResponse.objection.logic.fallacy=='slippery'">The statement asserts that some event must inevitably follow another without putting forth a demonstrable explanation.</span>
+  </p>
+
+  <textarea name="responseBody" ng-model="newResponse.objection.body" 
+      placeholder="Provide a supporting explanation of how the statement makes a logical fallacy ..." class="form-control new-statement-body"></textarea>
+</div>

@@ -1,37 +1,30 @@
 angular.module('thedebate.routes.debates', [
   'ui.router',
   'thedebate.directives.debate',
-  'thedebate.fixtures'
+  'thedebate.controllers.debates.index',
+  'thedebate.controllers.debates.new'  
 ])
   .config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.when('/', '/debates');
 
     $stateProvider
-      .state('debates', {
-        templateUrl: 'templates/pages/debates.tpl.html',
-        controller: function($scope, fixtures) {
-          $scope.debates = _.values(fixtures.debates.all);
-        }
+      .state('debates', { 
+        templateUrl: 'templates/routes/debates/default.tpl.html'
       })
       .state('debates.index', {
         url: '/debates',
-        templateUrl: 'templates/routes/debates/index.tpl.html'
+        templateUrl: 'templates/routes/debates/index.tpl.html',
+        resolve: {
+          debates: function($http) {
+            return $http.get('/api/debates');
+          }
+        },
+        controller: 'DebatesIndexController'
       })
       .state('debates.new', {
         url: '/debates/new',
         templateUrl: 'templates/routes/debates/new.tpl.html',
-        controller: function($scope, $state, fixtures) {
-          $scope.title = '';
-
-          $scope.cancel = function() {
-            window.history.back();
-          };
-                    
-          $scope.submit = function() {
-            $scope.debates.push(fixtures.debates.create({ title: $scope.title, score: 0 }));
-            $state.go('debates.index');
-          };
-        }
+        controller: 'DebatesNewController'
       });
   });

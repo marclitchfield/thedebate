@@ -1,20 +1,54 @@
 <form id="create-statement-form" name="NewResponseForm">
   <div class="response-type btn-group">
-    <label class="btn btn-primary support" ng-class="{active:responseType=='support'}">
-      <input type="radio" ng-model="responseType" name="responseType" value="support">Support</input>
+    <label class="btn btn-primary support" ng-class="{active:newResponse.type=='support'}">
+      <input type="radio" ng-model="newResponse.type" name="responseType" value="support">Support</input>
     </label>
-    <label class="btn btn-primary opposition" ng-class="{active:responseType=='opposition'}">
-      <input type="radio" ng-model="responseType" name="responseType" value="opposition">Oppose</input>
+    <label class="btn btn-primary opposition" ng-class="{active:newResponse.type=='opposition'}">
+      <input type="radio" ng-model="newResponse.type" name="responseType" value="opposition">Oppose</input>
     </label>
-    <label class="btn btn-primary objection" ng-class="{active:responseType=='objection'}">
-      <input type="radio" ng-model="responseType" name="responseType" value="objection">Object!</input>
+    <label class="btn btn-primary objection" ng-class="{active:newResponse.type=='objection'}">
+      <input type="radio" ng-model="newResponse.type" name="responseType" value="objection">Objection</input>
     </label>
   </div>
 
-  <textarea id="statement-body" name="responseBody" ng-model="responseBody" 
-    placeholder="respond to this statement ..." class="form-control"></textarea>
+  <p class="help" ng-hide="newResponse.type">
+    Select a response type above
+  </p>
 
-  <button id="cancel-submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
-  <button id="submit-statement" class="btn btn-primary selected" 
-    ng-disabled="!responseType || !responseBody" ng-click="submit(NewResponseForm)">Submit</button>
+  <div class="response-form support" ng-show="newResponse.type=='support'">
+    <p class="help">
+      You are making a supporting argument for the statement immediately above.
+    </p>
+    <textarea name="responseBody" ng-model="newResponse.support.body" 
+      placeholder="make a response in support ..." class="new-statement-body form-control"></textarea>
+  </div>
+
+  <div class="response-form opposition" ng-show="newResponse.type=='opposition'">
+    <p class="help">
+      You are making an opposing argument to the statement immediately above.
+    </p>
+    <textarea name="responseBody" ng-model="newResponse.opposition.body" 
+      placeholder="make a response in opposition ..." class="new-statement-body form-control"></textarea>
+  </div>
+
+  <div class="response-form objection" ng-show="newResponse.type=='objection'">
+    <p class="help">
+      You are objecting to the statement immediately above. <span ng-hide="newResponse.objection.type">Select the type of objection.</span>
+    </p>
+    <div class="objection-types">
+      <a href="#" ng-class="{active:newResponse.objection.type==='edit'}" ng-click="newResponse.objection.type='edit'" class="btn btn-primary">Edit</a>
+      <a href="#" ng-class="{active:newResponse.objection.type==='junk'}" ng-click="newResponse.objection.type='junk'" class="btn btn-primary">Junk</a>
+      <a href="#" ng-class="{active:newResponse.objection.type==='logic'}" ng-click="newResponse.objection.type='logic'" class="btn btn-primary">Logic</a>
+    </div>
+    
+    <div ng-if="newResponse.objection.type">
+      <div class="objection-type-detail" ng-include="'templates/routes/responses/objections/' + newResponse.objection.type + '.tpl.html'"></div>
+    </div>
+  </div>
+
+  <div class="form-controls">
+    <button id="cancel-submit" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    <button id="submit-statement" class="btn btn-primary selected" 
+      ng-disabled="!valid()" ng-click="submit(NewResponseForm)">Submit</button>
+  </div>
 </form>

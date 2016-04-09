@@ -1,3 +1,13 @@
 <div class="statements">
-  <statement model="statement" ng-repeat="statement in responses"></statement>
+  <statement model="response" ng-repeat="response in responses | orderBy:'-score'"></statement>
+  
+  <p class="help" ng-hide="responses.length">
+    There are no {{
+      {
+        'support': 'supporting',
+        'opposition': 'opposing',
+        'objection': 'objecting'
+      }[responseType]
+    }} responses to this statement.
+  </p>
 </div>

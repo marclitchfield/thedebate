@@ -1,6 +1,8 @@
-<ul class="clearfix debate-list">
+<ul class="debate-list clearfix">
   <li ng-repeat="debate in debates">
     <debate model="debate"></debate>
   </li>
 </ul>
-<button ui-sref="debates.new" id="new-debate" class="btn btn-primary">New Debate</button>
+<div class="new-debate">
+  <button ui-sref="debates.new" id="new-debate" class="btn btn-primary">New Debate</button>
+</div>

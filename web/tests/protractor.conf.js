@@ -8,8 +8,8 @@ exports.config = {
 
   multiCapabilities: [
     //{'browserName': 'phantomjs'},
-    {'browserName': 'firefox'},
-    //{'browserName': 'chrome'},
+    //{'browserName': 'firefox'},
+    {'browserName': 'chrome'},
   ],
 
   baseUrl: 'http://localhost:9002',
@@ -21,10 +21,10 @@ exports.config = {
     defaultTimeoutInterval: 10000
   },
 
-  onPrepare: function() {
-    // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
-    jasmine.getEnv().addReporter(new ScreenShotReporter({
-      baseDirectory: './screenshots'
-    }));
-  }
+  // onPrepare: function() {
+  //   // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
+  //   jasmine.getEnv().addReporter(new ScreenShotReporter({
+  //     baseDirectory: './screenshots'
+  //   }));
+  // }
 }

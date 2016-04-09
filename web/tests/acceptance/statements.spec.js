@@ -1,10 +1,11 @@
+var uuid = require('uuid');
 var debates = require('./pageObjects/debates');
 var statements = require('./pageObjects/statements');
 var responses = require('./pageObjects/responses');
 
 describe('statements page', function() {
-  var debateTitle = 'new debate',
-      statementBody = 'new statement';
+  var debateTitle = 'new debate ' + uuid.v4(),
+      statementBody = 'new statement ' + uuid.v4();
 
   it('when statement is added to debate', function() {
     browser.get('/');
@@ -18,19 +19,16 @@ describe('statements page', function() {
     expect(statements.last().score()).toEqual('0');
   });
 
-  it('  should be able to upvote statement', function() {
-    statements.last().upvote();
-    expect(statements.last().isUpvoted()).toEqual(true);
-  });
-
-  it('  should be able to undo upvote', function() {
-    statements.last().upvote();
-    expect(statements.last().isUpvoted()).toEqual(false);
-  });
-
   it('  should be able to navigate to new statement', function() {
     statements.last().click();
     expect(responses.debate().title()).toEqual(debateTitle);
     expect(responses.current().body()).toEqual(statementBody);
+  });
+
+  it('  should be able to upvote current statement', function() {
+    responses.current().upvote();
+    expect(responses.current().isUpvoted()).toEqual(true);
+    expect(responses.current().score()).toEqual('1');
+    expect(responses.debate().title()).toEqual(debateTitle);
   });
 });

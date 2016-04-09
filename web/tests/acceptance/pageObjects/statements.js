@@ -6,7 +6,7 @@ var statement = require('./statement');
 module.exports = {
   add: function(body) {
     element(by.css('.new-statement')).click();
-    element(by.id('statement-body')).sendKeys(body);
+    element(by.css('.new-statement-body')).sendKeys(body);
     element(by.id('submit-statement')).click();
   },
 

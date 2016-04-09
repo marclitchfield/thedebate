@@ -1,0 +1,13 @@
+<div ng-controller="JunkObjectionController">
+  <p class="help">
+    You are indicating that the statement above is junk. This means it is spam, gibberish, deliberately offensive, predatory, abusive, illegal, or otherwise inappropriate for the debate. If this objection gains sufficient support, the statement will be removed from the debate.
+  </p>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="junkChecked">This statement is junk</input>
+    </label>
+  </div>
+
+  <textarea name="responseBody" ng-model="newResponse.objection.body" 
+      placeholder="Provide a supporting explanation of why the statement is junk ..." class="form-control new-statement-body"></textarea>
+</div>

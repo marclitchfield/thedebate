@@ -7,6 +7,7 @@
 @light-background: hsla(0, 100%, 100%, 1);
 @light-foreground: hsla(0, 0%, 94%, 1);
 @light-border: lighten(@base-color, 20%);
+@inactive-background: darken(@dark-background, 5%);
 
 @support-background: hsla(107, 28%, 31%, 1);
 @support-foreground: @light-foreground;
@@ -27,16 +28,21 @@ body {
 a, a:hover, a:link, a:visited, a:active {
   color: inherit;
   text-decoration: none;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+
+    .statement-vote {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  }  
 }
 
 li { 
   list-style: none;
 }
-
-.content {
-  margin: .5em 0;
-}
-
 
 .btn-primary, .btn-primary:focus {
   outline: 0;
@@ -78,30 +84,70 @@ input[type='radio'] {
 }
 
 .debate-list {
+  display: block;
   padding: 0;
-  margin: 0 0 0 .5rem;
+  margin: -.2rem;
+
+  .debate {
+    margin: .2rem;
+  }
 }
 
-.statements, .detail {
-  margin-top: .3em;
-
-  .response-types {
-    padding-left: 0;
-    float: left;
+.detail {
+  .statement .statement-body {
+    color: @dark-foreground;
   }
 
-  .actions {
-    float: right;
-    padding-right: 0;
+  .context {
+    .debate {
+      display: block;
+      float: none;
+      width: auto;
+    }
+
+    .statement {
+      background-color: @dark-background;
+      border-color: @medium-border;
+      
+      &.inactive {
+        background-color: @inactive-background;
+      }
+    }
+
+    .current .statement {
+      border-color: @light-border;
+    }
+
+    .statement-body {
+      color: @light-foreground;
+    }
   }
 
   .controls {
-    margin: .4rem .5rem 0 1.3rem;
-    padding-left: 0;
-    padding-right: 0;
-  }
+    display: table;
+    margin-top: .4rem;
 
+    .filters {
+      display: table-cell;
+      white-space: nowrap;
+      width: 100%;
+      padding-left: 0;
+    }
+
+    .actions {
+      display: table-cell;
+      width: 3rem;
+      padding-right: 0;
+    }
+
+  }
+  
 }
+
+.new-debate {
+  margin: .4rem -.4rem;
+}
+
 
 @media only screen {
   .debate { width: 99%; }
@@ -119,6 +165,10 @@ input[type='radio'] {
   .debate { width: 24.6%; }
 }
 
+.content {
+  margin: .4rem;
+}
+
 .debate { 
   padding: .5em .5rem .8em .5rem;
   float: left;
@@ -127,7 +177,6 @@ input[type='radio'] {
   border: .5em solid @medium-border;
   color: @light-foreground;
   border-radius: .4rem;
-  margin: 0 .6rem .6rem 0;
 
   .debate-title {
     height: 4.4em;
@@ -159,18 +208,21 @@ input[type='radio'] {
 }
 
 .statement {
-  margin: 0 .5rem .2em 1.3rem;
-  display: block;
-  clear: both;
+  margin: .3em auto;
+  display: table;
+  width: 100%;
   min-height: 5em;
   border: .2rem solid @light-border;
   border-radius: .4rem;
-  padding: 0 1rem 1em 0;
+  padding-bottom: 1rem;
+  
+  &.inactive {
+    background-color: @inactive-background;
+  }
 
   .statement-info {
-    display: inline-block;
     width: 6rem;
-    float: left;
+    display: table-cell;
 
     .statement-score {
       background-color: @medium-background;
@@ -234,23 +286,43 @@ input[type='radio'] {
         }        
       }
     }
-
   }
 
   .statement-body {
-    margin-left: 6.7rem;
-    padding-top: .1em;
-    display: block;
+    display: table-cell;
+    min-height: 5em;
+    padding: .1em .4rem;
     vertical-align: top;
+
+    .objection-tag {
+      text-transform: uppercase;
+      font-size: .7em;
+      background-color: @objection-background;
+      color: @objection-foreground;
+      border-radius: .3rem;
+      padding: .2rem .6rem;
+    }
+
+    .objection-type {
+      text-transform: uppercase;
+      font-size: .7em;
+      text-decoration: underline;
+    }
   }
 
   .statement-vote {
-    float: right;
+    display: table-cell;
+    width: 4rem;
+    height: 3em;
+    vertical-align: top;
 
     button {
-      height: 1.5em;
+      margin: .5em;
+      height: 2.4em;
+      width: 4rem;
       line-height: .4em;
       background-color: @light-background;
+      vertical-align: middle;
 
       &.support {
         background-color: @support-background;
@@ -278,46 +350,50 @@ input[type='radio'] {
   }
 }
 
-.detail {
-  .debate {
-    display: block;
-    float: none;
-    width: auto;
-    margin: 0 .5rem .2em .5rem;
+.response-form {
+  .btn {
+    width: 8rem;
   }
 
-  .statement .statement-body {
-    color: @dark-foreground;
+  .objection-type-detail {
+    margin-top: 1rem;
   }
 
-  .context {
-    .statement {
-      background-color: @dark-background;
-      border-color: @medium-border;
-    }
+  .fallacy {
+    max-width: 40rem;
+    margin-bottom: .6rem;
 
-    .current .statement {
-      border-color: @light-border;
-    }
-
-    .statement-body {
-      color: @light-foreground;
+    .btn {
+      width: 16rem;
+      margin-bottom: .4rem;
     }
   }
+
+  .checkbox {
+    margin: 0 0 1.6rem 1.6rem;
+  }
+}
+
+.help {
+  padding: 1rem;
+  margin-bottom: .4rem;
+  font-style: italic;
+  max-width: 80rem;
+  border-radius: .5rem;
+  background-color: lighten(@medium-background,13%);
 }
 
 
 #create-debate-form, #create-statement-form {
   display: block;
-  margin: .5rem .5rem 0 1.3rem;
+  margin: .4rem .2rem;
 
-  #debate-title, #statement-body {
+  .new-debate-title, .new-statement-body {
     width: 100%;
     margin-bottom: .5rem;
   }
 
-  #statement-body {
-    margin-top: .5rem;
+  .form-controls {
+    margin-top: 1rem;
   }
 }
-

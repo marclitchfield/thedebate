@@ -1,13 +1,17 @@
-<a ui-sref="responses.index({ id: statement.id, type: '' })">
-  <div class="statement">
+<a ui-sref="responses({ id: statement.id, type: '' })" ng-click="stopPropagationIfCurrent($event)">
+  <div class="statement" ng-class="{inactive:statement.inactive}">
     <div class="statement-info">
       <div class="statement-score" ng-bind="statement.score"></div>
       <div class="response-type {{ statement.type }}" ng-bind="statement.type" ng-show="statement.type"></div>
       <score-indicator scores="statement.scores" />
     </div>
-    <div class="statement-body" ng-bind="statement.body"></div>
-    <div class="statement-vote">
-        <button class="btn btn-primary" ng-class="{support:statement.upvoted}" ng-click="upvote($event)">+1</div>
+    <div class="statement-body">
+      <span class="objection-tag" ng-show="statement.tag" ng-bind="statement.tag"></span>
+      <span class="objection-type" ng-show="statement.objection.type" ng-bind="statement.objection.type"></span>
+      <span class="body-text" ng-bind="statement.body"></span>
     </div>
-  </div>
+    <div class="statement-vote">
+      <button class="btn btn-primary" ng-class="{support:statement.upvoted}" ng-click="upvote($event)">+1</div>
+    </div>
+  </div> 
 </a>

@@ -6,15 +6,15 @@
         <statement model="item" />
       </div>
     </div>
-    <statement model="statement" class="current"></statement>
+    <statement model="statement" current="true" class="current"></statement>
   </div>
-  <div class="controls container-fluid" ng-show="$state.is('responses.index')">
-    <div class="response-types">
-      <a ui-sref="responses.index({ id: statement.id, type: toggle('support') })" 
+  <div class="controls" ng-show="$state.is('responses.index')">
+    <div class="filters">
+      <a ui-sref="responses({ id: statement.id, type: toggle('support') })" 
          class="show-support btn btn-primary" ng-class="{active:responseType==='support'}">Supporting</a>
-      <a ui-sref="responses.index({ id: statement.id, type: toggle('opposition') })" 
+      <a ui-sref="responses({ id: statement.id, type: toggle('opposition') })" 
          class="show-opposition btn btn-primary" ng-class="{active:responseType==='opposition'}">Opposing</a>
-      <a ui-sref="responses.index({ id: statement.id, type: toggle('objection') })" 
+      <a ui-sref="responses({ id: statement.id, type: toggle('objection') })" 
          class="show-objection btn btn-primary" ng-class="{active:responseType==='objection'}">Objections</a>
     </div>
     <div class="actions">
@@ -22,5 +22,5 @@
         class="new-response btn btn-primary action">Respond</a>
     </div>
   </div>
-  <ui-view />
 </div>
+<ui-view />

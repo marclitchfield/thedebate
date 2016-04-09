@@ -43,8 +43,9 @@ var paths = {
     vendor: [
         'web/vendor/angular/angular.js',
         'web/vendor/angular-ui-router/release/angular-ui-router.js',
-        'web/vendor/bootstrap/dist/css/bootstrap.css',
-        'web/vendor/lodash/dist/lodash.min.js'
+        'web/vendor/bootstrap/dist/css/bootstrap.min.css',
+        'web/vendor/lodash/dist/lodash.min.js',
+        'web/vendor/fastclick/lib/fastclick.js'
     ],
     server: {
       root: 'web/server/',
@@ -194,6 +195,10 @@ gulp.task('watch', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.server.files, ['server']);
   gulp.watch(paths.test.files, ['lint-tests']);
+});
+
+gulp.task('heroku:', function() {
+  gulp.start('default');
 });
 
 gulp.task('default', function() {

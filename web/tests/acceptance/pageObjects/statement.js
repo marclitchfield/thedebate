@@ -5,7 +5,7 @@ module.exports = function statement(element) {
     },
 
     body: function() {
-      return element.element(by.css('.statement-body')).getText()
+      return element.element(by.css('.statement-body .body-text')).getText()
     },
 
     score: function() {

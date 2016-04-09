@@ -6,11 +6,13 @@
     </div>
   </div>
   <div class="controls" ng-show="$state.is('statements.index')">
-    <a ui-sref="statements.index({ id: debate.id })" ui-sref-active="active" class="btn btn-primary">Statements</a>
+    <div class="filters">
+      <a href="#" class="btn btn-primary active current">Statements</a>
+    </div>
     <div class="actions">
       <a ui-sref="statements.new({ id: debate.id })" ui-sref-active="active" 
         class="new-statement btn btn-primary action">Submit a Statement</a>
     </div>
   </div>
-  <ui-view />
 </div>
+<ui-view />

@@ -1,64 +1,34 @@
+// TODO: Figure out how to separate controllers into their own modules. 
+// Need to be able to inject into .config method.
+
 angular.module('thedebate.routes.responses', [
   'ui.router',
   'thedebate.directives.debate',
   'thedebate.directives.statement',
-  'thedebate.fixtures'
+  'thedebate.controllers.responses.default',
+  'thedebate.controllers.responses.new',
+  'thedebate.controllers.responses.objections.edit',
+  'thedebate.controllers.responses.objections.logic',
+  'thedebate.controllers.responses.objections.junk'
 ])
   .config(function($stateProvider) {
-
     $stateProvider
       .state('responses', {
-        url: '/statement/:id',
-        templateUrl: 'templates/pages/responses.tpl.html',
-        controller: function($scope, $state, $stateParams, fixtures) {
-          $scope.$state = $state;
-          $scope.statement = fixtures.statements.all[$stateParams.id];
-
-          $scope.toggle = function(type) {
-            return ($scope.responseType && $scope.responseType === type) ? '' : type;
-          };
-        }
+        url: '/statement/:id/:type',
+        templateUrl: 'templates/routes/responses/default.tpl.html',
+        resolve: {
+          statement: function($http, $stateParams) {
+            return $http.get('/api/statement/' + $stateParams.id);
+          }
+        },
+        controller: 'ResponsesDefaultController'
       })
       .state('responses.index', {
-        url: '/:type',
-        templateUrl: 'templates/routes/responses/index.tpl.html',
-        controller: function($scope, $state, $stateParams) {
-          $scope.$parent.responseType = $stateParams.type;
-
-          if (!$stateParams.type) {
-            $scope.responses = $scope.statement.responses;
-          } else {
-            $scope.responses = $scope.statement.responses.filter(function(response) {
-              return response.type === $stateParams.type;
-            });
-          }
-        }
+        templateUrl: 'templates/routes/responses/index.tpl.html'
       })
       .state('responses.new', {
-        url: '/respond/:type',
+        url: '^/statement/:id/:type/respond',
         templateUrl: 'templates/routes/responses/new.tpl.html',
-        controller: function($scope, $state, $stateParams, fixtures) {
-          $scope.responseBody = '';
-          $scope.responseType = $stateParams.type;
-
-          $scope.cancel = function() {
-            window.history.back();
-          };
-
-          $scope.submit = function() {
-            $scope.statement.responses.push(fixtures.statements.create({ 
-              body: $scope.responseBody, 
-              debate: $scope.statement.debate,
-              parent: $scope.statement,
-              type: $scope.responseType,
-              score: 0, 
-              support: 0, 
-              opposition: 0, 
-              objection: 0
-            }));
-
-            $state.go('responses.index', { id: $scope.statement.id, type: $scope.responseType });
-          };
-        }
+        controller: 'ResponsesNewController'
       });
   });

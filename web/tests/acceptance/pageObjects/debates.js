@@ -4,7 +4,7 @@ var debate = require('./debate');
 module.exports = {
   add: function(title) {
     element(by.id('new-debate')).click();
-    element(by.id('debate-title')).sendKeys(title);
+    element(by.css('.new-debate-title')).sendKeys(title);
     element(by.id('submit-debate')).click();
   },
 

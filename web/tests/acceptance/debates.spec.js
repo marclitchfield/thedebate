@@ -1,8 +1,9 @@
+var uuid = require('uuid');
 var debates = require('./pageObjects/debates');
 var statements = require('./pageObjects/statements');
 
 describe('debates page', function() {
-  var debateTitle = 'new debate';
+  var debateTitle = 'new debate ' + uuid.v4();
 
   it('when new debate is added', function() {
     browser.get('/');

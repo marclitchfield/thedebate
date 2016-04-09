@@ -3,6 +3,7 @@
     "document": true,
     "window": true,
     "angular": true,
+    "FastClick": true,
     "_": true
   },
   "indent" : 2,

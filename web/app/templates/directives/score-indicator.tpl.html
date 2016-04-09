@@ -1,5 +1,5 @@
 <div class="score-indicator">
-  <div class="indicator-percentage support" ng-style="{ width: supportPercentage + '%', left: 0 }"></div>
-  <div class="indicator-percentage opposition" ng-style="{ width: oppositionPercentage + '%', left: supportPercentage + '%' }"></div>
-  <div class="indicator-percentage objection" ng-style="{ width: objectionPercentage + '%', left: supportPercentage+oppositionPercentage + '%' }"></div>
+  <div class="indicator-percentage support" ng-style="{ width: percentage().support + '%', left: 0 }"></div>
+  <div class="indicator-percentage opposition" ng-style="{ width: percentage().opposition + '%', left: percentage().support + '%' }"></div>
+  <div class="indicator-percentage objection" ng-style="{ width: percentage().objection + '%', left: percentage().support + percentage().opposition + '%' }"></div>
 </div>

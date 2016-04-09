@@ -6,15 +6,21 @@ var debate = require('./debate');
 var statement = require('./statement');
 
 module.exports = {
+  objections: {
+    edit: require('./objections/edit'),
+    junk: require('./objections/junk'),
+    logic: require('./objections/logic')
+  },
+
   add: function(type, body) {
     element(by.css('.new-response')).click();
     if (type) {
       element(by.css('label.' + type)).click();
     }
     if (body) {
-      element(by.id('statement-body')).sendKeys(body);
+      element(by.css('.response-form.' + type + ' .new-statement-body')).sendKeys(body);
     }
-    element(by.id('submit-statement')).click();
+    this.submitButton().click();
   },
 
   submitButton: function() {
@@ -44,4 +50,4 @@ module.exports = {
   last: function() {
     return statement(element.all(by.css(statementsSelector)).last());
   }
-}
+};
