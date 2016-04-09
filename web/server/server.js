@@ -3,7 +3,6 @@ var app = express();
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
-var request = require('request');
 
 var baseUrl = '/';
 var rootDirectory = './dist/public/';
@@ -13,7 +12,7 @@ app.get('*', function(req, res) {
 
   var assetPath = req.path.slice(baseUrl.length);
   var resourcePath = path.join(rootDirectory, assetPath);
-  
+
   if (isForBaseURL || !fs.existsSync(resourcePath)) {
     resourcePath = path.join(rootDirectory, 'index.html');
   }
